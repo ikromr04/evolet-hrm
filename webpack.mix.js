@@ -12,10 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix
-  .js('resources/js/app.js', 'public/js/app.min.js')
+  .ts('resources/js/index.tsx', 'public/js/app.min.js')
   .react()
   .sourceMaps()
   .webpackConfig({
     devtool: 'source-map'
+  })
+  .browserSync({
+    proxy: 'http://127.0.0.1:8000',
   })
   .version();

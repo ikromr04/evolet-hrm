@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/users/register', [UserController::class, 'create']);
+Route::post('/users/register', [UserController::class, 'store']);
 Route::post('/users/login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
