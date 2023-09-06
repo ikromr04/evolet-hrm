@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getToken } from './token';
 
-const BACKEND_URL = 'https://10.react.pages.academy/wtw';
+const BACKEND_URL = 'http://127.0.0.1:8000/api';
 const REQUEST_TIMEOUT = 5000;
 
 export const createAPI = (): AxiosInstance => {

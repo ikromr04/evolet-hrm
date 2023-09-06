@@ -1,6 +1,7 @@
 export enum AppRoute {
   Main = '/',
-  Login = '/login',
+  Login = '/users/login',
+  Register = '/users/register',
   NotFound = '*',
 }
 
@@ -11,8 +12,8 @@ export enum AuthorizationStatus {
 }
 
 export enum APIRoute {
-  Login = '/login',
-  Logout = '/logout',
+  Login = '/users/login',
+  Logout = '/users/logout',
 }
 
 export enum SliceName {
