@@ -3,10 +3,13 @@ import 'styled-components'
 declare module 'styled-components' {
   export interface DefaultTheme {
     color: {
-      basePrimary: string;
-      primaryLight: string;
-      baseSecondary: string;
-      baseDark: string;
+      baseWhite: string,
+      fontColor: string;
+      titleColor: string;
+      pageBackground: string;
+      button: {
+        success: string,
+      }
     };
     media: {
       small: string;

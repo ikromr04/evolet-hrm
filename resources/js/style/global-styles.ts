@@ -14,6 +14,9 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     margin: 0;
+    font-family: Inter, sans-serif;
+    color: ${({ theme }) => theme.color.fontColor};
+    background-color: ${({ theme }) => theme.color.pageBackground};
   }
 
   @keyframes s3 {

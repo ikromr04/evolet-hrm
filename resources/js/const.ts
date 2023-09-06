@@ -1,7 +1,6 @@
 export enum AppRoute {
   Main = '/',
   Login = '/users/login',
-  Register = '/users/register',
   NotFound = '*',
 }
 

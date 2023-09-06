@@ -2,10 +2,13 @@ import { DefaultTheme } from 'styled-components'
 
 export const theme: DefaultTheme = {
   color: {
-    basePrimary: '#dfcf77',
-    primaryLight: '#eee5b5',
-    baseSecondary: '#e1b0b2',
-    baseDark: '#170202',
+    baseWhite: '#ffffff',
+    fontColor: '#476887',
+    titleColor: '#000f30',
+    pageBackground: '#f1f5f8',
+    button: {
+        success: '#00b950',
+      }
   },
   media: {
     small: '576px',

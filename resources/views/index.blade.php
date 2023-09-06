@@ -7,6 +7,9 @@
   <meta name="robots" content="noindex, nofollow">
 
   <link rel="icon" type="image/svg+xml" href="evolet.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <title>HRM система Эволет</title>
 </head>

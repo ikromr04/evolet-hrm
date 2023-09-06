@@ -6,6 +6,9 @@ import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-slice/selector';
 import { AppSpinner } from './styled';
 import PrivateRoute from '../private-route/private-route';
+import LoginPage from '../pages/login-page/login-page';
+import NotFoundPage from '../pages/not-found-page/not-found-page';
+import MainPage from '../pages/main-page/main-page';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -17,11 +20,11 @@ export default function App(): JSX.Element {
   return (
     <HistoryRouter history={browserHistory}>
       <Routes>
-        <Route path={AppRoute.Login} element={<h1>Login page</h1>} />
-        <Route path={AppRoute.NotFound} element={<h1>Not found page</h1>} />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+        <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path={AppRoute.Main} element={<h1>Main page</h1>} />
+          <Route path={AppRoute.Main} element={<MainPage />} />
         </Route>
       </Routes>
     </HistoryRouter>
