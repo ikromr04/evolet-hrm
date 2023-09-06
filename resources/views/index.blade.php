@@ -13,7 +13,7 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <div class="page__root" id="root"></div>
+  <div id="root"></div>
 
   <script type="module" src="{{ mix('js/app.min.js') }}"></script>
 </body>

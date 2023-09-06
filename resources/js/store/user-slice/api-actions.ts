@@ -7,7 +7,7 @@ import { Token, dropToken, saveToken } from '../../services/token';
 import { redirectToRoute } from '../middlewares/redirect';
 import { dropUser, saveUser } from '../../services/user';
 
-export const checkAuthAction = createAsyncThunk<void, null, {
+export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance,
