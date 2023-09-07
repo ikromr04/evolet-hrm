@@ -3,12 +3,16 @@ import { DefaultTheme } from 'styled-components'
 export const theme: DefaultTheme = {
   color: {
     baseWhite: '#ffffff',
-    fontColor: '#476887',
     titleColor: '#000f30',
     pageBackground: '#f1f5f8',
     button: {
-        success: '#00b950',
-      }
+      success: '#00b950',
+    },
+    text: {
+      'dark': '#000f30',
+      'gray': '#476887',
+      'link': '#4094ff',
+    },
   },
   media: {
     small: '576px',

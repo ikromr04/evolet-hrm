@@ -2,13 +2,15 @@ import { Link } from 'react-router-dom';
 import { StyledLogo } from './styled';
 
 type MainLogoProps = {
+  className?: string;
   width?: number;
   href?: string;
 }
 
-export default function MainLogo({ width = 160, href }: MainLogoProps): JSX.Element {
+export default function MainLogo({ className, width = 160, href }: MainLogoProps): JSX.Element {
   return (
     <StyledLogo
+      className={className}
       as={href ? Link : ''}
       to={href}
       title={href && 'На главную страницу'}

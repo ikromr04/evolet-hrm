@@ -1,11 +1,13 @@
 import { StyledText } from './styled';
 import { PropsWithChildren } from 'react';
 
-type TextProps = PropsWithChildren;
+type TextProps = PropsWithChildren<{
+  dark?: boolean;
+}>;
 
-export default function Text({ children }: TextProps): JSX.Element {
+export default function Text({ children, ...rest }: TextProps): JSX.Element {
   return (
-    <StyledText>
+    <StyledText {...rest}>
       {children}
     </StyledText>
   );

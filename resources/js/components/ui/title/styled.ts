@@ -6,5 +6,5 @@ export const StyledTitle = styled.h2`
   font-weight: 600;
   font-size: 20px;
   line-height: 120%;
-  color: ${({ theme }) => theme.color.titleColor};
+  color: ${({ theme }) => theme.color.titleColor };
 `;

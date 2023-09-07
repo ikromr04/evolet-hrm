@@ -5,10 +5,10 @@ type TitleProps = PropsWithChildren<{
   textAlign?: string;
 }>;
 
-export default function Title(props: TitleProps): JSX.Element {
+export default function Title({ children, ...rest }: TitleProps): JSX.Element {
   return (
-    <StyledTitle {...props}>
-      {props.children}
+    <StyledTitle {...rest}>
+      {children}
     </StyledTitle>
   );
 }
