@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledText = styled.p<{ dark?: boolean }>`
+export const StyledText = styled.p`
   margin-top: 0;
   margin-bottom: 0;
-  color: ${({ theme, dark }) => dark ? theme.color.text.dark : theme.color.text.gray };
+  color: ${({ theme }) => theme.color.text.gray };
 `;

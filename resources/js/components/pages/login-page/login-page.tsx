@@ -1,4 +1,5 @@
-import { Main, LoginForm, Logo, PageTitle, Description } from './styled';
+import Button from '../../ui/button/button';
+import { Main, LoginForm, Logo, PageTitle, Description, Field } from './styled';
 
 export default function LoginPage(): JSX.Element {
   return (
@@ -7,19 +8,32 @@ export default function LoginPage(): JSX.Element {
         <Logo />
 
         <PageTitle>Добро пожаловать в Evolet</PageTitle>
-        <Description dark>Введите свои учетные данные</Description>
+        <Description>Введите свои учетные данные</Description>
 
-        <label>
-          <span>Электронная почта</span>
-          <input type="text" placeholder="Электронная почта" />
-        </label>
+        <Field
+          id="email"
+          label="Электронная почта"
+          labelHidden
+          name="email"
+          type="text"
+          placeholder="Электронная почта"
+        />
 
-        <label>
-          <span>Пароль</span>
-          <input type="password" placeholder="Пароль" />
-        </label>
+        <Field
+          id="password"
+          label="Пароль"
+          labelHidden
+          name="password"
+          type="password"
+          placeholder="Пароль"
+        />
 
-        <button type="submit">Войти в систему</button>
+        <Button
+          type="submit"
+          fluid
+        >
+          Войти в систему
+        </Button>
       </LoginForm>
     </Main>
   );

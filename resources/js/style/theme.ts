@@ -9,9 +9,9 @@ export const theme: DefaultTheme = {
       success: '#00b950',
     },
     text: {
-      'dark': '#000f30',
-      'gray': '#476887',
-      'link': '#4094ff',
+      dark: '#000f30',
+      gray: '#476887',
+      link: '#4094ff',
     },
   },
   media: {

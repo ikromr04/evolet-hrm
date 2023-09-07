@@ -2,7 +2,7 @@ import { StyledText } from './styled';
 import { PropsWithChildren } from 'react';
 
 type TextProps = PropsWithChildren<{
-  dark?: boolean;
+  [rest:string]: any;
 }>;
 
 export default function Text({ children, ...rest }: TextProps): JSX.Element {
