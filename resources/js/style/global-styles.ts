@@ -19,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
     background-color: ${({ theme }) => theme.color.pageBackground};
   }
 
+  #root {
+    min-height: 100vh;
+  }
+
   @keyframes s3 {
     to {
       transform: rotate(1turn);

@@ -1,5 +1,10 @@
+import LoginForm from './login-form/login-form';
+import { Main } from './styled';
+
 export default function LoginPage(): JSX.Element {
   return (
-    <h1>Login page</h1>
+    <Main>
+      <LoginForm />
+    </Main>
   );
 }
