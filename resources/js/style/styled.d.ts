@@ -13,6 +13,7 @@ declare module 'styled-components' {
         dark: string,
         gray: string,
         link: string,
+        error: string,
       },
     };
     media: {

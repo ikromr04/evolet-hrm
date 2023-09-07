@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
-import { StyledBlock } from '../../ui/block/styled';
-import { StyledTitle } from '../../ui/title/styled';
 import MainLogo from '../../ui/main-logo/main-logo';
-import Text from '../../ui/text/text';
 import TextField from '../../ui/text-field/text-field';
+import Title from '../../ui/title/title';
+import { StyledBlock } from '../../ui/block/styled';
+import { StyledText } from '../../ui/text/styled';
 
 export const Main = styled.main`
   background-image: url('/img/login-page-bg.webp');
@@ -31,15 +31,14 @@ export const Logo = styled(MainLogo)`
   margin-bottom: 24px;
 `;
 
-export const PageTitle = styled(StyledTitle)`
+export const PageTitle = styled(Title)`
   font-size: 16px;
   margin-bottom: 32px;
 `;
 
-export const Description = styled(Text)`
+export const Description = styled(StyledText)`
   font-size: 14px;
   margin-bottom: 8px;
-  color: ${({ theme }) => theme.color.text.dark };
 `;
 
 export const Field = styled(TextField)`

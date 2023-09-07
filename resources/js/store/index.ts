@@ -12,6 +12,7 @@ export const store = configureStore({
       thunk: {
         extraArgument: api,
       },
+      serializableCheck: false,
     }).concat(redirect),
 });
 

@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Label = styled('label').withConfig({
-  shouldForwardProp: (prop, defaultValidatorFn) =>
+  shouldForwardProp: (prop) =>
     !['isHidden'].includes(prop)
 })<{ isHidden?: boolean }>`
   display: flex;
@@ -31,7 +31,9 @@ export const Label = styled('label').withConfig({
   }
 `;
 
-export const Input = styled.input`
+export const Input = styled('input').withConfig({
+  shouldForwardProp: (prop) => !['error'].includes(prop)
+})<{ error?: boolean }>`
   display: flex;
   width: 100%;
   font-size: 14px;
@@ -41,6 +43,7 @@ export const Input = styled.input`
   min-height: 35px;
   padding: 4px 16px;
   transition: .3s;
+  ${({ error }) => error && 'border: 1px solid #ff623f;' };
 
   &:hover{
     outline: none;
@@ -54,4 +57,14 @@ export const Input = styled.input`
     border: 1px solid #0085ff;
     box-shadow: none;
   }
+`;
+
+export const Message = styled('span').withConfig({
+  shouldForwardProp: (prop) => !['error'].includes(prop)
+})<{ error?: boolean }>`
+  display: flex;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+  color: ${({ error }) => error && '#ff623f' };
 `;

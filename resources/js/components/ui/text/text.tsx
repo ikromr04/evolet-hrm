@@ -2,7 +2,7 @@ import { StyledText } from './styled';
 import { PropsWithChildren } from 'react';
 
 type TextProps = PropsWithChildren<{
-  [rest:string]: any;
+  [rest:string]: string;
 }>;
 
 export default function Text({ children, ...rest }: TextProps): JSX.Element {

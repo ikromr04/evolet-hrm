@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button<{ fluid?: boolean }>`
+export const StyledButton = styled('button').withConfig({
+  shouldForwardProp: (prop) => !['fluid'].includes(prop)
+})<{ fluid?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,5 +24,10 @@ export const StyledButton = styled.button<{ fluid?: boolean }>`
 
   &:hover {
     background-color: ${({ theme }) => `${theme.color.button.success}8d`};
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
   }
 `;

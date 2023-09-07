@@ -12,6 +12,7 @@ export const theme: DefaultTheme = {
       dark: '#000f30',
       gray: '#476887',
       link: '#4094ff',
+      error: '#ff623f',
     },
   },
   media: {
