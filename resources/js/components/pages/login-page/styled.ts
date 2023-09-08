@@ -22,8 +22,6 @@ export const LoginForm = styled(StyledBlock)`
   width: 100%;
   max-width: 600px;
   box-shadow: 0px 1px 4px rgba(9,8,61,0.08);
-  border: 1px solid #dce5ef;
-  border-radius: 8px;
   padding: 16px 32px;
 `;
 

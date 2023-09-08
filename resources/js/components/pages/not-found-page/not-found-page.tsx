@@ -1,5 +1,5 @@
 import { AppRoute } from '../../../const';
-import HomeIcon from '../../icons/home-icon/home-icon';
+import HomeIcon from '../../icons/home-icon';
 import Button from '../../ui/button/button';
 import { Description, Image, Main, PageTitle } from './styled';
 

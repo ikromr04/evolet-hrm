@@ -1,6 +1,8 @@
 export enum AppRoute {
   Main = '/',
   Login = '/users/login',
+  Profile = '/users/profile',
+  Account = '/users/account',
   NotFound = '*',
 }
 

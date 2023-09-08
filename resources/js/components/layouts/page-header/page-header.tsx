@@ -1,9 +1,9 @@
 import { AppRoute } from '../../../const';
-import Account from '../../account/account';
 import QuickAdd from '../../quick-add/quick-add';
 import MainLogo from '../../ui/main-logo/main-logo';
 import { Header, HeaderContainer, Search } from './styled';
 import Notification from '../../notification/notification';
+import UserNavigation from '../../user-navigation/user-navigation';
 
 export default function PageHeader(): JSX.Element {
   return (
@@ -14,7 +14,7 @@ export default function PageHeader(): JSX.Element {
 
         <QuickAdd />
         <Notification />
-        <Account />
+        <UserNavigation />
       </HeaderContainer>
     </Header>
   );

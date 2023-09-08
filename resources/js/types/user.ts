@@ -6,5 +6,8 @@ export type LoginData = {
 export type User = {
   id: string;
   name: string;
+  surname: string;
+  patronymic: string;
+  avatar: string;
   email: string;
 };

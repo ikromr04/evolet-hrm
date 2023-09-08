@@ -7,6 +7,7 @@ import { Token, dropToken, saveToken } from '../../services/token';
 import { redirectToRoute } from '../middlewares/redirect';
 import { dropUser, saveUser } from '../../services/user';
 import { ValidationError } from '../../types/validation-error';
+import { adaptUserToClient } from '../../adapters/users';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -31,7 +32,7 @@ export const loginAction = createAsyncThunk<void, {
     try {
       const { data } = await api.post<{ user: User, token: Token }>(APIRoute.Login, body);
       saveToken(data.token);
-      saveUser(data.user);
+      saveUser(adaptUserToClient(data.user));
       dispatch(redirectToRoute(AppRoute.Main));
     } catch (err: any) {
       let error: AxiosError<ValidationError> = err;
