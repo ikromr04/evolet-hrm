@@ -9,6 +9,7 @@ import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
+import PageWrapper from '../layouts/page-wrapper/page-wrapper';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -24,7 +25,9 @@ export default function App(): JSX.Element {
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
 
         <Route element={<PrivateRoute />}>
-          <Route path={AppRoute.Main} element={<MainPage />} />
+          <Route element={<PageWrapper />}>
+            <Route path={AppRoute.Main} element={<MainPage />} />
+          </Route>
         </Route>
       </Routes>
     </HistoryRouter>

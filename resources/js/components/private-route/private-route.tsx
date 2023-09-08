@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react'
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { AppRoute, AuthorizationStatus } from "../../const";
 import { useAppSelector } from "../../hooks";
 import { getAuthorizationStatus } from "../../store/user-slice/selector";
@@ -11,7 +11,7 @@ export default function PrivateRoute({ children }: PrivateRouteProps) {
 
   return (
     authorizationStatus === AuthorizationStatus.Auth
-      ? children
-      : <Navigate to={AppRoute.Login} />
+      ? <Outlet/>
+      : <Navigate to={AppRoute.Login} replace />
   )
 }

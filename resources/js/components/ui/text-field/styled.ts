@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled('div').withConfig({
+  shouldForwardProp: (prop) => !['width'].includes(prop)
+})<{ width?: number }>`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: ${({ width }) => width ? `${width}px` : '100%'};
 `;
 
 export const Label = styled('label').withConfig({
-  shouldForwardProp: (prop) =>
-    !['isHidden'].includes(prop)
+  shouldForwardProp: (prop) => !['isHidden'].includes(prop)
 })<{ isHidden?: boolean }>`
   display: flex;
   margin-bottom: 4px;

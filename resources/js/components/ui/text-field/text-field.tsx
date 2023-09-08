@@ -6,14 +6,21 @@ type TextFieldProps = {
   labelHidden?: boolean;
   className?: string;
   message?: string;
-  [rest:string]: any;
+  width?: number;
+  [rest:string]: unknown;
 };
 
 export default function TextField({
-  id, label, labelHidden, className, message, ...rest
+  id,
+  label,
+  labelHidden,
+  className,
+  message,
+  width,
+  ...rest
 }: TextFieldProps): JSX.Element {
   return (
-    <Wrapper className={className}>
+    <Wrapper className={className} width={width}>
       <Label
         id={id}
         isHidden={labelHidden}
@@ -25,7 +32,7 @@ export default function TextField({
         {...rest}
         error={message ? true : false}
       />
-      <Message error={message ? true : false}>{message}</Message>
+      {message && <Message error={message ? true : false}>{message}</Message>}
     </Wrapper>
   );
 }

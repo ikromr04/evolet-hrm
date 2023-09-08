@@ -11,10 +11,23 @@ import { ValidationError } from '../../../types/validation-error';
 export default function LoginPage(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
+
+  const handleSubmitClick = (evt: BaseSyntheticEvent) => {
+    evt.preventDefault();
+    setIsLoading(true);
+
+    dispatch(loginAction({
+      body: { email, password },
+      errorHandler(error) {
+        setIsLoading(false);
+        setValidationError(error);
+      },
+    }));
+  };
 
   const handleEmailInput = (evt: BaseSyntheticEvent) => {
     setEmail(evt.target.value);
@@ -23,7 +36,10 @@ export default function LoginPage(): JSX.Element {
       if (newState?.errors?.email) {
         delete newState.errors.email
       }
-      return newState;
+      return {
+        ...newState,
+        message: '',
+      };
     })
   };
 
@@ -34,22 +50,14 @@ export default function LoginPage(): JSX.Element {
       if (newState?.errors?.password) {
         delete newState.errors.password
       }
-      return newState;
+      return {
+        ...newState,
+        message: '',
+      };
     })
   };
 
-  const handleSubmitClick = (evt: BaseSyntheticEvent) => {
-    evt.preventDefault();
-    setIsSubmitDisabled(true);
 
-    dispatch(loginAction({
-      body: { email, password },
-      errorHandler(error) {
-        setIsSubmitDisabled(false);
-        setValidationError(error);
-      },
-    }));
-  };
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />
@@ -98,7 +106,8 @@ export default function LoginPage(): JSX.Element {
           type="submit"
           fluid
           onClick={handleSubmitClick}
-          disabled={isSubmitDisabled}
+          disabled={isLoading}
+          isLoading={isLoading}
         >
           Войти в систему
         </Button>
