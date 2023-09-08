@@ -1,5 +1,12 @@
+import BellIcon from '../icons/bell-icon';
+import { StyledButton, Wrapper } from './styled';
+
 export default function Notification(): JSX.Element {
   return (
-    <div>notification</div>
+    <Wrapper>
+      <StyledButton title="Уведомлении">
+        <BellIcon height={16} />
+      </StyledButton>
+    </Wrapper>
   )
 }
