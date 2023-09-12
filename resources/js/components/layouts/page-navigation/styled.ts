@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { StyledBlock } from '../../ui/block/styled';
-import { MoreIcon, StyledButton } from './navigation-item/styled';
+import { MoreIcon } from './navigation-item/styled';
 
 export const Navigation = styled(StyledBlock).withConfig({
   shouldForwardProp: (prop) => !['isCollapsed'].includes(prop),

@@ -109,7 +109,7 @@ export default function PageNavigation(): JSX.Element {
       />
       <NavigationItem
         label="Свернуть"
-        icon={<ArrowLeftIcon width={16} height={12} />}
+        icon={<ArrowLeftIcon width={16} height={12} style={{ transform: isCollapsed && 'scale(-1)', transition: '0.3s', }} />}
         onClick={() => setIsCollapsed(!isCollapsed)}
       />
     </Navigation>
