@@ -28,6 +28,30 @@ export default function App(): JSX.Element {
           <Route element={<PageWrapper />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
             <Route path={AppRoute.Profile} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />
+
+            <Route path={AppRoute.Vacancies} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Applicants} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Hiring} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Tests} element={<p>Not implemented</p>} />
+
+            <Route path="/efficiency/review" element={<p>Not implemented</p>} />
+            <Route path="/efficiency/one-on-one" element={<p>Not implemented</p>} />
+            <Route path="/efficiency/kpi" element={<p>Not implemented</p>} />
+            <Route path="/efficiency/goals" element={<p>Not implemented</p>} />
+            <Route path="/efficiency/grade" element={<p>Not implemented</p>} />
+
+            <Route path="/attendance" element={<p>Not implemented</p>} />
+            <Route path="/polls" element={<p>Not implemented</p>} />
+            <Route path="/documents" element={<p>Not implemented</p>} />
+            <Route path="/store" element={<p>Not implemented</p>} />
+            <Route path="/knowledge" element={<p>Not implemented</p>} />
+            <Route path="/cases" element={<p>Not implemented</p>} />
+            <Route path="/process" element={<p>Not implemented</p>} />
+            <Route path="/reports" element={<p>Not implemented</p>} />
+
+            <Route path="/settings" element={<p>Not implemented</p>} />
           </Route>
         </Route>
       </Routes>

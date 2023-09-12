@@ -3,6 +3,14 @@ export enum AppRoute {
   Login = '/users/login',
   Profile = '/users/profile',
   Account = '/users/account',
+  Employees = '/employees',
+  Calendars = '/calendars',
+
+  Vacancies = '/recruitment/vacancies',
+  Applicants = '/recruitment/applicants',
+  Hiring = '/recruitment/hiring',
+  Tests = '/recruitment/tests',
+
   NotFound = '*',
 }
 
