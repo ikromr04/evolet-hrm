@@ -1,23 +1,10 @@
 import { styled } from 'styled-components';
 import { StyledBlock } from '../../ui/block/styled';
-import { MoreIcon } from './navigation-item/styled';
 
-export const Navigation = styled(StyledBlock).withConfig({
-  shouldForwardProp: (prop) => !['isCollapsed'].includes(prop),
-})<{ isCollapsed: boolean }>`
+export const Navigation = styled(StyledBlock)`
   padding: 16px 0;
   z-index: 1;
-
-  ${({ isCollapsed }) => isCollapsed && `
-    & span {
-      display: none;
-    }
-
-    & ${MoreIcon} {
-      position: absolute;
-      right: 6px;
-    }
-  `}
+  transition: .3s;
 `;
 
 export const Hr = styled.div`

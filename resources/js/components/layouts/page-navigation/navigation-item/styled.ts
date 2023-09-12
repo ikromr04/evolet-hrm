@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
 import { StyledBlock } from '../../../ui/block/styled';
 import { Link } from 'react-router-dom';
@@ -9,7 +9,6 @@ export const StyledButton = styled('button').withConfig({
   display: flex;
   flex-grow: 1;
   align-items: center;
-  gap: 16px;
   padding: 8px 12px;
   min-height: 36px;
   margin: 1px 8px;
@@ -23,7 +22,7 @@ export const StyledButton = styled('button').withConfig({
   text-decoration: none;
   transition: .3s;
 
-  ${({ theme, isCurrent }) => isCurrent && `
+  ${({ theme, isCurrent }) => isCurrent && css`
     color: ${theme.color.button.success};
     background-color: #f1f5f8;
   `}
@@ -33,20 +32,70 @@ export const StyledButton = styled('button').withConfig({
   }
 `;
 
+export const ButtonTitle = styled.span`
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #1d1d1d;
+  color: white;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 13px;
+  min-width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 8px;
+    height: 8px;
+    background-color: #1d1d1d;
+  }
+`;
+
 export const Label = styled('span').withConfig({
-  shouldForwardProp: (prop) => !['isCurrent'].includes(prop)
-})<{ isCurrent?: boolean }>`
+  shouldForwardProp: (prop) => !['isCurrent', 'isCollapsed'].includes(prop)
+})<{ isCurrent?: boolean, isCollapsed?: boolean }>`
   transition: .3s;
   flex-grow: 1;
   text-align: left;
+  max-width: 200px;
+  padding: 0 16px;
+  opacity: 1;
+  visibility: visible;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: .3s;
 
-  ${({ theme, isCurrent }) => isCurrent && `
+  ${({ theme, isCurrent }) => isCurrent && css`
     color: ${theme.color.text.dark};
+  `}
+
+  ${({ isCollapsed }) => isCollapsed && css`
+    max-width: 0;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
   `}
 `;
 
-export const MoreIcon = styled(CaretIcon)`
+export const MoreIcon = styled(CaretIcon).withConfig({
+  shouldForwardProp: (prop) => ![ 'isCollapsed'].includes(prop)
+})<{ isCollapsed?: boolean }>`
   transform: rotate(-90deg);
+  margin-right: 0;
+  transition: .3s;
+
+  ${({ isCollapsed }) => isCollapsed && css`
+    margin-right: -16px;
+  `}
 `;
 
 export const Links = styled(StyledBlock)`
@@ -54,14 +103,23 @@ export const Links = styled(StyledBlock)`
   display: flex;
   flex-direction: column;
   position: absolute;
-  left: calc(100% + 4px);
+  left: calc(100% + 1px);
   min-width: 160px;
   transition: .3s;
   visibility: hidden;
   opacity: 0;
 `;
 
-export const Wrapper = styled.div`
+export const LinksTitle = styled.span`
+  font-size: 10px;
+  font-weight: 500;
+  color: #91a4b7;
+  padding: 8px 16px;
+`;
+
+export const Wrapper = styled('div').withConfig({
+  shouldForwardProp: (prop) => !['isCollapsed'].includes(prop),
+})<{ isCollapsed?: boolean }>`
   position: relative;
   z-index: 1;
   display: flex;
@@ -70,6 +128,13 @@ export const Wrapper = styled.div`
     visibility: visible;
     opacity: 1;
   }
+
+  ${({ isCollapsed }) => isCollapsed && css`
+    &:hover ${ButtonTitle} {
+      visibility: visible;
+      opacity: 1;
+    }
+  `}
 `;
 
 export const LinksItem = styled(Link)`

@@ -22,22 +22,25 @@ export default function PageNavigation(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <Navigation as="nav" isCollapsed={isCollapsed}>
+    <Navigation as="nav">
       <NavigationItem
         label="Главная страница"
         icon={<HomeIcon width={16} height={16} outlined />}
         href={AppRoute.Main}
+        isCollapsed={isCollapsed}
       />
       <Hr />
       <NavigationItem
         label="Сотрудники"
         icon={<AddressBookIcon width={16} height={16} />}
         href={AppRoute.Employees}
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Календарь"
         icon={<CalendarIcon width={16} height={16} />}
         href={AppRoute.Calendars}
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Рекрутинг"
@@ -48,6 +51,7 @@ export default function PageNavigation(): JSX.Element {
           { label: 'План найма', path: AppRoute.Hiring },
           { label: 'Тесты', path: AppRoute.Tests },
         ]}
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Эффективность"
@@ -59,57 +63,68 @@ export default function PageNavigation(): JSX.Element {
           { label: 'Цели', path: '/efficiency/goals' },
           { label: 'Оценка', path: '/efficiency/grade' },
         ]}
+        isCollapsed={isCollapsed}
       />
 
       <NavigationItem
         label="Учет посещаемости"
         icon={<ClockIcon width={16} height={16} />}
         href="/attendance"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Опросы"
         icon={<QuestionIcon width={16} height={16} />}
         href="/polls"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Документы"
         icon={<FileIcon width={16} height={16} />}
         href="/documents"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Имущество"
         icon={<CubesIcon width={16} height={16} />}
         href="/store"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="База знаний"
         icon={<BookIcon width={16} height={16} />}
         href="/knowledge"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Кейсы"
         icon={<CommentIcon width={16} height={16} />}
         href="/cases"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Процессы"
         icon={<NetwordIcon width={16} height={16} />}
         href="/process"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Отчеты"
         icon={<PieChartIcon width={16} height={16} />}
         href="/reports"
+        isCollapsed={isCollapsed}
       />
       <Hr />
       <NavigationItem
         label="Настройки"
         icon={<CogIcon width={16} height={16} />}
         href="/settings"
+        isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Свернуть"
         icon={<ArrowLeftIcon width={16} height={12} style={{ transform: isCollapsed && 'scale(-1)', transition: '0.3s', }} />}
+        isCollapsed={isCollapsed}
         onClick={() => setIsCollapsed(!isCollapsed)}
       />
     </Navigation>
