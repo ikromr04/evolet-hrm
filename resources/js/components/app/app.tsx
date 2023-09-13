@@ -31,10 +31,10 @@ export default function App(): JSX.Element {
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />
 
-            <Route path={AppRoute.Vacancies} element={<p>Not implemented</p>} />
-            <Route path={AppRoute.Applicants} element={<p>Not implemented</p>} />
-            <Route path={AppRoute.Hiring} element={<p>Not implemented</p>} />
-            <Route path={AppRoute.Tests} element={<p>Not implemented</p>} />
+            <Route path="/recruitment/vacancies" element={<p>Not implemented</p>} />
+            <Route path="/recruitment/applicants" element={<p>Not implemented</p>} />
+            <Route path="/recruitment/hiring" element={<p>Not implemented</p>} />
+            <Route path="/recruitment/tests" element={<p>Not implemented</p>} />
 
             <Route path="/efficiency/review" element={<p>Not implemented</p>} />
             <Route path="/efficiency/one-on-one" element={<p>Not implemented</p>} />

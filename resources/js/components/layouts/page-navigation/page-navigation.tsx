@@ -46,10 +46,10 @@ export default function PageNavigation(): JSX.Element {
         label="Рекрутинг"
         icon={<UsersIcon width={16} height={16} />}
         links={[
-          { label: 'Вакансии', path: AppRoute.Vacancies },
-          { label: 'Кандидаты', path: AppRoute.Applicants },
-          { label: 'План найма', path: AppRoute.Hiring },
-          { label: 'Тесты', path: AppRoute.Tests },
+          { label: 'Вакансии', path: '/recruitment/vacancies' },
+          { label: 'Кандидаты', path: '/recruitment/applicants' },
+          { label: 'План найма', path: '/recruitment/hiring' },
+          { label: 'Тесты', path: '/recruitment/tests' },
         ]}
         isCollapsed={isCollapsed}
       />
