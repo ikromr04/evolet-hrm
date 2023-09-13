@@ -10,6 +10,7 @@ import LoginPage from '../pages/login-page/login-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
 import PageWrapper from '../layouts/page-wrapper/page-wrapper';
+import ProfilePage from '../pages/profile-page/profile-page';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -27,7 +28,7 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PageWrapper />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Profile} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Profile} element={<ProfilePage />} />
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />
 

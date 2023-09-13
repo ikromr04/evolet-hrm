@@ -8,6 +8,7 @@ export type User = {
   name: string;
   surname: string;
   patronymic: string;
-  avatar: string;
   email: string;
+  avatar: string;
+  birthDate: Date;
 };

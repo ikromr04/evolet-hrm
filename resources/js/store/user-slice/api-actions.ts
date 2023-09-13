@@ -28,7 +28,7 @@ export const loginAction = createAsyncThunk<void, {
   rejectValue: ValidationError,
 }>(
   'users/login',
-  async ({body, errorHandler}, { dispatch, extra: api, rejectWithValue }) => {
+  async ({ body, errorHandler }, { dispatch, extra: api, rejectWithValue }) => {
     try {
       const { data } = await api.post<{ user: User, token: Token }>(APIRoute.Login, body);
       saveToken(data.token);
