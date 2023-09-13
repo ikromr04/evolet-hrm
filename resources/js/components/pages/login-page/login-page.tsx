@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 import { ValidationError } from '../../../types/validation-error';
 
 export default function LoginPage(): JSX.Element {
-  const [email, setEmail] = useState('');
+  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
@@ -21,7 +21,7 @@ export default function LoginPage(): JSX.Element {
     setIsLoading(true);
 
     dispatch(loginAction({
-      body: { email, password },
+      body: { login, password },
       errorHandler(error) {
         setIsLoading(false);
         setValidationError(error);
@@ -29,8 +29,8 @@ export default function LoginPage(): JSX.Element {
     }));
   };
 
-  const handleEmailInput = (evt: BaseSyntheticEvent) => {
-    setEmail(evt.target.value);
+  const handleLoginInput = (evt: BaseSyntheticEvent) => {
+    setLogin(evt.target.value);
     setValidationError((prevState) => {
       const newState = JSON.parse(JSON.stringify(prevState));
       if (newState?.errors?.email) {
@@ -57,8 +57,6 @@ export default function LoginPage(): JSX.Element {
     })
   };
 
-
-
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />
   }
@@ -77,14 +75,14 @@ export default function LoginPage(): JSX.Element {
         </Description>
 
         <Field
-          id="email"
-          label="Электронная почта"
+          id="login"
+          label="Логин"
           labelHidden
-          name="email"
+          name="login"
           type="text"
-          placeholder="Электронная почта"
-          defaultValue={email}
-          onInput={handleEmailInput}
+          placeholder="Логин"
+          defaultValue={login}
+          onInput={handleLoginInput}
           message={validationError?.errors?.email?.[0]}
           required
         />

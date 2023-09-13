@@ -20,13 +20,13 @@ class UserController extends Controller
   {
     $fields = $request->validate([
       'name' => 'required|string',
-      'email' => 'required|email|unique:users,email',
+      'login' => 'required|unique:users,login',
       'password' => 'required|string|confirmed',
     ]);
 
     $user = User::create([
       'name' => $fields['name'],
-      'email' => $fields['email'],
+      'login' => $fields['login'],
       'password' => bcrypt($fields['password']),
     ]);
 
@@ -41,11 +41,11 @@ class UserController extends Controller
   public function login(Request $request)
   {
     $fields = $request->validate([
-      'email' => 'required|email',
+      'login' => 'required',
       'password' => 'required|string',
     ]);
 
-    $user = User::where('email', $fields['email'])->first();
+    $user = User::where('login', $fields['login'])->first();
 
     if (!$user || !Hash::check($fields['password'], $user->password)) {
       return response([

@@ -5,7 +5,7 @@ export const adaptUserToClient = (serverUser: {[key: string]: any }): User => ({
   name: serverUser.name,
   surname: serverUser.surname,
   patronymic: serverUser.patronymic,
-  email: serverUser.email,
+  login: serverUser.login,
   avatar: serverUser.avatar,
-  birthDate: serverUser.birth_date,
+  startedWordAt: serverUser.started_word_at,
 });

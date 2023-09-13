@@ -1,5 +1,5 @@
 export type LoginData = {
-  email: string;
+  login: string;
   password: string;
 };
 
@@ -8,7 +8,7 @@ export type User = {
   name: string;
   surname: string;
   patronymic: string;
-  email: string;
+  login: string;
   avatar: string;
-  birthDate: Date;
+  startedWordAt: Date;
 };
