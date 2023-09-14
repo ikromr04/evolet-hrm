@@ -14,4 +14,9 @@ class User extends Authenticatable
   protected $guarded = [];
   protected $hidden = ['password', 'remember_token'];
   protected $casts = ['email_verified_at' => 'datetime'];
+
+  public function personalData()
+  {
+    return $this->hasOne(PersonalData::class);
+  }
 }
