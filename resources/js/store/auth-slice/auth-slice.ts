@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { checkAuthAction, loginAction, logoutAction } from './api-actions';
+import { checkAuthAction, fetchAuthJob, loginAction, logoutAction } from './api-actions';
+import { Job } from '../../types/job';
 
 export type AuthSlice = {
   authorizationStatus: AuthorizationStatus;
+  job: Job | null;
 };
 
 const initialState: AuthSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
+  job: null,
 };
 
 export const authSlice = createSlice({
@@ -30,6 +33,9 @@ export const authSlice = createSlice({
       })
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
+      })
+      .addCase(fetchAuthJob.fulfilled, (state, action) => {
+        state.job = action.payload;
       });
   },
 });

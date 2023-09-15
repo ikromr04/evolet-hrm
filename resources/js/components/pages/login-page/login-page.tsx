@@ -3,7 +3,7 @@ import Button from '../../ui/button/button';
 import { Main, LoginForm, Logo, PageTitle, Description, Field } from './styled';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { loginAction } from '../../../store/auth-slice/api-actions';
-import { getAuthorizationStatus } from '../../../store/auth-slice/selector';
+import { getAuthStatus } from '../../../store/auth-slice/selector';
 import { AuthorizationStatus, AppRoute } from '../../../const';
 import { Navigate } from 'react-router-dom';
 import { ValidationError } from '../../../types/validation-error';
@@ -14,7 +14,7 @@ export default function LoginPage(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthStatus);
 
   const handleSubmitClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();

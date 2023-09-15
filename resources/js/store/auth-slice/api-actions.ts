@@ -2,12 +2,14 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../../const';
-import { LoginData, User } from '../../types/user';
+import { User } from '../../types/user';
 import { Token, dropToken, saveToken } from '../../services/token';
 import { redirectToRoute } from '../middlewares/redirect';
 import { dropUser, saveUser } from '../../services/user';
 import { ValidationError } from '../../types/validation-error';
 import { adaptUserToClient } from '../../adapters/users';
+import { LoginData } from '../../types/auth';
+import { Job } from '../../types/job';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -55,5 +57,17 @@ export const logoutAction = createAsyncThunk<void, undefined, {
     await api.delete(APIRoute.Logout);
     dropToken();
     dropUser();
+  },
+);
+
+export const fetchAuthJob = createAsyncThunk<Job | null, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'auth/fetchJob',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get(APIRoute.AuthJob);
+    return data.job;
   },
 );

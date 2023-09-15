@@ -23,6 +23,7 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Login = '/auth/login',
   Logout = '/auth/logout',
+  AuthJob = '/auth/job',
 }
 
 export enum SliceName {

@@ -3,7 +3,7 @@ import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/auth-slice/selector';
+import { getAuthStatus } from '../../store/auth-slice/selector';
 import { AppSpinner } from './styled';
 import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';
@@ -13,7 +13,7 @@ import PageWrapper from '../layouts/page-wrapper/page-wrapper';
 import ProfilePage from '../pages/profile-page/profile-page';
 
 export default function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return (<AppSpinner />);
