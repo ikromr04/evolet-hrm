@@ -24,4 +24,9 @@ class User extends Authenticatable
   {
     return $this->hasMany(Education::class);
   }
+
+  public function job()
+  {
+    return $this->belongsTo(Job::class);
+  }
 }
