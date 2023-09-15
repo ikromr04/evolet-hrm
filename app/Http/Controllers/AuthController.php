@@ -87,4 +87,19 @@ class AuthController extends Controller
       'personal_data' => $personalData,
     ], 200);
   }
+
+  public function updateAvatar(Request $request)
+  {
+    $file = $request->file('avatar');
+    $fileName = uniqid() . '.' . $file->extension();
+    $file->move(public_path('img/users'), $fileName);
+
+    $user = User::find(auth()->user()->id);
+    $user->avatar = '/img/users/' . $fileName;
+    $user->update();
+
+    return response([
+      'user' => $user,
+    ], 200);
+  }
 }

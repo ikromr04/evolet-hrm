@@ -25,6 +25,7 @@ export enum APIRoute {
   Logout = '/auth/logout',
   AuthJob = '/auth/job',
   AuthPersonalData = '/auth/personal-data',
+  AuthAvatar = '/auth/avatar',
 }
 
 export enum SliceName {

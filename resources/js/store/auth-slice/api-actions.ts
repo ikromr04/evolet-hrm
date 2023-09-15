@@ -85,3 +85,15 @@ export const fetchAuthPersonalData = createAsyncThunk<PersonalData | null, undef
     return adaptPersonalDataToClient(data.personal_data);
   },
 );
+
+export const updateAuthAvatar = createAsyncThunk<void, FormData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'auth/updateAuthAvatar',
+  async (formData, { extra: api }) => {
+    const { data } = await api.post(APIRoute.AuthAvatar, formData);
+    return saveUser(data.user);
+  },
+);

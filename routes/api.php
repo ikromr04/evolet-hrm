@@ -22,4 +22,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::delete('/auth/logout', [AuthController::class, 'logout']);
   Route::get('/auth/job', [AuthController::class, 'job']);
   Route::get('/auth/personal-data', [AuthController::class, 'personalData']);
+  Route::post('/auth/avatar', [AuthController::class, 'updateAvatar']);
 });
