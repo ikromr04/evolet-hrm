@@ -3,7 +3,7 @@ import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-slice/selector';
+import { getAuthorizationStatus } from '../../store/auth-slice/selector';
 import { AppSpinner } from './styled';
 import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';

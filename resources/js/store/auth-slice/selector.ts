@@ -1,5 +1,5 @@
 import { AuthorizationStatus, SliceName } from '../../const';
-import { State } from './../../types/state';
+import { State } from '../../types/state';
 
 export const getAuthorizationStatus = (state: State): AuthorizationStatus =>
-  state[SliceName.User].authorizationStatus;
+  state[SliceName.Auth].authorizationStatus;

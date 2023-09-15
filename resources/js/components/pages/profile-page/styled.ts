@@ -10,4 +10,4 @@ export const Header = styled.header`
 
 export const HeaderInner = styled.div``;
 
-export const Role = styled.div``;
+export const Job = styled.div``;

@@ -14,7 +14,7 @@ export const checkAuthAction = createAsyncThunk<void, undefined, {
   state: State,
   extra: AxiosInstance,
 }>(
-  'users/checkAuth',
+  'auth/checkAuth',
   async (_arg, { extra: api }) => await api.get(APIRoute.Login),
 );
 
@@ -27,7 +27,7 @@ export const loginAction = createAsyncThunk<void, {
   extra: AxiosInstance,
   rejectValue: ValidationError,
 }>(
-  'users/login',
+  'auth/login',
   async ({ body, errorHandler }, { dispatch, extra: api, rejectWithValue }) => {
     try {
       const { data } = await api.post<{ user: User, token: Token }>(APIRoute.Login, body);
@@ -50,7 +50,7 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   state: State,
   extra: AxiosInstance
 }>(
-  'users/logout',
+  'auth/logout',
   async (_arg, { extra: api }) => {
     await api.delete(APIRoute.Logout);
     dropToken();
