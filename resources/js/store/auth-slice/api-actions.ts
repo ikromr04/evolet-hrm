@@ -10,6 +10,8 @@ import { ValidationError } from '../../types/validation-error';
 import { adaptUserToClient } from '../../adapters/users';
 import { LoginData } from '../../types/auth';
 import { Job } from '../../types/job';
+import { PersonalData } from '../../types/personal-data';
+import { adaptPersonalDataToClient } from '../../adapters/personal-data';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -69,5 +71,17 @@ export const fetchAuthJob = createAsyncThunk<Job | null, undefined, {
   async (_arg, { extra: api }) => {
     const { data } = await api.get(APIRoute.AuthJob);
     return data.job;
+  },
+);
+
+export const fetchAuthPersonalData = createAsyncThunk<PersonalData | null, undefined, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'auth/fetchPersonalData',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get(APIRoute.AuthPersonalData);
+    return adaptPersonalDataToClient(data.personal_data);
   },
 );

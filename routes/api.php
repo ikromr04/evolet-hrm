@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +21,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/auth/login', [AuthController::class, 'check']);
   Route::delete('/auth/logout', [AuthController::class, 'logout']);
   Route::get('/auth/job', [AuthController::class, 'job']);
+  Route::get('/auth/personal-data', [AuthController::class, 'personalData']);
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
+use App\Models\PersonalData;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -75,6 +76,15 @@ class AuthController extends Controller
   {
     return response([
       'job' => Job::find(auth()->user()->job_id),
+    ], 200);
+  }
+
+  public function personalData()
+  {
+    $personalData = PersonalData::where('user_id', auth()->user()->id)->first();
+
+    return response([
+      'personal_data' => $personalData,
     ], 200);
   }
 }
