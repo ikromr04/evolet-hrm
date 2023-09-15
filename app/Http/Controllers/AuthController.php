@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Job;
 use App\Models\PersonalData;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,8 +11,9 @@ class AuthController extends Controller
 {
   public function check(Request $request)
   {
+    $user = User::with('job', 'position')->find(auth()->user()->id);
     return response([
-      'user' => auth()->user(),
+      'user' => $user,
       'token' => $request->bearerToken(),
     ], 200);
   }
@@ -47,7 +47,7 @@ class AuthController extends Controller
       'password' => 'required|string',
     ]);
 
-    $user = User::where('login', $fields['login'])->first();
+    $user = User::with('job', 'position')->where('login', $fields['login'])->first();
 
     if (!$user || !Hash::check($fields['password'], $user->password)) {
       return response([
@@ -72,13 +72,6 @@ class AuthController extends Controller
     ], 200);
   }
 
-  public function job()
-  {
-    return response([
-      'job' => Job::find(auth()->user()->job_id),
-    ], 200);
-  }
-
   public function personalData()
   {
     $personalData = PersonalData::where('user_id', auth()->user()->id)->first();
@@ -90,11 +83,16 @@ class AuthController extends Controller
 
   public function updateAvatar(Request $request)
   {
+    $user = User::with('job', 'position')->find(auth()->user()->id);
+
+    if (file_exists(public_path($user->avatar))) {
+      unlink(public_path($user->avatar));
+    }
+
     $file = $request->file('avatar');
     $fileName = uniqid() . '.' . $file->extension();
     $file->move(public_path('img/users'), $fileName);
 
-    $user = User::find(auth()->user()->id);
     $user->avatar = '/img/users/' . $fileName;
     $user->update();
 

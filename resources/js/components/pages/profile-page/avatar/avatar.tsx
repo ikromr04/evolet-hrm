@@ -10,11 +10,11 @@ type AvatarProps = {
 
 export default function Avatar({ user }: AvatarProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const [avatar, setAvatar] = useState<string>(user?.avatar || '');
+  const [avatar, setAvatar] = useState<string>(user?.avatar || '/img/default-avatar.png');
 
   const handleInputChange = async (evt: BaseSyntheticEvent) => {
     const formData = new FormData();
-    formData.append('avatar', evt.target.files[0], 'chris.jpg');
+    formData.append('avatar', evt.target.files[0]);
     await dispatch(updateAuthAvatar(formData));
     setAvatar(URL.createObjectURL(evt.target.files[0]));
   }

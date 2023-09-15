@@ -29,4 +29,9 @@ class User extends Authenticatable
   {
     return $this->belongsTo(Job::class);
   }
+
+  public function position()
+  {
+    return $this->belongsTo(Position::class);
+  }
 }

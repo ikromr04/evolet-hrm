@@ -1,31 +1,31 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { getAuthJob, getAuthPersonalData } from '../../../../store/auth-slice/selector';
+import { getAuthPersonalData } from '../../../../store/auth-slice/selector';
 import BriefcaseIcon from '../../../icons/briefcase-icon';
 import { Info, Item } from './styled';
-import { fetchAuthJob, fetchAuthPersonalData } from '../../../../store/auth-slice/api-actions';
+import { fetchAuthPersonalData } from '../../../../store/auth-slice/api-actions';
 import LocationIcon from '../../../icons/location-icon';
+import { getUser } from '../../../../services/user';
 
 export default function UserInfo(): JSX.Element {
-  const job = useAppSelector(getAuthJob);
+  const user = getUser();
   const personalData = useAppSelector(getAuthPersonalData);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    !job && dispatch(fetchAuthJob());
     !personalData && dispatch(fetchAuthPersonalData());
-  }, [job, dispatch, personalData]);
+  }, [ dispatch, personalData]);
 
-  if (!job && !personalData) {
+  if (!user?.job && !personalData) {
     return <></>;
   }
 
   return (
     <Info>
-      {job &&
+      {user?.job &&
         <Item>
           <BriefcaseIcon width={16} height={16} />
-          {job.title}
+          {user?.job}
         </Item>}
       {personalData &&
         <Item>

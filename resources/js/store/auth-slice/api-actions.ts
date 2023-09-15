@@ -9,7 +9,6 @@ import { dropUser, saveUser } from '../../services/user';
 import { ValidationError } from '../../types/validation-error';
 import { adaptUserToClient } from '../../adapters/users';
 import { LoginData } from '../../types/auth';
-import { Job } from '../../types/job';
 import { PersonalData } from '../../types/personal-data';
 import { adaptPersonalDataToClient } from '../../adapters/personal-data';
 
@@ -62,18 +61,6 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchAuthJob = createAsyncThunk<Job | null, undefined, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
-}>(
-  'auth/fetchJob',
-  async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.AuthJob);
-    return data.job;
-  },
-);
-
 export const fetchAuthPersonalData = createAsyncThunk<PersonalData | null, undefined, {
   dispatch: AppDispatch,
   state: State,
@@ -93,6 +80,7 @@ export const updateAuthAvatar = createAsyncThunk<void, FormData, {
 }>(
   'auth/updateAuthAvatar',
   async (formData, { extra: api }) => {
+    formData.append('_method', 'put');
     const { data } = await api.post(APIRoute.AuthAvatar, formData);
     return saveUser(data.user);
   },

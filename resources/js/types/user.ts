@@ -6,4 +6,6 @@ export type User = {
   login: string;
   avatar: string;
   startedWordAt: Date;
+  job: string;
+  position: string;
 };

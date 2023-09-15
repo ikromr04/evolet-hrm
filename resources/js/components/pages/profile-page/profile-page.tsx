@@ -1,6 +1,6 @@
 import { getUser } from '../../../services/user';
 import Avatar from './avatar/avatar';
-import { Header, Main, UserDetails, Username } from './styled';
+import { Header, Main, Position, UserDetails, Username } from './styled';
 import UserInfo from './user-info/user-info';
 
 export default function ProfilePage(): JSX.Element {
@@ -13,6 +13,7 @@ export default function ProfilePage(): JSX.Element {
         <UserDetails>
           <Username>{`${user?.surname} ${user?.name}`}</Username>
           <UserInfo />
+          <Position>{user?.position}</Position>
         </UserDetails>
       </Header>
     </Main>

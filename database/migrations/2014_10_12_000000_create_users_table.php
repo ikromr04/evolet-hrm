@@ -19,10 +19,11 @@ class CreateUsersTable extends Migration
       $table->string('surname', 100);
       $table->string('patronymic', 100);
       $table->string('login')->unique();
-      $table->string('avatar')->default('/img/default-avatar.png');
+      $table->string('avatar')->nullable();
       $table->timestamp('started_word_at')->nullable();
       $table->string('password');
       $table->integer('job_id')->nullable();
+      $table->integer('position_id')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });

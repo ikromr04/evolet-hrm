@@ -18,7 +18,7 @@ export default function UserNavigation(): JSX.Element {
     <Wrapper ref={ref}>
       <StyledButton onClick={() => setIsOpen(!isOpen)}>
         <Avatar
-          src={user?.avatar}
+          src={user?.avatar || '/img/default-avatar.png'}
           width={32}
           height={32}
           alt={user?.name}

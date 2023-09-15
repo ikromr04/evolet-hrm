@@ -9,7 +9,7 @@ export default function MainPage(): JSX.Element {
     <Main>
       <Header>
         <Avatar
-          src={user?.avatar}
+          src={user?.avatar || '/img/default-avatar.png'}
           width={40}
           height={40}
           alt={user?.name}

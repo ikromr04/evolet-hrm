@@ -8,4 +8,6 @@ export const adaptUserToClient = (serverUser: {[key: string]: any }): User => ({
   login: serverUser.login,
   avatar: serverUser.avatar,
   startedWordAt: serverUser.started_word_at,
+  job: serverUser.job.title,
+  position: serverUser.position.title,
 });

@@ -20,7 +20,6 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/auth/login', [AuthController::class, 'check']);
   Route::delete('/auth/logout', [AuthController::class, 'logout']);
-  Route::get('/auth/job', [AuthController::class, 'job']);
   Route::get('/auth/personal-data', [AuthController::class, 'personalData']);
-  Route::post('/auth/avatar', [AuthController::class, 'updateAvatar']);
+  Route::put('/auth/avatar', [AuthController::class, 'updateAvatar']);
 });
