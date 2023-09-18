@@ -1,25 +1,17 @@
-import { getUser } from '../../../services/user';
-import Actions from './actions/actions';
-import Avatar from './avatar/avatar';
-import { Header, HeaderInner, Main, Position, UserDetails, Username } from './styled';
-import UserInfo from './user-info/user-info';
+import { Header, HeaderInner, Main } from './styled';
+import UserAvatar from './user-avatar/user-avatar';
+import UserDetails from './user-details/user-details';
+import UserActions from './user-actions/user-actions';
 
 export default function ProfilePage(): JSX.Element {
-  const user = getUser();
-
   return (
     <Main>
       <Header>
-        <Avatar user={user} />
+        <UserAvatar />
 
         <HeaderInner>
-          <UserDetails>
-            <Username>{`${user?.surname} ${user?.name}`}</Username>
-            <UserInfo />
-            <Position>{user?.position}</Position>
-          </UserDetails>
-          
-          <Actions />
+          <UserDetails/>
+          <UserActions />
         </HeaderInner>
       </Header>
     </Main>

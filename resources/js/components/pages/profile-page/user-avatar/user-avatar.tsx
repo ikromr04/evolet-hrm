@@ -1,15 +1,12 @@
-import { BaseSyntheticEvent, useRef, useState } from 'react';
-import { User } from '../../../../types/user';
+import { BaseSyntheticEvent, useState } from 'react';
 import { StyledAvatar, Label, Wrapper } from './styled';
 import { useAppDispatch } from '../../../../hooks';
 import { updateAuthAvatar } from '../../../../store/auth-slice/api-actions';
+import { getUser } from '../../../../services/user';
 
-type AvatarProps = {
-  user: User | null;
-}
-
-export default function Avatar({ user }: AvatarProps): JSX.Element {
+export default function UserAvatar(): JSX.Element {
   const dispatch = useAppDispatch();
+  const user = getUser();
   const [avatar, setAvatar] = useState<string>(user?.avatar || '/img/default-avatar.png');
 
   const handleInputChange = async (evt: BaseSyntheticEvent) => {

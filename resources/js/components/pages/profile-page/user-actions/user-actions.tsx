@@ -1,7 +1,7 @@
 import EllipsisIcon from '../../../icons/ellipsis-icon';
 import { Button, Wrapper } from './styled';
 
-export default function Actions(): JSX.Element {
+export default function UserActions(): JSX.Element {
   return (
     <Wrapper>
       <Button>
