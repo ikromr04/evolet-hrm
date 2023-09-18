@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   z-index: 1;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.span`
   border: none;
   padding: 0;
   display: flex;
@@ -25,11 +25,8 @@ export const Avatar = styled.img`
   border-radius: 50%;
 `;
 
-export const DropdownIcon = styled(CaretIcon)<{ open?: boolean }>`
+export const DropdownIcon = styled(CaretIcon)`
   width: 8px;
   fill: ${({ theme }) => theme.color.text.gray };
   transition: .3s;
-  ${({ open }) => open && `
-    transform: scale(-1);
-  `}
 `;

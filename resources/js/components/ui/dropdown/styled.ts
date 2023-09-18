@@ -16,7 +16,7 @@ export const MenuWrapper = styled('div').withConfig({
 })<{ isOpen: boolean }>`
   position: absolute;
   right: 0;
-  top: calc(100% + 24px);
+  top: calc(100% + 16px);
   padding: 8px 0;
   min-width: max-content;
   z-index: 1;
