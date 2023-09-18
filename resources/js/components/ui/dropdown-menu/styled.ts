@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { StyledBlock } from '../block/styled';
+import Block from '../block/block';
 
-export const StyledDropdown = styled(StyledBlock)`
+export const StyledMenu = styled(Block)`
   padding: 8px 0;
 `;
