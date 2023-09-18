@@ -1,4 +1,4 @@
-import PlusIcon from '../../icons/plus-icon';
+import PlusIcon from '../../../../icons/plus-icon';
 import { NavigationItem, StyledNavigation } from './styled';
 
 export default function Navigation(): JSX.Element {

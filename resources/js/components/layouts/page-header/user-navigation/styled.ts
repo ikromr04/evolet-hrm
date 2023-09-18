@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CaretIcon from '../icons/caret-icon';
+import CaretIcon from '../../../icons/caret-icon';
 
 export const Wrapper = styled.div`
   position: relative;

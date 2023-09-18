@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { getUser } from '../../services/user';
 import { Avatar, DropdownIcon, StyledButton, Wrapper } from './styled';
 import Navigation from './navigation/navigation';
-import { useOutsideClick } from '../../hooks/use-outside-click';
-import { useEscapeKeydown } from '../../hooks/use-escape-keydown';
-import { useOnRouteChange } from '../../hooks/use-on-route-change';
+import { getUser } from '../../../../services/user';
+import { useOutsideClick } from '../../../../hooks/use-outside-click';
+import { useEscapeKeydown } from '../../../../hooks/use-escape-keydown';
+import { useOnRouteChange } from '../../../../hooks/use-on-route-change';
 
 export default function UserNavigation(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);

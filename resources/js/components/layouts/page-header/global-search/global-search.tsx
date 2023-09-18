@@ -1,4 +1,4 @@
-import TextField from '../ui/text-field/text-field';
+import TextField from '../../../ui/text-field/text-field';
 import { Wrapper } from './styled';
 
 type GlobalSearchProps = {

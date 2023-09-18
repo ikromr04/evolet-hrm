@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import PlusIcon from '../icons/plus-icon';
 import { StyledButton, Wrapper } from './styled';
 import Navigation from './navigation/navigation';
-import { useOutsideClick } from '../../hooks/use-outside-click';
-import { useEscapeKeydown } from '../../hooks/use-escape-keydown';
-import { useOnRouteChange } from '../../hooks/use-on-route-change';
+import { useEscapeKeydown } from '../../../../hooks/use-escape-keydown';
+import { useOutsideClick } from '../../../../hooks/use-outside-click';
+import { useOnRouteChange } from '../../../../hooks/use-on-route-change';
+import PlusIcon from '../../../icons/plus-icon';
 
 export default function QuickAdd(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,4 +1,4 @@
-import BellIcon from '../icons/bell-icon';
+import BellIcon from '../../../icons/bell-icon';
 import { StyledButton, Wrapper } from './styled';
 
 export default function Notification(): JSX.Element {

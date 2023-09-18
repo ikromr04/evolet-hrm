@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Hr, NavigationItem, StyledNavigation } from './styled';
-import { AppRoute } from '../../../const';
-import { useAppDispatch } from '../../../hooks';
-import { logoutAction } from '../../../store/auth-slice/api-actions';
+import { useAppDispatch } from '../../../../../hooks';
+import { AppRoute } from '../../../../../const';
+import { logoutAction } from '../../../../../store/auth-slice/api-actions';
 
 export default function Navigation(): JSX.Element {
   const dispatch = useAppDispatch();

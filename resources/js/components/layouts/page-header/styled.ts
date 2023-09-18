@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import Container from '../../ui/container/container';
-import GlobalSearch from '../../global-search/global-search';
 
 export const Header = styled.header`
   position: sticky;
@@ -16,8 +15,4 @@ export const HeaderContainer = styled(Container)`
   display: flex;
   align-items: center;
   gap: 32px;
-`;
-
-export const Search = styled(GlobalSearch)`
-  margin-right: auto;
 `;
