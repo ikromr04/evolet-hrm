@@ -6,7 +6,7 @@ import { fetchEmployeeById } from '../../../../store/employees-slice/employees-a
 import { getEmployee } from '../../../../store/employees-slice/employees-selector';
 import EmployeeAvatar from './employee-avatar/employee-avatar';
 import EmployeeDetails from './employee-details/employee-details';
-// import UserActions from './user-actions/user-actions';
+import EmployeeNavigation from './employee-navigation/employee-navigation';
 
 export default function EmployeePage(): JSX.Element {
   const params = useParams();
@@ -26,12 +26,10 @@ export default function EmployeePage(): JSX.Element {
 
         <HeaderInner>
           {employee && <EmployeeDetails employee={employee} />}
-          {/* <UserActions /> */}
         </HeaderInner>
       </Header>
 
-      {/* <ProfileNavigation /> */}
-
+      {employee && <EmployeeNavigation employee={employee} />}
       <Outlet />
     </Main>
   );
