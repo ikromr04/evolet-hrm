@@ -1,16 +1,16 @@
 import { Avatar, DropdownIcon, StyledButton } from './styled';
-import Dropdown from '../../../ui/dropdown/dropdown';
-import { getUser } from '../../../../services/user';
 import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
 import { AppRoute } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
-import { useAppDispatch } from '../../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { logoutAction } from '../../../../store/employees-slice/employees-api-actions';
 import { generatePath } from 'react-router-dom';
+import Dropdown from '../../../ui/dropdown/dropdown';
+import { getAuthEmployee } from '../../../../store/employees-slice/employees-selector';
 
 export default function UserNavigation(): JSX.Element {
-  const user = getUser();
+  const user = useAppSelector(getAuthEmployee);
   const dispatch = useAppDispatch();
 
   return (
@@ -39,6 +39,7 @@ export default function UserNavigation(): JSX.Element {
           <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
         </DropdownMenu>
       }
+      menuTop={8}
     />
   );
 }

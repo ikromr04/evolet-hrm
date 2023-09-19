@@ -12,6 +12,7 @@ class UserController extends Controller
   public function check(Request $request)
   {
     $user = User::with('job', 'position')->find(auth()->user()->id);
+
     return response([
       'employee' => $user,
       'token' => $request->bearerToken(),
@@ -85,23 +86,35 @@ class UserController extends Controller
     ], 200);
   }
 
-  public function updateAvatar(Request $request)
+  public function updateAvatar($employeeId)
   {
-    $user = User::with('job', 'position')->find(auth()->user()->id);
+    $user = User::with('job', 'position')->find($employeeId);
 
-    if (file_exists(public_path($user->avatar))) {
+    if ($user->avatar && file_exists(public_path($user->avatar))) {
       unlink(public_path($user->avatar));
     }
 
-    $file = $request->file('avatar');
+    $file = request()->file('avatar');
     $fileName = uniqid() . '.' . $file->extension();
     $file->move(public_path('img/users'), $fileName);
 
     $user->avatar = '/img/users/' . $fileName;
     $user->update();
 
-    return response([
-      'user' => $user,
-    ], 200);
+    return $user;
+  }
+
+  public function deleteAvatar($employeeId)
+  {
+    $user = User::with('job', 'position')->find($employeeId);
+
+    if ($user->avatar && file_exists(public_path($user->avatar))) {
+      unlink(public_path($user->avatar));
+
+      $user->avatar = null;
+      $user->update();
+    }
+
+    return $user;
   }
 }

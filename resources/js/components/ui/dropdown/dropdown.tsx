@@ -7,9 +7,18 @@ import { useOnRouteChange } from '../../../hooks/use-on-route-change';
 type DropdownProps = {
   dropdownButton: JSX.Element;
   dropdownMenu: JSX.Element;
+  menuFullWidth?: boolean;
+  menuTop?: number;
+  onMenuClickHide?: boolean;
 };
 
-export default function Dropdown({ dropdownButton, dropdownMenu }: DropdownProps): JSX.Element {
+export default function Dropdown({
+  dropdownButton,
+  dropdownMenu,
+  menuFullWidth = false,
+  menuTop = 0,
+  onMenuClickHide = false
+}: DropdownProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
 
@@ -22,7 +31,14 @@ export default function Dropdown({ dropdownButton, dropdownMenu }: DropdownProps
         {dropdownButton}
       </DropdownButton>
 
-      <MenuWrapper isOpen={isOpen}>{dropdownMenu}</MenuWrapper>
+      <MenuWrapper
+        isOpen={isOpen}
+        menuFullWidth={menuFullWidth}
+        menuTop={menuTop}
+        onClick={() => onMenuClickHide && setIsOpen(false)}
+      >
+        {dropdownMenu}
+      </MenuWrapper>
     </StyledDropdown>
   );
 }

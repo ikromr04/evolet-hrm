@@ -1,9 +1,10 @@
-import { getUser } from '../../../services/user';
+import { useAppSelector } from '../../../hooks';
+import { getAuthEmployee } from '../../../store/employees-slice/employees-selector';
 import Title from '../../ui/title/title';
 import { Avatar, Header, Main } from './styled';
 
 export default function MainPage(): JSX.Element {
-  const user = getUser();
+  const user = useAppSelector(getAuthEmployee);
 
   return (
     <Main>

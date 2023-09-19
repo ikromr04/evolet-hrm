@@ -1,18 +1,7 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
-  display: flex;
-  border: 0;
-  padding: 0;
-  background-color: transparent;
-  border-radius: 50%;
-  position: relative;
-  z-index: 1;
-  cursor: pointer;
-`;
-
 export const StyledAvatar = styled.img`
-  display: block;
+  display: flex;
   border-radius: 50%;
   border: 2px solid white;
   object-fit: cover;
@@ -20,7 +9,10 @@ export const StyledAvatar = styled.img`
 
 export const Label = styled.span`
   position: absolute;
+  left: 50%;
   bottom: calc(100% + 8px);
+  transform: translateX(-50%);
+  min-width: max-content;
   padding: 4px 8px;
   border-radius: 4px;
   background-color: #1d1d1d;
@@ -42,7 +34,7 @@ export const Label = styled.span`
     transform: translateX(-50%) rotate(45deg);
   }
 
-  ${Wrapper}:hover & {
+  ${StyledAvatar}:hover+& {
     opacity: 1;
     visibility: visible;
   }
