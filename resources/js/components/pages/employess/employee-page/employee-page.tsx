@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchEmployeeById } from '../../../../store/employees-slice/employees-api-actions';
 import { getEmployee } from '../../../../store/employees-slice/employees-selector';
 import EmployeeAvatar from './employee-avatar/employee-avatar';
+import EmployeeDetails from './employee-details/employee-details';
 // import UserActions from './user-actions/user-actions';
 
 export default function EmployeePage(): JSX.Element {
@@ -24,7 +25,7 @@ export default function EmployeePage(): JSX.Element {
         <EmployeeAvatar />
 
         <HeaderInner>
-          {/* <UserDetails/> */}
+          {employee && <EmployeeDetails employee={employee} />}
           {/* <UserActions /> */}
         </HeaderInner>
       </Header>

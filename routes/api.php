@@ -20,7 +20,7 @@ Route::post('/employees/login', [UserController::class, 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/employees/login', [UserController::class, 'check']);
   Route::delete('/employees/logout', [UserController::class, 'logout']);
-  Route::get('/employees/personal-data', [UserController::class, 'personalData']);
+  Route::get('/employees/{employeeId}/personal', [UserController::class, 'personalData']);
   Route::put('/employees/{employeeId}/avatar', [UserController::class, 'updateAvatar']);
   Route::delete('/employees/{employeeId}/avatar', [UserController::class, 'deleteAvatar']);
   Route::get('/employees/{employeeId}', [UserController::class, 'show']);

@@ -12,6 +12,7 @@ export type Employee = {
 
 export type PersonalData = {
   id: string;
+  userId: string;
   birthDate: string;
   gender: string;
   nationality: string;

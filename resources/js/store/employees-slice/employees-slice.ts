@@ -1,18 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { checkAuthAction, fetchEmployeeById, loginAction, logoutAction } from './employees-api-actions';
-import { Employee } from '../../types/employees';
+import { checkAuthAction, fetchEmployeeById, fetchEmployeePersonalData, loginAction, logoutAction } from './employees-api-actions';
+import { Employee, PersonalData } from '../../types/employees';
 
 export type EmployeesSlice = {
   authorizationStatus: AuthorizationStatus;
   authEmployee: Employee | null;
   employee: Employee | null;
+  employeePersonalData: PersonalData | null;
 };
 
 const initialState: EmployeesSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
   authEmployee: null,
   employee: null,
+  employeePersonalData: null,
 };
 
 export const employeeSlice = createSlice({
@@ -47,6 +49,9 @@ export const employeeSlice = createSlice({
       })
       .addCase(fetchEmployeeById.fulfilled, (state, action) => {
         state.employee = action.payload;
+      })
+      .addCase(fetchEmployeePersonalData.fulfilled, (state, action) => {
+        state.employeePersonalData = action.payload;
       });
   },
 });

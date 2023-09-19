@@ -59,15 +59,17 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, undefined, {
+export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, {
+  employeeId: string
+}, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'auth/fetchEmployeePersonalData',
-  async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.EmployeePersonalData);
-    return adaptPersonalDataToClient(data.personal_data);
+  async ({ employeeId }, { extra: api }) => {
+    const { data } = await api.get<PersonalData>(generatePath(APIRoute.EmployeePersonalData, { employeeId }));
+    return adaptPersonalDataToClient(data);
   },
 );
 

@@ -77,13 +77,9 @@ class UserController extends Controller
     ], 200);
   }
 
-  public function personalData()
+  public function personalData($employeeId)
   {
-    $personalData = PersonalData::where('user_id', auth()->user()->id)->first();
-
-    return response([
-      'personal_data' => $personalData,
-    ], 200);
+    return PersonalData::where('user_id', $employeeId)->first();
   }
 
   public function updateAvatar($employeeId)

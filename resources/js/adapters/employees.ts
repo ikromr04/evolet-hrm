@@ -14,6 +14,7 @@ export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employ
 
 export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): PersonalData => ({
   id: serverData.id,
+  userId: serverData.user_id,
   birthDate: serverData.birth_date,
   gender: serverData.gender,
   nationality: serverData.nationality,

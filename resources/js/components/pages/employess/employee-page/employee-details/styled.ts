@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { StyledTitle } from '../../../ui/title/styled';
+import { StyledTitle } from '../../../../ui/title/styled';
 
 export const Details = styled.div``;
 
-export const Username = styled(StyledTitle)`
+export const Name = styled(StyledTitle)`
   margin-bottom: 16px;
 `;
 
@@ -24,7 +24,7 @@ export const Info = styled.div`
   gap: 16px;
   font-size: 14px;
   color: #476887;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 `;
 
 export const InfoItem = styled.div`

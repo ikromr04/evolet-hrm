@@ -1,30 +1,34 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks';
-import { getUser } from '../../../../../services/user';
-import { getAuthPersonalData } from '../../../../../store/employees-slice/employees-selector';
-import { fetchAuthPersonalData } from '../../../../../store/employees-slice/employees-api-actions';
-import { Details, Info, InfoItem, Position, Username } from './styled';
+import { Details, Info, InfoItem, Name, Position } from './styled';
 import BriefcaseIcon from '../../../../icons/briefcase-icon';
 import LocationIcon from '../../../../icons/location-icon';
+import { Employee } from '../../../../../types/employees';
+import { getEmployeePersonalData } from '../../../../../store/employees-slice/employees-selector';
+import { fetchEmployeePersonalData } from '../../../../../store/employees-slice/employees-api-actions';
 
-export default function EmployeeDetails(): JSX.Element {
-  const user = getUser();
-  const personalData = useAppSelector(getAuthPersonalData);
+type EmployeeDetailsProps = {
+  employee: Employee;
+}
+
+export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX.Element {
+  const personalData = useAppSelector(getEmployeePersonalData);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    !personalData && dispatch(fetchAuthPersonalData());
-  }, [ dispatch, personalData]);
+    personalData?.userId !== employee.id &&
+      dispatch(fetchEmployeePersonalData({ employeeId: employee.id }));
+  }, [ dispatch, personalData, employee ]);
 
   return (
     <Details>
-      <Username>{`${user?.surname} ${user?.name}`}</Username>
-      {(user?.job && personalData) &&
+      <Name>{`${employee.surname} ${employee.name}`}</Name>
+      {(employee.job && personalData) &&
         <Info>
-          {user?.job &&
+          {employee.job &&
             <InfoItem>
               <BriefcaseIcon width={16} height={16} />
-              {user?.job}
+              {employee.job}
             </InfoItem>}
           {personalData &&
             <InfoItem>
@@ -32,7 +36,7 @@ export default function EmployeeDetails(): JSX.Element {
               {personalData.address}
             </InfoItem>}
         </Info>}
-      <Position>{user?.position}</Position>
+      <Position>{employee.position}</Position>
     </Details>
   );
 }
