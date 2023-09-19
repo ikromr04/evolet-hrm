@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
@@ -28,7 +28,13 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PageWrapper />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Profile} element={<ProfilePage />} />
+            <Route path={AppRoute.Profile} element={<ProfilePage />}>
+              <Route path={AppRoute.ProfilePersonal} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.ProfileWork} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.ProfileAbsence} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.ProfileEfficiency} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.ProfileDocuments} element={<p>Not implemented</p>} />
+            </Route>
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />
 

@@ -4,6 +4,7 @@ export const Main = styled.main`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  gap: 16px;
 `;
 
 export const Header = styled.header`

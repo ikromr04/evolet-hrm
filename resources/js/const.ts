@@ -2,7 +2,11 @@ export enum AppRoute {
   Main = '/',
   Login = '/auth/login',
   Profile = '/auth/profile',
-  Account = '/auth/account',
+  ProfilePersonal = '/auth/profile/personal',
+  ProfileWork = '/auth/profile/work',
+  ProfileAbsence = '/auth/profile/absence',
+  ProfileEfficiency = '/auth/profile/efficiency',
+  ProfileDocuments = '/auth/profile/documents',
   Employees = '/employees',
   Calendars = '/calendars',
 

@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   margin-left: auto;
 `;
 
-export const Button = styled.button`
+export const StyledButton = styled.span`
   display: flex;
   justify-content: center;
   align-items: center;
