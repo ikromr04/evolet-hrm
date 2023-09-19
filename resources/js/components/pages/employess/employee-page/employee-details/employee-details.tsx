@@ -1,13 +1,13 @@
-import { getUser } from '../../../../services/user';
-import { Details, Info, InfoItem, Position, Username } from './styled';
-import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { getAuthPersonalData } from '../../../../store/auth-slice/selector';
 import { useEffect } from 'react';
-import { fetchAuthPersonalData } from '../../../../store/auth-slice/api-actions';
-import BriefcaseIcon from '../../../icons/briefcase-icon';
-import LocationIcon from '../../../icons/location-icon';
+import { useAppDispatch, useAppSelector } from '../../../../../hooks';
+import { getUser } from '../../../../../services/user';
+import { getAuthPersonalData } from '../../../../../store/employees-slice/employees-selector';
+import { fetchAuthPersonalData } from '../../../../../store/employees-slice/employees-api-actions';
+import { Details, Info, InfoItem, Position, Username } from './styled';
+import BriefcaseIcon from '../../../../icons/briefcase-icon';
+import LocationIcon from '../../../../icons/location-icon';
 
-export default function UserDetails(): JSX.Element {
+export default function EmployeeDetails(): JSX.Element {
   const user = getUser();
   const personalData = useAppSelector(getAuthPersonalData);
   const dispatch = useAppDispatch();

@@ -6,7 +6,8 @@ import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigat
 import { AppRoute } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
 import { useAppDispatch } from '../../../../hooks';
-import { logoutAction } from '../../../../store/auth-slice/api-actions';
+import { logoutAction } from '../../../../store/employees-slice/employees-api-actions';
+import { generatePath } from 'react-router-dom';
 
 export default function UserNavigation(): JSX.Element {
   const user = getUser();
@@ -28,8 +29,12 @@ export default function UserNavigation(): JSX.Element {
       }
       dropdownMenu={
         <DropdownMenu>
-          <DropdownNavigation href={AppRoute.Profile}>Перейти к профилю</DropdownNavigation>
-          <DropdownNavigation href={AppRoute.Profile}>Настройка учетной записи</DropdownNavigation>
+          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: user?.id || '' })}>
+            Перейти к профилю
+          </DropdownNavigation>
+          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: user?.id || '' })}>
+            Настройка учетной записи
+          </DropdownNavigation>
           <Hr />
           <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
         </DropdownMenu>

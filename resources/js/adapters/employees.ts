@@ -1,4 +1,16 @@
-import { PersonalData } from '../types/personal-data';
+import { Employee, PersonalData } from '../types/employees';
+
+export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employee => ({
+  id: serverUser.id,
+  name: serverUser.name,
+  surname: serverUser.surname,
+  patronymic: serverUser.patronymic,
+  login: serverUser.login,
+  avatar: serverUser.avatar,
+  startedWordAt: serverUser.started_word_at,
+  job: serverUser.job.title,
+  position: serverUser.position.title,
+});
 
 export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): PersonalData => ({
   id: serverData.id,

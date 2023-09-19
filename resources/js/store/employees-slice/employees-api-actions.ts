@@ -2,22 +2,21 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute, AppRoute } from '../../const';
-import { User } from '../../types/user';
+import { Employee, PersonalData } from '../../types/employees';
 import { Token, dropToken, saveToken } from '../../services/token';
 import { redirectToRoute } from '../middlewares/redirect';
 import { dropUser, saveUser } from '../../services/user';
 import { ValidationError } from '../../types/validation-error';
-import { adaptUserToClient } from '../../adapters/users';
 import { LoginData } from '../../types/auth';
-import { PersonalData } from '../../types/personal-data';
-import { adaptPersonalDataToClient } from '../../adapters/personal-data';
+import { adaptEmployeeToClient, adaptPersonalDataToClient } from '../../adapters/employees';
+import { generatePath } from 'react-router-dom';
 
 export const checkAuthAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance,
 }>(
-  'auth/checkAuth',
+  'employees/checkAuth',
   async (_arg, { extra: api }) => await api.get(APIRoute.Login),
 );
 
@@ -30,12 +29,12 @@ export const loginAction = createAsyncThunk<void, {
   extra: AxiosInstance,
   rejectValue: ValidationError,
 }>(
-  'auth/login',
+  'employees/login',
   async ({ body, errorHandler }, { dispatch, extra: api, rejectWithValue }) => {
     try {
-      const { data } = await api.post<{ user: User, token: Token }>(APIRoute.Login, body);
+      const { data } = await api.post<{ employee: Employee, token: Token }>(APIRoute.Login, body);
       saveToken(data.token);
-      saveUser(adaptUserToClient(data.user));
+      saveUser(adaptEmployeeToClient(data.employee));
       dispatch(redirectToRoute(AppRoute.Main));
     } catch (err: any) {
       let error: AxiosError<ValidationError> = err;
@@ -61,27 +60,39 @@ export const logoutAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchAuthPersonalData = createAsyncThunk<PersonalData | null, undefined, {
+export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
-  'auth/fetchPersonalData',
+  'auth/fetchEmployeePersonalData',
   async (_arg, { extra: api }) => {
-    const { data } = await api.get(APIRoute.AuthPersonalData);
+    const { data } = await api.get(APIRoute.EmployeePersonalData);
     return adaptPersonalDataToClient(data.personal_data);
   },
 );
 
-export const updateAuthAvatar = createAsyncThunk<void, FormData, {
+export const updateEmployeeAvatar = createAsyncThunk<void, FormData, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
-  'auth/updateAuthAvatar',
+  'auth/updateEmployeeAvatar',
   async (formData, { extra: api }) => {
     formData.append('_method', 'put');
-    const { data } = await api.post(APIRoute.AuthAvatar, formData);
+    const { data } = await api.post(APIRoute.EmployeeAvatar, formData);
     return saveUser(data.user);
+  },
+);
+
+export const fetchEmployeeById = createAsyncThunk<Employee, { employeeId: string }, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'auth/fetchEmployeeById',
+  async ({ employeeId }, { extra: api }) => {
+    const { data } = await api.get<Employee>(generatePath(APIRoute.Employee, { employeeId }));
+    return adaptEmployeeToClient(data);
   },
 );

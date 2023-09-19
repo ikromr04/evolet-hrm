@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 import { Navigate, Outlet } from "react-router-dom";
 import { AppRoute, AuthorizationStatus } from "../../const";
 import { useAppSelector } from "../../hooks";
-import { getAuthStatus } from "../../store/auth-slice/selector";
+import { getAuthStatus } from "../../store/employees-slice/employees-selector";
 
 type PrivateRouteProps = PropsWithChildren;
 

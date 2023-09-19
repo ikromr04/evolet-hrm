@@ -1,3 +1,15 @@
+export type Employee = {
+  id: string;
+  name: string;
+  surname: string;
+  patronymic: string;
+  login: string;
+  avatar: string;
+  startedWordAt: Date;
+  job: string;
+  position: string;
+};
+
 export type PersonalData = {
   id: string;
   birthDate: string;
@@ -11,3 +23,4 @@ export type PersonalData = {
   familyStatus: string;
   children: string;
 };
+

@@ -6,7 +6,7 @@ import { store } from './store'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './style/theme'
 import GlobalStyle from './style/global-styles'
-import { checkAuthAction } from './store/auth-slice/api-actions'
+import { checkAuthAction } from './store/employees-slice/employees-api-actions'
 
 store.dispatch(checkAuthAction());
 

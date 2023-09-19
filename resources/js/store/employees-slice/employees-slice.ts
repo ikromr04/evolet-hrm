@@ -1,20 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { checkAuthAction, fetchAuthPersonalData, loginAction, logoutAction } from './api-actions';
-import { PersonalData } from '../../types/personal-data';
+import { checkAuthAction, fetchEmployeeById, loginAction, logoutAction } from './employees-api-actions';
+import { Employee } from '../../types/employees';
 
-export type AuthSlice = {
+export type EmployeesSlice = {
   authorizationStatus: AuthorizationStatus;
-  personalData: PersonalData | null;
+  employee: Employee | null;
 };
 
-const initialState: AuthSlice = {
+const initialState: EmployeesSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  personalData: null,
+  employee: null,
 };
 
-export const authSlice = createSlice({
-  name: SliceName.Auth,
+export const employeeSlice = createSlice({
+  name: SliceName.Employee,
   initialState,
   reducers: {},
   extraReducers(builder) {
@@ -34,8 +34,8 @@ export const authSlice = createSlice({
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(fetchAuthPersonalData.fulfilled, (state, action) => {
-        state.personalData = action.payload;
+      .addCase(fetchEmployeeById.fulfilled, (state, action) => {
+        state.employee = action.payload;
       });
   },
 });

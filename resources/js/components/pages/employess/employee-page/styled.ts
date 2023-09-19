@@ -5,6 +5,7 @@ export const Main = styled.main`
   flex-direction: column;
   flex-grow: 1;
   gap: 16px;
+  padding-top: 24px;
 `;
 
 export const Header = styled.header`

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/auth/register', [AuthController::class, 'store']);
-Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/employees/register', [UserController::class, 'store']);
+Route::post('/employees/login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-  Route::get('/auth/login', [AuthController::class, 'check']);
-  Route::delete('/auth/logout', [AuthController::class, 'logout']);
-  Route::get('/auth/personal-data', [AuthController::class, 'personalData']);
-  Route::put('/auth/avatar', [AuthController::class, 'updateAvatar']);
+  Route::get('/employees/login', [UserController::class, 'check']);
+  Route::delete('/employees/logout', [UserController::class, 'logout']);
+  Route::get('/employees/personal-data', [UserController::class, 'personalData']);
+  Route::put('/employees/avatar', [UserController::class, 'updateAvatar']);
+  Route::get('/employees/{employeeId}', [UserController::class, 'show']);
 });

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.label`
+export const Wrapper = styled.div`
   display: flex;
   border: 0;
   padding: 0;
@@ -20,7 +20,7 @@ export const StyledAvatar = styled.img`
 
 export const Label = styled.span`
   position: absolute;
-  top: calc(100% + 8px);
+  bottom: calc(100% + 8px);
   padding: 4px 8px;
   border-radius: 4px;
   background-color: #1d1d1d;
@@ -33,7 +33,7 @@ export const Label = styled.span`
   &::after {
     content: "";
     position: absolute;
-    top: -4px;
+    bottom: -4px;
     left: 50%;
     z-index: 1;
     width: 8px;

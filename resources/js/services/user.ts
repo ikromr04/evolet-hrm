@@ -1,4 +1,4 @@
-import { User } from '../types/user';
+import { User } from '../types/employees';
 
 const USER_KEY_NAME = 'user-data';
 

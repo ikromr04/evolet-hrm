@@ -1,13 +1,13 @@
 export enum AppRoute {
   Main = '/',
-  Login = '/auth/login',
-  Profile = '/auth/profile',
-  ProfilePersonal = '/auth/profile/personal',
-  ProfileWork = '/auth/profile/work',
-  ProfileAbsence = '/auth/profile/absence',
-  ProfileEfficiency = '/auth/profile/efficiency',
-  ProfileDocuments = '/auth/profile/documents',
+  Login = '/employees/login',
   Employees = '/employees',
+  Employee = '/employees/:employeeId',
+  EmployeePersonal = '/employees/:employeeId/personal',
+  EmployeeWork = '/employees/:employeeId/work',
+  EmployeeAbsence = '/employees/:employeeId/absence',
+  EmployeeEfficiency = '/employees/:employeeId/efficiency',
+  EmployeeDocuments = '/employees/:employeeId/documents',
   Calendars = '/calendars',
 
   Vacancies = '/recruitment/vacancies',
@@ -25,13 +25,14 @@ export enum AuthorizationStatus {
 }
 
 export enum APIRoute {
-  Login = '/auth/login',
-  Logout = '/auth/logout',
-  AuthJob = '/auth/job',
-  AuthPersonalData = '/auth/personal-data',
-  AuthAvatar = '/auth/avatar',
+  Login = '/employees/login',
+  Logout = '/employees/logout',
+  Employee = '/employees/:employeeId',
+  EmployeeJob = '/employees/job',
+  EmployeePersonalData = '/employees/personal-data',
+  EmployeeAvatar = '/employees/avatar',
 }
 
 export enum SliceName {
-  Auth = 'AUTH',
+  Employee = 'Employee',
 }

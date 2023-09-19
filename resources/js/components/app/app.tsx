@@ -3,14 +3,14 @@ import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthStatus } from '../../store/auth-slice/selector';
+import { getAuthStatus } from '../../store/employees-slice/employees-selector';
 import { AppSpinner } from './styled';
 import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
 import PageWrapper from '../layouts/page-wrapper/page-wrapper';
-import ProfilePage from '../pages/profile-page/profile-page';
+import EmployeePage from '../pages/employess/employee-page/employee-page';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
@@ -28,12 +28,12 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PageWrapper />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Profile} element={<ProfilePage />}>
-              <Route path={AppRoute.ProfilePersonal} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.ProfileWork} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.ProfileAbsence} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.ProfileEfficiency} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.ProfileDocuments} element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Employee} element={<EmployeePage />}>
+              <Route path={AppRoute.EmployeePersonal} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.EmployeeWork} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.EmployeeAbsence} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.EmployeeEfficiency} element={<p>Not implemented</p>} />
+              <Route path={AppRoute.EmployeeDocuments} element={<p>Not implemented</p>} />
             </Route>
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />
