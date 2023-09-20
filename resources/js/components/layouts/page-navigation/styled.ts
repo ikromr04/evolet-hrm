@@ -2,10 +2,12 @@ import { styled } from 'styled-components';
 import { StyledBlock } from '../../ui/block/styled';
 
 export const Navigation = styled(StyledBlock)`
-  position: relative;
+  position: sticky;
+  top: 86px;
   padding: 16px 0;
   z-index: 2;
   transition: .3s;
+  height: max-content;
 `;
 
 export const Hr = styled.div`

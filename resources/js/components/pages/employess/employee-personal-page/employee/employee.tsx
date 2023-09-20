@@ -7,6 +7,7 @@ import Block from '../../../../ui/block/block';
 import Title from '../../../../ui/title/title';
 import { EditButton } from './styled';
 import DescriptionList from '../../../../ui/description-list/description-list';
+import Spinner from '../../../../ui/spinner/spinner';
 
 export default function Employee(): JSX.Element {
   const employee = useAppSelector(getEmployee);
@@ -21,18 +22,22 @@ export default function Employee(): JSX.Element {
         </EditButton>
       </BlockToolbar>
 
-      <DescriptionList
-        list={{
-          'ID сотрудника': employee?.id,
-          'Имя': employee?.name,
-          'Фамилия': employee?.surname,
-          'Отчество': employee?.patronymic,
-          'Логин': employee?.login,
-          'Начало работы': dayjs(employee?.startedWorkAt).format('D MMM YYYY'),
-          'Должность': employee?.job,
-          'Позиция': employee?.position,
-        }}
-      />
+      {employee
+        ?
+          <DescriptionList
+            list={{
+              'ID сотрудника': employee.id,
+              'Имя': employee.name,
+              'Фамилия': employee.surname,
+              'Отчество': employee.patronymic,
+              'Логин': employee.login,
+              'Начало работы': dayjs(employee.startedWorkAt).format('D MMM YYYY'),
+              'Должность': employee.job,
+              'Позиция': employee.position,
+            }}
+          />
+        :
+          <Spinner width={24} stroke={4} style={{ margin: '16px' }} />}
     </Block>
   );
 }

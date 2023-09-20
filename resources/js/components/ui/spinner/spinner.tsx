@@ -5,14 +5,16 @@ type SpinnerProps = {
   width?: number;
   stroke?: number;
   color?: string;
+  [rest: string]: any;
 }
 
 export default function Spinner(props: SpinnerProps): JSX.Element {
-  const { className, width, stroke, color } = props;
+  const { className, width, stroke, color, ...rest } = props;
 
   return (
     <StyledSpinner
       className={className}
+      {...rest}
     >
       <Loader
         width={width}

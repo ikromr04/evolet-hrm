@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components';
 
 export const StyledTitle = styled('h2').withConfig({
   shouldForwardProp: (props) => !['small'].includes(props),
-})<{ small: boolean }>`
+})<{ small?: boolean }>`
   margin-top: 0;
   margin-bottom: 0;
   font-weight: 600;

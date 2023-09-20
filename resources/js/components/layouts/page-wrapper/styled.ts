@@ -11,4 +11,6 @@ export const Wrapper = styled.div`
 export const LayoutContainer = styled(Container)`
   display: flex;
   gap: 16px;
+  z-index: 0;
+  padding-bottom: 80px;
 `;
