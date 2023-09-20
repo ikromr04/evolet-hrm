@@ -20,17 +20,19 @@ export default function NavigationItem({
 }: NavigationItemProps): JSX.Element {
   const location = useLocation();
   const isCurrent =
-    location.pathname === href || links?.map(({ path }) => path).includes(location.pathname);
+    location.pathname === href
+    || links?.map(({ path }) => path).includes(location.pathname)
+    || (href && href !== '/' && location.pathname.startsWith(href));
 
   return (
     <Wrapper {...rest} isCollapsed={isCollapsed}>
       <StyledButton
         as={href ? Link : ''}
         to={href}
-        isCurrent={isCurrent}
+        isCurrent={isCurrent || false}
       >
         {icon}
-        <Label isCurrent={isCurrent} isCollapsed={isCollapsed}>{label}</Label>
+        <Label isCurrent={isCurrent || false} isCollapsed={isCollapsed}>{label}</Label>
         {links
           ? <MoreIcon isCollapsed={isCollapsed} width={16} height={16} />
           : <ButtonTitle>{label}</ButtonTitle>}

@@ -3,7 +3,6 @@ export enum AppRoute {
   Login = '/employees/login',
   Employees = '/employees',
   Employee = '/employees/:employeeId',
-  EmployeePersonal = '/employees/:employeeId/personal',
   EmployeeWork = '/employees/:employeeId/work',
   EmployeeAbsence = '/employees/:employeeId/absence',
   EmployeeEfficiency = '/employees/:employeeId/efficiency',

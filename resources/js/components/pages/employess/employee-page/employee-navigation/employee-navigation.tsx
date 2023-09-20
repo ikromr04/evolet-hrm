@@ -12,7 +12,7 @@ export default function EmployeeNavigation({ employee } : EmployeeNavigationProp
   return (
     <NavigationList>
       <NavigationItem>
-        <NavigationButton href={generatePath(AppRoute.EmployeePersonal, { employeeId: employee.id })}>
+        <NavigationButton href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
           Личное
         </NavigationButton>
         <NavigationButton href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
