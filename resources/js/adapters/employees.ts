@@ -7,7 +7,7 @@ export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employ
   patronymic: serverUser.patronymic,
   login: serverUser.login,
   avatar: serverUser.avatar,
-  startedWordAt: serverUser.started_word_at,
+  startedWorkAt: serverUser.started_work_at,
   job: serverUser.job.title,
   position: serverUser.position.title,
 });

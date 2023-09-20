@@ -3,11 +3,12 @@ import { PropsWithChildren } from 'react';
 
 type TitleProps = PropsWithChildren<{
   textAlign?: string;
+  small?: boolean;
 }>;
 
-export default function Title({ children, ...rest }: TitleProps): JSX.Element {
+export default function Title({ children, small = false, ...rest }: TitleProps): JSX.Element {
   return (
-    <StyledTitle {...rest}>
+    <StyledTitle small={small} {...rest}>
       {children}
     </StyledTitle>
   );

@@ -5,7 +5,8 @@ import Spinner from '../spinner/spinner';
 
 type ButtonProps = PropsWithChildren<{
   href?: string;
-  icon?: JSX.Element;
+  success?: boolean;
+  large?: boolean;
   isLoading?: boolean;
   [rest:string]: any;
 }>
@@ -13,7 +14,8 @@ type ButtonProps = PropsWithChildren<{
 export default function Button({
   children,
   href,
-  icon,
+  success,
+  large,
   isLoading,
   ...rest
 }: ButtonProps): JSX.Element {
@@ -22,14 +24,13 @@ export default function Button({
     <StyledButton
       as={href ? Link : ''}
       to={href}
+      success={success}
+      large={large}
       {...rest}
     >
       {isLoading
-        ? <Spinner width={24} stroke={4} color="white" />
-        : <>
-            {icon}
-            {children}
-          </>}
+        ? <Spinner width={14} stroke={2} color="white" />
+        : children }
     </StyledButton>
   );
 }

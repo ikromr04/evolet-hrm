@@ -5,7 +5,7 @@ export type Employee = {
   patronymic: string;
   login: string;
   avatar: string;
-  startedWordAt: Date;
+  startedWorkAt: Date;
   job: string;
   position: string;
 };
@@ -13,7 +13,7 @@ export type Employee = {
 export type PersonalData = {
   id: string;
   userId: string;
-  birthDate: string;
+  birthDate: Date;
   gender: string;
   nationality: string;
   citizenship: string;

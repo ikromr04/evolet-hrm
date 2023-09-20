@@ -106,6 +106,8 @@ export default function LoginPage(): JSX.Element {
           onClick={handleSubmitClick}
           disabled={isLoading}
           isLoading={isLoading}
+          success
+          large
         >
           Войти в систему
         </Button>
