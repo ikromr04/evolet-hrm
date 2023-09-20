@@ -1,5 +1,5 @@
 import { Outlet, useParams } from 'react-router-dom';
-import { Header, HeaderInner, Main } from './styled';
+import { Header, HeaderInner, Main, PageWrapper, Sidebar } from './styled';
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchEmployeeById } from '../../../../store/employees-slice/employees-api-actions';
@@ -30,7 +30,11 @@ export default function EmployeePage(): JSX.Element {
       </Header>
 
       {employee && <EmployeeNavigation employee={employee} />}
-      <Outlet />
+
+      <PageWrapper>
+        <Outlet />
+        <Sidebar />
+      </PageWrapper>
     </Main>
   );
 }

@@ -20,3 +20,15 @@ export const HeaderInner = styled.div`
   align-items: flex-start;
   flex-grow: 1;
 `;
+
+export const PageWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 16px;
+`;
+
+export const Sidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
