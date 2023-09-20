@@ -41,6 +41,37 @@ class UserController extends Controller
     ], 201);
   }
 
+  public function update($employeeId)
+  {
+    request()->validate([
+      'name' => 'required|string',
+      'surname' => 'required|string',
+      'patronymic' => 'required|string',
+      'login' => 'required',
+      'started_work_at' => 'required',
+    ]);
+
+    $user = User::with('job', 'position')->find($employeeId);
+
+    if (request('login') != $user->login) {
+      request()->validate([
+        'login' => 'unique:users,login',
+      ]);
+      $user->update([
+        'login' => request('login'),
+      ]);
+    }
+
+    $user->update([
+      'name' => request('name'),
+      'surname' => request('surname'),
+      'patronymic' => request('patronymic'),
+      'started_work_at' => request('started_work_at'),
+    ]);
+
+    return $user;
+  }
+
   public function show($employeeId) {
     return User::with('job', 'position')->find($employeeId);
   }

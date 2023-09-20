@@ -5,7 +5,7 @@ import { useOutsideClick } from '../../../hooks/use-outside-click';
 import { ModalWindow, StyledModal, Wrapper } from './styled';
 
 type ModalProps = {
-  className?: string
+  className?: string;
   modalButton: JSX.Element;
   modalWindow: JSX.Element;
 }

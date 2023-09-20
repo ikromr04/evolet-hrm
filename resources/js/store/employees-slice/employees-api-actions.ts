@@ -116,3 +116,32 @@ export const fetchEmployeeById = createAsyncThunk<Employee, { employeeId: string
     return adaptEmployeeToClient(data);
   },
 );
+
+export const updateEmployeeAction = createAsyncThunk<Employee, {
+  form: FormData,
+  employeeId: string,
+  errorHandler: (error: ValidationError) => void;
+  onSuccess?: () => void;
+}, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance,
+  rejectValue: ValidationError,
+}>(
+  'employees/update',
+  async ({ form, employeeId, errorHandler, onSuccess }, { extra: api, rejectWithValue }) => {
+    try {
+      form.append('_method', 'put');
+      const { data } = await api.post<Employee>(generatePath(APIRoute.Employee, { employeeId }), form);
+      onSuccess && onSuccess();
+      return adaptEmployeeToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
