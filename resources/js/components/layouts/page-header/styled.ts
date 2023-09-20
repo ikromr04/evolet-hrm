@@ -10,6 +10,11 @@ export const Header = styled.header`
   box-shadow: 0px 1px 0px #dce5ef, 0px 1px 4px rgba(9,8,61,0.08);
   display: flex;
   padding: 16px 0;
+  transition: .3s;
+
+  .modal-shown & {
+    transform: translateY(-100%);
+  }
 `;
 
 export const HeaderContainer = styled(Container)`

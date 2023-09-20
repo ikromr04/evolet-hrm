@@ -3,7 +3,6 @@ import { useEscapeKeydown } from '../../../hooks/use-escape-keydown';
 import { useOnRouteChange } from '../../../hooks/use-on-route-change';
 import { useOutsideClick } from '../../../hooks/use-outside-click';
 import { ModalWindow, StyledModal, Wrapper } from './styled';
-import { createRoot } from 'react-dom/client';
 
 type ModalProps = {
   className?: string
@@ -23,22 +22,26 @@ export default function Modal({
   useOnRouteChange(() => setIsOpen(false));
 
   useEffect(() => {
-    const element = document.createElement('div');
-    document.body.append(element);
-    createRoot(element).render(
-      <StyledModal isOpen={isOpen}>
-        <ModalWindow ref={ref}>
-          {modalWindow}
-        </ModalWindow>
-      </StyledModal>
-    );
-
-    return () => element.remove();
+    isOpen
+      ? document.body.classList.add('modal-shown')
+      : document.body.classList.remove('modal-shown');
+    return () => document.body.classList.remove('modal-shown');
   }, [isOpen]);
 
   return (
-    <Wrapper className={className} onClick={() => setIsOpen(!isOpen)}>
-      {modalButton}
-    </Wrapper>
+    <>
+      <Wrapper
+        className={className}
+        onClick={() => setIsOpen(!isOpen)}
+        isOpen={isOpen}
+      >
+        {modalButton}
+      </Wrapper>
+      <StyledModal isOpen={isOpen}>
+        <ModalWindow ref={ref} isOpen={isOpen}>
+          {modalWindow}
+        </ModalWindow>
+      </StyledModal>
+    </>
   );
 }

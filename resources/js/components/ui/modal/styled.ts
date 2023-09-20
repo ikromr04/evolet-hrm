@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled('div').withConfig({
+  shouldForwardProp: (props) => !['isOpen'].includes(props),
+})<{ isOpen: boolean }>`
+  ${({ isOpen }) => isOpen && css`
+    pointer-events: none;
+  `}
+`;
 
 export const StyledModal = styled('div').withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
@@ -18,7 +24,7 @@ export const StyledModal = styled('div').withConfig({
   visibility: hidden;
   display: flex;
   justify-content: center;
-  padding-top: 32px;
+  transition: .3s;
 
   ${({ isOpen }) => isOpen && css`
     pointer-events: all;
@@ -27,4 +33,17 @@ export const StyledModal = styled('div').withConfig({
   `}
 `;
 
-export const ModalWindow = styled.div``;
+export const ModalWindow = styled('div').withConfig({
+  shouldForwardProp: (props) => !['isOpen'].includes(props),
+})<{ isOpen: boolean }>`
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  transition: .3s;
+
+  ${({ isOpen }) => isOpen && css`
+    transform: translateX(-50%) translateY(32px);
+  `}
+`;
