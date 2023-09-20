@@ -5,7 +5,8 @@ import EditIcon from '../../../../icons/edit-icon';
 import BlockToolbar from '../../../../ui/block-toolbar/block-toolbar';
 import Block from '../../../../ui/block/block';
 import Title from '../../../../ui/title/title';
-import { Dd, Dl, Dt, EditButton } from './styled';
+import { EditButton } from './styled';
+import DescriptionList from '../../../../ui/description-list/description-list';
 
 export default function Employee(): JSX.Element {
   const employee = useAppSelector(getEmployee);
@@ -20,24 +21,18 @@ export default function Employee(): JSX.Element {
         </EditButton>
       </BlockToolbar>
 
-      <Dl>
-        <Dt>ID сотрудника</Dt>
-        <Dd>{employee?.id}</Dd>
-        <Dt>Имя</Dt>
-        <Dd>{employee?.name}</Dd>
-        <Dt>Фамилия</Dt>
-        <Dd>{employee?.surname}</Dd>
-        <Dt>Отчество</Dt>
-        <Dd>{employee?.patronymic}</Dd>
-        <Dt>Логин</Dt>
-        <Dd>{employee?.login}</Dd>
-        <Dt>Начало работы</Dt>
-        <Dd>{dayjs(employee?.startedWorkAt).format('D MMM YYYY')}</Dd>
-        <Dt>Должность</Dt>
-        <Dd>{employee?.job}</Dd>
-        <Dt>Позиция</Dt>
-        <Dd>{employee?.position}</Dd>
-      </Dl>
+      <DescriptionList
+        list={{
+          'ID сотрудника': employee?.id,
+          'Имя': employee?.name,
+          'Фамилия': employee?.surname,
+          'Отчество': employee?.patronymic,
+          'Логин': employee?.login,
+          'Начало работы': dayjs(employee?.startedWorkAt).format('D MMM YYYY'),
+          'Должность': employee?.job,
+          'Позиция': employee?.position,
+        }}
+      />
     </Block>
   );
 }
