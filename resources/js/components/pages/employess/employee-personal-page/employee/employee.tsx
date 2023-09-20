@@ -1,13 +1,12 @@
 import dayjs from 'dayjs';
 import { useAppSelector } from '../../../../../hooks';
 import { getEmployee } from '../../../../../store/employees-slice/employees-selector';
-import EditIcon from '../../../../icons/edit-icon';
 import BlockToolbar from '../../../../ui/block-toolbar/block-toolbar';
 import Block from '../../../../ui/block/block';
 import Title from '../../../../ui/title/title';
-import { EditButton } from './styled';
 import DescriptionList from '../../../../ui/description-list/description-list';
 import Spinner from '../../../../ui/spinner/spinner';
+import EditEmployee from './edit-employee/edit-employee';
 
 export default function Employee(): JSX.Element {
   const employee = useAppSelector(getEmployee);
@@ -16,10 +15,7 @@ export default function Employee(): JSX.Element {
     <Block as="section">
       <BlockToolbar>
         <Title small>Сотрудник</Title>
-
-        <EditButton type="button">
-          <EditIcon height={13} /> Редактировать
-        </EditButton>
+        {employee && <EditEmployee employee={employee} />}
       </BlockToolbar>
 
       {employee
