@@ -10,11 +10,12 @@ import { useEffect } from 'react';
 import { fetchEmployeeEducations } from '../../../../../store/employees-slice/employees-api-actions';
 import { useParams } from 'react-router-dom';
 import Hr from '../../../../ui/hr/hr';
-import { Actions, EducationsWrapper } from './styled';
+import { Actions, EducationsWrapper, IconWrapper } from './styled';
 import EditEducation from './edit-education/edit-education';
 import CreateEducation from './create-education/create-education';
 import BlockNoContent from '../../../../ui/block-no-content/block-no-content';
 import DeleteEducation from './delete-education/delete-education';
+import EducationIcon from '../../../../icons/education-icon';
 
 export default function Education(): JSX.Element {
   const params = useParams();
@@ -30,6 +31,9 @@ export default function Education(): JSX.Element {
   return (
     <Block as="section">
       <BlockToolbar>
+        <IconWrapper>
+          <EducationIcon width={18} color="#00b950" />
+        </IconWrapper>
         <Title small>Образование</Title>
         <CreateEducation />
       </BlockToolbar>
