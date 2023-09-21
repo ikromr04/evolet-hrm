@@ -36,7 +36,7 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
               {personalData.address}
             </InfoItem>}
         </Info>}
-      <Position>{employee.position}</Position>
+      {employee.position && <Position>{employee.position?.title}</Position>}
     </Details>
   );
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,4 +30,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::delete('/employees/{employeeId}/avatar', [UserController::class, 'deleteAvatar']);
 
   Route::get('/jobs', [JobController::class, 'index']);
+
+  Route::get('/positions', [PositionController::class, 'index']);
 });

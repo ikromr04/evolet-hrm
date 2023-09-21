@@ -29,7 +29,7 @@ export default function Employee(): JSX.Element {
               'Логин': employee.login,
               'Начало работы': dayjs(employee.startedWorkAt).format('D MMM YYYY'),
               'Должность': employee.job?.title,
-              'Позиция': employee.position,
+              'Позиция': employee.position?.title,
             }}
           />
         :

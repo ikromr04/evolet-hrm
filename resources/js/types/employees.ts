@@ -1,4 +1,5 @@
 import { Job } from './job';
+import { Position } from './position';
 
 export type Employee = {
   id: string;
@@ -9,7 +10,7 @@ export type Employee = {
   avatar: string;
   startedWorkAt: Date;
   job: Job | null;
-  position: string;
+  position: Position | null;
 };
 
 export type PersonalData = {

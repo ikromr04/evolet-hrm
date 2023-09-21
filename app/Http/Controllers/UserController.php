@@ -68,6 +68,7 @@ class UserController extends Controller
       'patronymic' => request('patronymic'),
       'started_work_at' => request('started_work_at'),
       'job_id' => request('job_id'),
+      'position_id' => request('position_id'),
     ]);
 
     return User::with('job', 'position')->find($employeeId);

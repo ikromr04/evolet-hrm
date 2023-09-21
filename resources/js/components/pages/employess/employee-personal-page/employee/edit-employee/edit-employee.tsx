@@ -13,6 +13,8 @@ import { AppRoute } from '../../../../../../const';
 import { generatePath } from 'react-router-dom';
 import { getJobs } from '../../../../../../store/job-slice/job-selector';
 import { fetchJobs } from '../../../../../../store/job-slice/job-api-actions';
+import { getPositions } from '../../../../../../store/position-slice/position-selector';
+import { fetchPositions } from '../../../../../../store/position-slice/position-api-actions';
 
 type EditEmployeeProps = {
   employee: Employee
@@ -24,16 +26,18 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
   const jobs = useAppSelector(getJobs);
+  const positions = useAppSelector(getPositions);
   const [selectedJobId, setSelectedJobId] = useState(job?.id ?? '');
+  const [selectedPositionId, setSelectedPositionId] = useState(position?.id ?? '');
 
   useEffect(() => {
     !jobs && dispatch(fetchJobs());
+    !positions && dispatch(fetchPositions());
   }, [dispatch, jobs]);
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     setIsLoading(true);
-    console.log(evt.target.job_id.value);
 
     dispatch(updateEmployeeAction({
       form: new FormData(evt.target),
@@ -124,6 +128,15 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
             value={selectedJobId}
             onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
             select={jobs ? [{ value: '', label: 'Не выбрано' }, ...jobs.map(({ id, title }) => ({ value: id, label: title }))] : []}
+          />
+
+          <TextField
+            id="position_id"
+            label="Позиция"
+            name="position_id"
+            value={selectedPositionId}
+            onChange={(evt: BaseSyntheticEvent) => setSelectedPositionId(evt.target.value)}
+            select={positions ? [{ value: '', label: 'Не выбрано' }, ...positions.map(({ id, title }) => ({ value: id, label: title }))] : []}
           />
 
           <SubmitButton
