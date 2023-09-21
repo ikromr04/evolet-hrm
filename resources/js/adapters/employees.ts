@@ -1,4 +1,5 @@
 import { Employee, PersonalData } from '../types/employees';
+import { adaptJobToClient } from './jobs';
 
 export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employee => ({
   id: serverUser.id,
@@ -8,7 +9,7 @@ export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employ
   login: serverUser.login,
   avatar: serverUser.avatar,
   startedWorkAt: serverUser.started_work_at,
-  job: serverUser.job.title,
+  job: serverUser.job_id ? adaptJobToClient(serverUser.job) : null,
   position: serverUser.position.title,
 });
 

@@ -28,7 +28,7 @@ export default function Employee(): JSX.Element {
               'Отчество': employee.patronymic,
               'Логин': employee.login,
               'Начало работы': dayjs(employee.startedWorkAt).format('D MMM YYYY'),
-              'Должность': employee.job,
+              'Должность': employee.job?.title,
               'Позиция': employee.position,
             }}
           />

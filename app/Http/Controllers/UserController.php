@@ -51,7 +51,7 @@ class UserController extends Controller
       'started_work_at' => 'required',
     ]);
 
-    $user = User::with('job', 'position')->find($employeeId);
+    $user = User::find($employeeId);
 
     if (request('login') != $user->login) {
       request()->validate([
@@ -67,9 +67,10 @@ class UserController extends Controller
       'surname' => request('surname'),
       'patronymic' => request('patronymic'),
       'started_work_at' => request('started_work_at'),
+      'job_id' => request('job_id'),
     ]);
 
-    return $user;
+    return User::with('job', 'position')->find($employeeId);
   }
 
   public function show($employeeId) {

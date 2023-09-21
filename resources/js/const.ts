@@ -30,8 +30,11 @@ export enum APIRoute {
   EmployeeJob = '/employees/:employeeId/job',
   EmployeePersonalData = '/employees/:employeeId/personal',
   EmployeeAvatar = '/employees/:employeeId/avatar',
+
+  Jobs = '/jobs',
 }
 
 export enum SliceName {
   Employee = 'Employee',
+  Job = 'Job',
 }

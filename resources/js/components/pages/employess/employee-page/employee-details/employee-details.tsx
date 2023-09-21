@@ -23,12 +23,12 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
   return (
     <Details>
       <Name>{`${employee.surname} ${employee.name}`}</Name>
-      {(employee.job && personalData) &&
+      {(employee.job || personalData) &&
         <Info>
           {employee.job &&
             <InfoItem>
               <BriefcaseIcon width={16} height={16} />
-              {employee.job}
+              {employee.job?.title}
             </InfoItem>}
           {personalData &&
             <InfoItem>

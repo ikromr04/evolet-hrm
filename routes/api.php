@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/employees/{employeeId}/personal', [UserController::class, 'personalData']);
   Route::put('/employees/{employeeId}/avatar', [UserController::class, 'updateAvatar']);
   Route::delete('/employees/{employeeId}/avatar', [UserController::class, 'deleteAvatar']);
+
+  Route::get('/jobs', [JobController::class, 'index']);
 });

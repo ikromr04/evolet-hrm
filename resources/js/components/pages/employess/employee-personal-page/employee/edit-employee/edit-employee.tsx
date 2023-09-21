@@ -1,16 +1,18 @@
-import { BaseSyntheticEvent, useRef, useState } from 'react';
+import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { Employee } from '../../../../../../types/employees';
 import EditIcon from '../../../../../icons/edit-icon';
 import Button from '../../../../../ui/button/button';
 import TextField from '../../../../../ui/text-field/text-field';
 import { EditForm, EditModal, SubmitButton } from './styled';
-import { useAppDispatch } from '../../../../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../../../../hooks';
 import { updateEmployeeAction } from '../../../../../../store/employees-slice/employees-api-actions';
 import { ValidationError } from '../../../../../../types/validation-error';
 import { toast } from 'react-toastify';
 import { redirectToRoute } from '../../../../../../store/middlewares/redirect';
 import { AppRoute } from '../../../../../../const';
 import { generatePath } from 'react-router-dom';
+import { getJobs } from '../../../../../../store/job-slice/job-selector';
+import { fetchJobs } from '../../../../../../store/job-slice/job-api-actions';
 
 type EditEmployeeProps = {
   employee: Employee
@@ -21,10 +23,17 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
+  const jobs = useAppSelector(getJobs);
+  const [selectedJobId, setSelectedJobId] = useState(job?.id ?? '');
+
+  useEffect(() => {
+    !jobs && dispatch(fetchJobs());
+  }, [dispatch, jobs]);
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     setIsLoading(true);
+    console.log(evt.target.job_id.value);
 
     dispatch(updateEmployeeAction({
       form: new FormData(evt.target),
@@ -51,7 +60,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
         ...newState,
         message: '',
       };
-    })
+  })
 
   return (
     <EditModal
@@ -106,6 +115,15 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
             defaultValue={startedWorkAt}
             message={validationError?.errors?.started_work_at?.[0]}
             onInput={handleInputsChange}
+          />
+
+          <TextField
+            id="job_id"
+            label="Должность"
+            name="job_id"
+            value={selectedJobId}
+            onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
+            select={jobs ? [{ value: '', label: 'Не выбрано' }, ...jobs.map(({ id, title }) => ({ value: id, label: title }))] : []}
           />
 
           <SubmitButton

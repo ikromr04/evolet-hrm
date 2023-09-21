@@ -1,3 +1,5 @@
+import { Job } from './job';
+
 export type Employee = {
   id: string;
   name: string;
@@ -6,7 +8,7 @@ export type Employee = {
   login: string;
   avatar: string;
   startedWorkAt: Date;
-  job: string;
+  job: Job | null;
   position: string;
 };
 
