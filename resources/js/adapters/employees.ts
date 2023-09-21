@@ -1,17 +1,17 @@
-import { Employee, PersonalData } from '../types/employees';
+import { Education, Educations, Employee, PersonalData } from '../types/employees';
 import { adaptJobToClient } from './jobs';
 import { adaptPositionToClient } from './positions';
 
-export const adaptEmployeeToClient = (serverUser: {[key: string]: any }): Employee => ({
-  id: serverUser.id,
-  name: serverUser.name,
-  surname: serverUser.surname,
-  patronymic: serverUser.patronymic,
-  login: serverUser.login,
-  avatar: serverUser.avatar,
-  startedWorkAt: serverUser.started_work_at,
-  job: serverUser.job_id ? adaptJobToClient(serverUser.job) : null,
-  position: serverUser.position_id ? adaptPositionToClient(serverUser.position) : null,
+export const adaptEmployeeToClient = (employeeUser: {[key: string]: any }): Employee => ({
+  id: employeeUser.id,
+  name: employeeUser.name,
+  surname: employeeUser.surname,
+  patronymic: employeeUser.patronymic,
+  login: employeeUser.login,
+  avatar: employeeUser.avatar,
+  startedWorkAt: employeeUser.started_work_at,
+  job: employeeUser.job_id ? adaptJobToClient(employeeUser.job) : null,
+  position: employeeUser.position_id ? adaptPositionToClient(employeeUser.position) : null,
 });
 
 export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): PersonalData => ({
@@ -28,3 +28,17 @@ export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): Pe
   familyStatus: serverData.family_status,
   children: serverData.children,
 });
+
+export const adaptEmployeeEducationToClient = (serverEducation: {[key: string]: any }): Education => ({
+  id: serverEducation.id,
+  userId: serverEducation.user_id,
+  startedAt: serverEducation.started_at,
+  graduatedAt: serverEducation.graduated_at,
+  institution: serverEducation.institution,
+  faculty: serverEducation.faculty,
+  form: serverEducation.form,
+  speciality: serverEducation.speciality,
+});
+
+export const adaptEmployeeEducationsToClient = (serverEducations: {[key: string]: any }[]): Educations =>
+  serverEducations.map((serverEducation) => adaptEmployeeEducationToClient(serverEducation));

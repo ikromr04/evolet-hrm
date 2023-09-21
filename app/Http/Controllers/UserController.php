@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Education;
 use App\Models\PersonalData;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -168,5 +169,10 @@ class UserController extends Controller
     }
 
     return $user;
+  }
+
+  public function educations($employeeId)
+  {
+    return Education::where('user_id', $employeeId)->orderBy('started_at', 'asc')->get();
   }
 }

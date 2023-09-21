@@ -1,13 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { checkAuthAction, fetchEmployeeById, fetchEmployeePersonalData, loginAction, logoutAction, updateEmployeeAction, updateEmployeePersonalDataAction } from './employees-api-actions';
-import { Employee, PersonalData } from '../../types/employees';
+import { Educations, Employee, PersonalData } from '../../types/employees';
+import {
+  checkAuthAction,
+  fetchEmployeeById,
+  fetchEmployeeEducations,
+  fetchEmployeePersonalData,
+  loginAction,
+  logoutAction,
+  updateEmployeeAction,
+  updateEmployeeEducationAction,
+  updateEmployeePersonalDataAction
+} from './employees-api-actions';
 
 export type EmployeesSlice = {
   authorizationStatus: AuthorizationStatus;
   authEmployee: Employee | null;
   employee: Employee | null;
   employeePersonalData: PersonalData | null;
+  educations: Educations | null;
 };
 
 const initialState: EmployeesSlice = {
@@ -15,6 +26,7 @@ const initialState: EmployeesSlice = {
   authEmployee: null,
   employee: null,
   employeePersonalData: null,
+  educations: null,
 };
 
 export const employeeSlice = createSlice({
@@ -61,6 +73,19 @@ export const employeeSlice = createSlice({
       })
       .addCase(updateEmployeePersonalDataAction.fulfilled, (state, action) => {
         state.employeePersonalData = action.payload;
+      })
+      .addCase(fetchEmployeeEducations.fulfilled, (state, action) => {
+        state.educations = action.payload;
+      })
+      .addCase(updateEmployeeEducationAction.fulfilled, (state, action) => {
+        const updatedEducation = action.payload;
+        if (state.educations) {
+          state.educations = state.educations.map((education) =>
+            (education.id === updatedEducation.id) ? updatedEducation : education
+          );
+        } else {
+          state.educations = [updatedEducation];
+        }
       });
   },
 });

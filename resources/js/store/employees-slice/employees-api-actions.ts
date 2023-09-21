@@ -2,11 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../../types/state';
 import { AxiosError, AxiosInstance } from 'axios';
 import { APIRoute } from '../../const';
-import { Employee, PersonalData } from '../../types/employees';
+import { Education, Educations, Employee, PersonalData } from '../../types/employees';
 import { Token, dropToken, saveToken } from '../../services/token';
 import { ValidationError } from '../../types/validation-error';
 import { LoginData } from '../../types/auth';
-import { adaptEmployeeToClient, adaptPersonalDataToClient } from '../../adapters/employees';
+import { adaptEmployeeEducationToClient, adaptEmployeeEducationsToClient, adaptEmployeeToClient, adaptPersonalDataToClient } from '../../adapters/employees';
 import { generatePath } from 'react-router-dom';
 
 export const checkAuthAction = createAsyncThunk<Employee, undefined, {
@@ -66,7 +66,7 @@ export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'auth/fetchEmployeePersonalData',
+  'employees/fetchEmployeePersonalData',
   async ({ employeeId }, { extra: api }) => {
     const { data } = await api.get<PersonalData>(generatePath(APIRoute.EmployeePersonalData, { employeeId }));
     return adaptPersonalDataToClient(data);
@@ -82,7 +82,7 @@ export const updateEmployeeAvatar = createAsyncThunk<void, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'auth/updateEmployeeAvatar',
+  'employees/updateEmployeeAvatar',
   async ({ form, employeeId, onSuccess }, { extra: api }) => {
     form.append('_method', 'put');
     const { data } = await api.post(generatePath(APIRoute.EmployeeAvatar, { employeeId }), form);
@@ -98,19 +98,21 @@ export const deleteEmployeeAvatar = createAsyncThunk<void, {
   state: State;
   extra: AxiosInstance;
 }>(
-  'auth/deleteEmployeeAvatar',
+  'employees/deleteEmployeeAvatar',
   async ({ employeeId, onSuccess }, { extra: api }) => {
     const { data } = await api.delete<Employee>(generatePath(APIRoute.EmployeeAvatar, { employeeId }));
     onSuccess(adaptEmployeeToClient(data));
   },
 );
 
-export const fetchEmployeeById = createAsyncThunk<Employee, { employeeId: string }, {
+export const fetchEmployeeById = createAsyncThunk<Employee, {
+  employeeId: string;
+}, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
 }>(
-  'auth/fetchEmployeeById',
+  'employees/fetchEmployeeById',
   async ({ employeeId }, { extra: api }) => {
     const { data } = await api.get<Employee>(generatePath(APIRoute.Employee, { employeeId }));
     return adaptEmployeeToClient(data);
@@ -164,6 +166,49 @@ export const updateEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
       const { data } = await api.post<PersonalData>(generatePath(APIRoute.EmployeePersonalData, { employeeId }), form);
       onSuccess && onSuccess();
       return adaptPersonalDataToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const fetchEmployeeEducations = createAsyncThunk<Educations, {
+  employeeId: string;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'employees/fetchEmployeeEducations',
+  async ({ employeeId }, { extra: api }) => {
+    const { data } = await api.get<Educations>(generatePath(APIRoute.EmployeeEducations, { employeeId }));
+    return adaptEmployeeEducationsToClient(data);
+  },
+);
+
+export const updateEmployeeEducationAction = createAsyncThunk<Education, {
+  form: FormData;
+  educationId: string;
+  errorHandler: (error: ValidationError) => void;
+  onSuccess?: () => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/updateEducation',
+  async ({ form, educationId, errorHandler, onSuccess }, { extra: api, rejectWithValue }) => {
+    try {
+      form.append('_method', 'put');
+      const { data } = await api.post<Education>(generatePath(APIRoute.Educations, { educationId }), form);
+      onSuccess && onSuccess();
+      return adaptEmployeeEducationToClient(data);
     } catch (err: any) {
       let error: AxiosError<ValidationError> = err;
       if (!error.response) {

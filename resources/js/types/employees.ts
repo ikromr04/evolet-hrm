@@ -28,3 +28,15 @@ export type PersonalData = {
   children: string;
 };
 
+export type Education = {
+  id: string;
+  userId: string;
+  startedAt: Date;
+  graduatedAt: Date;
+  institution: string;
+  faculty: string;
+  form: string;
+  speciality: string;
+};
+
+export type Educations = Education[];

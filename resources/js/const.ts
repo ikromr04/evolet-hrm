@@ -28,8 +28,11 @@ export enum APIRoute {
   Logout = '/employees/logout',
   Employee = '/employees/:employeeId',
   EmployeeJob = '/employees/:employeeId/job',
-  EmployeePersonalData = '/employees/:employeeId/personal',
   EmployeeAvatar = '/employees/:employeeId/avatar',
+  EmployeePersonalData = '/employees/:employeeId/personal',
+  EmployeeEducations = '/employees/:employeeId/educations',
+
+  Educations = '/educations/:educationId',
 
   Jobs = '/jobs',
 
