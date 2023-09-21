@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/employees/{employeeId}', [UserController::class, 'show']);
   Route::put('/employees/{employeeId}', [UserController::class, 'update']);
   Route::get('/employees/{employeeId}/personal', [UserController::class, 'personalData']);
+  Route::put('/employees/{employeeId}/personal', [UserController::class, 'updatePersonalData']);
   Route::put('/employees/{employeeId}/avatar', [UserController::class, 'updateAvatar']);
   Route::delete('/employees/{employeeId}/avatar', [UserController::class, 'deleteAvatar']);
 

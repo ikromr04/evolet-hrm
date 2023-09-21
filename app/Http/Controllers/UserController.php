@@ -115,6 +115,29 @@ class UserController extends Controller
     return PersonalData::where('user_id', $employeeId)->first();
   }
 
+  public function updatePersonalData($employeeId)
+  {
+    request()->validate([
+      'birth_date' => 'required',
+      'gender' => 'required',
+    ]);
+    $personalData = PersonalData::find($employeeId);
+    $personalData->update([
+      'birth_date' => request('birth_date'),
+      'gender' => request('gender'),
+      'nationality' => request('nationality'),
+      'citizenship' => request('citizenship'),
+      'address' => request('address'),
+      'email' => request('email'),
+      'tel_1' => request('tel_1'),
+      'tel_2' => request('tel_2'),
+      'family_status' => request('family_status'),
+      'children' => request('children'),
+    ]);
+
+    return $personalData;
+  }
+
   public function updateAvatar($employeeId)
   {
     $user = User::with('job', 'position')->find($employeeId);

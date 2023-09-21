@@ -10,9 +10,9 @@ import { adaptEmployeeToClient, adaptPersonalDataToClient } from '../../adapters
 import { generatePath } from 'react-router-dom';
 
 export const checkAuthAction = createAsyncThunk<Employee, undefined, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance,
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'employees/checkAuth',
   async (_arg, { extra: api }) => {
@@ -22,13 +22,13 @@ export const checkAuthAction = createAsyncThunk<Employee, undefined, {
 );
 
 export const loginAction = createAsyncThunk<Employee, {
-  body: LoginData,
+  body: LoginData;
   errorHandler: (error: ValidationError) => void;
 }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance,
-  rejectValue: ValidationError,
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
 }>(
   'employees/login',
   async ({ body, errorHandler }, { extra: api, rejectWithValue }) => {
@@ -48,9 +48,9 @@ export const loginAction = createAsyncThunk<Employee, {
 );
 
 export const logoutAction = createAsyncThunk<void, undefined, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'auth/logout',
   async (_arg, { extra: api }) => {
@@ -60,11 +60,11 @@ export const logoutAction = createAsyncThunk<void, undefined, {
 );
 
 export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, {
-  employeeId: string
+  employeeId: string;
 }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'auth/fetchEmployeePersonalData',
   async ({ employeeId }, { extra: api }) => {
@@ -74,13 +74,13 @@ export const fetchEmployeePersonalData = createAsyncThunk<PersonalData, {
 );
 
 export const updateEmployeeAvatar = createAsyncThunk<void, {
-  form: FormData,
-  employeeId: string,
-  onSuccess: (employee: Employee) => void,
+  form: FormData;
+  employeeId: string;
+  onSuccess: (employee: Employee) => void;
  }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'auth/updateEmployeeAvatar',
   async ({ form, employeeId, onSuccess }, { extra: api }) => {
@@ -91,12 +91,12 @@ export const updateEmployeeAvatar = createAsyncThunk<void, {
 );
 
 export const deleteEmployeeAvatar = createAsyncThunk<void, {
-  employeeId: string,
-  onSuccess: (employee: Employee) => void,
+  employeeId: string;
+  onSuccess: (employee: Employee) => void;
  }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'auth/deleteEmployeeAvatar',
   async ({ employeeId, onSuccess }, { extra: api }) => {
@@ -106,9 +106,9 @@ export const deleteEmployeeAvatar = createAsyncThunk<void, {
 );
 
 export const fetchEmployeeById = createAsyncThunk<Employee, { employeeId: string }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
 }>(
   'auth/fetchEmployeeById',
   async ({ employeeId }, { extra: api }) => {
@@ -118,15 +118,15 @@ export const fetchEmployeeById = createAsyncThunk<Employee, { employeeId: string
 );
 
 export const updateEmployeeAction = createAsyncThunk<Employee, {
-  form: FormData,
-  employeeId: string,
+  form: FormData;
+  employeeId: string;
   errorHandler: (error: ValidationError) => void;
   onSuccess?: () => void;
 }, {
-  dispatch: AppDispatch,
-  state: State,
-  extra: AxiosInstance,
-  rejectValue: ValidationError,
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
 }>(
   'employees/update',
   async ({ form, employeeId, errorHandler, onSuccess }, { extra: api, rejectWithValue }) => {
@@ -135,6 +135,35 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
       const { data } = await api.post<Employee>(generatePath(APIRoute.Employee, { employeeId }), form);
       onSuccess && onSuccess();
       return adaptEmployeeToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const updateEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
+  form: FormData;
+  employeeId: string;
+  errorHandler: (error: ValidationError) => void;
+  onSuccess?: () => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/updatePersonalData',
+  async ({ form, employeeId, errorHandler, onSuccess }, { extra: api, rejectWithValue }) => {
+    try {
+      form.append('_method', 'put');
+      const { data } = await api.post<PersonalData>(generatePath(APIRoute.EmployeePersonalData, { employeeId }), form);
+      onSuccess && onSuccess();
+      return adaptPersonalDataToClient(data);
     } catch (err: any) {
       let error: AxiosError<ValidationError> = err;
       if (!error.response) {

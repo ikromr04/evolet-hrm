@@ -33,7 +33,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   useEffect(() => {
     !jobs && dispatch(fetchJobs());
     !positions && dispatch(fetchPositions());
-  }, [dispatch, jobs]);
+  }, [dispatch, jobs, positions]);
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -49,7 +49,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
       onSuccess() {
         setIsLoading(false);
         dispatch(redirectToRoute(generatePath(AppRoute.Employee, {employeeId: id})));
-        toast.success('Данные успешно сохранены');
+        toast.success('Данные успешно обновлены');
       },
     }));
   };

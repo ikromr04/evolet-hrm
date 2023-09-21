@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { checkAuthAction, fetchEmployeeById, fetchEmployeePersonalData, loginAction, logoutAction, updateEmployeeAction } from './employees-api-actions';
+import { checkAuthAction, fetchEmployeeById, fetchEmployeePersonalData, loginAction, logoutAction, updateEmployeeAction, updateEmployeePersonalDataAction } from './employees-api-actions';
 import { Employee, PersonalData } from '../../types/employees';
 
 export type EmployeesSlice = {
@@ -58,6 +58,9 @@ export const employeeSlice = createSlice({
         if (action.payload.id === state.authEmployee?.id) {
           state.authEmployee = action.payload;
         }
+      })
+      .addCase(updateEmployeePersonalDataAction.fulfilled, (state, action) => {
+        state.employeePersonalData = action.payload;
       });
   },
 });

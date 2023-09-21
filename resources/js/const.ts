@@ -40,4 +40,4 @@ export enum SliceName {
   Employee = 'Employee',
   Job = 'Job',
   Position = 'Position',
-}
+};

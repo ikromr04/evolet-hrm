@@ -1,13 +1,12 @@
 import { useAppSelector } from '../../../../../hooks';
 import { getEmployeePersonalData } from '../../../../../store/employees-slice/employees-selector';
-import EditIcon from '../../../../icons/edit-icon';
 import BlockToolbar from '../../../../ui/block-toolbar/block-toolbar';
 import Block from '../../../../ui/block/block';
 import DescriptionList from '../../../../ui/description-list/description-list';
 import Spinner from '../../../../ui/spinner/spinner';
 import TextLink from '../../../../ui/text-link/text-link';
 import Title from '../../../../ui/title/title';
-import { EditButton } from './styled';
+import EditPersonalData from './edit-personal-data/edit-personal-data';
 import dayjs from 'dayjs';
 
 export default function PersonalData(): JSX.Element {
@@ -17,10 +16,7 @@ export default function PersonalData(): JSX.Element {
     <Block as="section">
       <BlockToolbar>
         <Title small>Персональные данные</Title>
-
-        <EditButton type="button">
-          <EditIcon height={13} /> Редактировать
-        </EditButton>
+        {personalData && <EditPersonalData personalData={personalData} />}
       </BlockToolbar>
 
       {personalData

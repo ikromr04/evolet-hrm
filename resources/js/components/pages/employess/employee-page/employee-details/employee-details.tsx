@@ -30,7 +30,7 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
               <BriefcaseIcon width={16} height={16} />
               {employee.job?.title}
             </InfoItem>}
-          {personalData &&
+          {personalData?.address &&
             <InfoItem>
               <LocationIcon width={16} height={16} />
               {personalData.address}
