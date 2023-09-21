@@ -17,6 +17,19 @@ const GlobalStyle = createGlobalStyle`
     font-family: Inter, sans-serif;
     background-color: ${({ theme }) => theme.color.pageBackground};
     transition: .3s;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #6c86ab;
+      border-radius: 2px;
+    }
   }
 
   #root {

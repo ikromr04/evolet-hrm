@@ -13,6 +13,8 @@ import Hr from '../../../../ui/hr/hr';
 import { EducationsWrapper } from './styled';
 import EditEducation from './edit-education/edit-education';
 import CreateEducation from './create-education/create-education';
+import Text from '../../../../ui/text/text';
+import BlockNoContent from '../../../../ui/block-no-content/block-no-content';
 
 export default function Education(): JSX.Element {
   const params = useParams();
@@ -34,22 +36,26 @@ export default function Education(): JSX.Element {
 
       {educations
         ?
-          educations.map((education, index) => (
-            <EducationsWrapper key={education.id}>
-              {index > 0 && <Hr />}
-              <EditEducation education={education} />
-              <DescriptionList
-                list={{
-                  'Год поступления': dayjs(education.startedAt).format('D MMM YYYY'),
-                  'Год окончания': dayjs(education.graduatedAt).format('D MMM YYYY'),
-                  'Учебное заведение': education.institution,
-                  'Факультет': education.faculty,
-                  'Форма обучения': education.form,
-                  'Специальность': education.speciality,
-                }}
-              />
-            </EducationsWrapper>
-          ))
+          educations.length
+            ?
+              educations.map((education, index) => (
+                <EducationsWrapper key={education.id}>
+                  {index > 0 && <Hr />}
+                  <EditEducation education={education} />
+                  <DescriptionList
+                    list={{
+                      'Год поступления': dayjs(education.startedAt).format('D MMM YYYY'),
+                      'Год окончания': dayjs(education.graduatedAt).format('D MMM YYYY'),
+                      'Учебное заведение': education.institution,
+                      'Факультет': education.faculty,
+                      'Форма обучения': education.form,
+                      'Специальность': education.speciality,
+                    }}
+                  />
+                </EducationsWrapper>
+              ))
+            :
+              <BlockNoContent>Нет образования</BlockNoContent>
         :
           <Spinner width={24} stroke={4} style={{ margin: '16px' }} />}
     </Block>

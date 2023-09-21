@@ -33,6 +33,7 @@ export default function CreateEducation(): JSX.Element {
         params.employeeId &&
           dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: params.employeeId })));
         toast.success('Данные успешно обновлены');
+        evt.target.reset();
       },
     }));
   };
