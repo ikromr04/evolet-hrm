@@ -1,35 +1,29 @@
 import { BaseSyntheticEvent, useState } from 'react';
-import { Education } from '../../../../../../types/employees';
-import EditIcon from '../../../../../icons/edit-icon';
 import TextField from '../../../../../ui/text-field/text-field';
-import { EditButton, EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
+import { EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
 import { useAppDispatch } from '../../../../../../hooks';
-import { updateEmployeeEducationAction } from '../../../../../../store/employees-slice/employees-api-actions';
+import { storeEmployeeEducationAction } from '../../../../../../store/employees-slice/employees-api-actions';
 import { ValidationError } from '../../../../../../types/validation-error';
 import { toast } from 'react-toastify';
 import { redirectToRoute } from '../../../../../../store/middlewares/redirect';
 import { AppRoute } from '../../../../../../const';
 import { generatePath, useParams } from 'react-router-dom';
+import Button from '../../../../../ui/button/button';
+import PlusIcon from '../../../../../icons/plus-icon';
 
-type EditEducationProps = {
-  education: Education
-};
-
-export default function EditEducation({ education }: EditEducationProps): JSX.Element {
-  const { id, startedAt, graduatedAt, institution, faculty, speciality } = education;
+export default function CreateEducation(): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
-  const [form, setForm] = useState(education.form);
   const params = useParams();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     setIsLoading(true);
 
-    dispatch(updateEmployeeEducationAction({
+    params.employeeId && dispatch(storeEmployeeEducationAction({
       form: new FormData(evt.target),
-      educationId: id,
+      employeeId: params.employeeId,
       errorHandler(error) {
         setIsLoading(false);
         setValidationError(error);
@@ -37,7 +31,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
       onSuccess() {
         setIsLoading(false);
         params.employeeId &&
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: params.employeeId })));
+          dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: params.employeeId })));
         toast.success('Данные успешно обновлены');
       },
     }));
@@ -58,9 +52,9 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
   return (
     <EditModal
       modalButton={
-        <EditButton type="button">
-          <EditIcon height={13} /> Редактировать
-        </EditButton>
+        <Button type="button">
+          <PlusIcon height={13} /> Добавить
+        </Button>
       }
       modalWindow={
         <EditForm as="form" onSubmit={handleFormSubmit}>
@@ -69,7 +63,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             label="Год поступления"
             type="datetime-local"
             name="started_at"
-            defaultValue={startedAt}
             message={validationError?.errors?.started_at?.[0]}
             onInput={handleInputsChange}
           />
@@ -78,7 +71,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             label="Год окончания"
             type="datetime-local"
             name="graduated_at"
-            defaultValue={graduatedAt}
             message={validationError?.errors?.graduated_at?.[0]}
             onInput={handleInputsChange}
           />
@@ -87,7 +79,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             label="Учебное заведение"
             type="text"
             name="institution"
-            defaultValue={institution}
             message={validationError?.errors?.institution?.[0]}
             onInput={handleInputsChange}
           />
@@ -96,7 +87,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             label="Факультет"
             type="text"
             name="faculty"
-            defaultValue={faculty}
             message={validationError?.errors?.faculty?.[0]}
             onInput={handleInputsChange}
           />
@@ -104,8 +94,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             id="form"
             label="Форма обучения"
             name="form"
-            value={form}
-            onChange={(evt: BaseSyntheticEvent) => setForm(evt.target.value)}
             select={[
               { value: 'Очно', label: 'Очно' },
               { value: 'Заочно', label: 'Заочно' },
@@ -116,7 +104,6 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
             label="Специальность"
             type="text"
             name="speciality"
-            defaultValue={speciality}
             message={validationError?.errors?.speciality?.[0]}
             onInput={handleInputsChange}
           />

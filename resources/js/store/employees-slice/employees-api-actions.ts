@@ -219,3 +219,31 @@ export const updateEmployeeEducationAction = createAsyncThunk<Education, {
     }
   },
 );
+
+export const storeEmployeeEducationAction = createAsyncThunk<Education, {
+  form: FormData;
+  employeeId: string;
+  errorHandler: (error: ValidationError) => void;
+  onSuccess?: () => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/storeEducation',
+  async ({ form, employeeId, errorHandler, onSuccess }, { extra: api, rejectWithValue }) => {
+    try {
+      const { data } = await api.post<Education>(generatePath(APIRoute.EmployeeEducations, { employeeId }), form);
+      onSuccess && onSuccess();
+      return adaptEmployeeEducationToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);

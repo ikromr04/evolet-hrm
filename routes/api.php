@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/employees/{employeeId}/personal', [UserController::class, 'personalData']);
   Route::put('/employees/{employeeId}/personal', [UserController::class, 'updatePersonalData']);
   Route::get('/employees/{employeeId}/educations', [UserController::class, 'educations']);
+  Route::post('/employees/{employeeId}/educations', [UserController::class, 'storeEducation']);
 
   Route::put('/educations/{educationId}', [EducationController::class, 'update']);
 

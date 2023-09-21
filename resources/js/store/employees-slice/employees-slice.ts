@@ -8,6 +8,7 @@ import {
   fetchEmployeePersonalData,
   loginAction,
   logoutAction,
+  storeEmployeeEducationAction,
   updateEmployeeAction,
   updateEmployeeEducationAction,
   updateEmployeePersonalDataAction
@@ -86,6 +87,10 @@ export const employeeSlice = createSlice({
         } else {
           state.educations = [updatedEducation];
         }
+      })
+      .addCase(storeEmployeeEducationAction.fulfilled, (state, action) => {
+        const educations = state.educations || [];
+        state.educations = [...educations, action.payload];
       });
   },
 });

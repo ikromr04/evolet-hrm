@@ -12,6 +12,7 @@ import { useParams } from 'react-router-dom';
 import Hr from '../../../../ui/hr/hr';
 import { EducationsWrapper } from './styled';
 import EditEducation from './edit-education/edit-education';
+import CreateEducation from './create-education/create-education';
 
 export default function Education(): JSX.Element {
   const params = useParams();
@@ -28,7 +29,7 @@ export default function Education(): JSX.Element {
     <Block as="section">
       <BlockToolbar>
         <Title small>Образование</Title>
-        {/* {educations && <EditEmployee employee={employee} />} */}
+        <CreateEducation />
       </BlockToolbar>
 
       {educations

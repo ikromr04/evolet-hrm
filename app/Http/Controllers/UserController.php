@@ -173,6 +173,28 @@ class UserController extends Controller
 
   public function educations($employeeId)
   {
-    return Education::where('user_id', $employeeId)->orderBy('started_at', 'asc')->get();
+    return Education::where('user_id', $employeeId)->orderBy('started_at', 'desc')->get();
+  }
+
+  public function storeEducation($employeeId)
+  {
+    request()->validate([
+      'started_at' => 'required',
+      'graduated_at' => 'required',
+      'institution' => 'required',
+      'faculty' => 'required',
+      'form' => 'required',
+      'speciality' => 'required',
+    ]);
+
+    return Education::create([
+      'user_id' => $employeeId,
+      'started_at' => request('started_at'),
+      'graduated_at' => request('graduated_at'),
+      'institution' => request('institution'),
+      'faculty' => request('faculty'),
+      'form' => request('form'),
+      'speciality' => request('speciality'),
+    ]);
   }
 }
