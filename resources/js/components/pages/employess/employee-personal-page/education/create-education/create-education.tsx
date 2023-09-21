@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import TextField from '../../../../../ui/text-field/text-field';
-import { EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
+import { CreateForm, CreateModal, InstitutionField, SubmitButton } from './styled';
 import { useAppDispatch } from '../../../../../../hooks';
 import { storeEmployeeEducationAction } from '../../../../../../store/employees-slice/employees-api-actions';
 import { ValidationError } from '../../../../../../types/validation-error';
@@ -51,14 +51,14 @@ export default function CreateEducation(): JSX.Element {
   })
 
   return (
-    <EditModal
+    <CreateModal
       modalButton={
         <Button type="button">
           <PlusIcon height={13} /> Добавить
         </Button>
       }
       modalWindow={
-        <EditForm as="form" onSubmit={handleFormSubmit}>
+        <CreateForm as="form" onSubmit={handleFormSubmit}>
           <TextField
             id="started_at"
             label="Год поступления"
@@ -117,7 +117,7 @@ export default function CreateEducation(): JSX.Element {
           >
             Редактировать
           </SubmitButton>
-        </EditForm>
+        </CreateForm>
       }
     />
   );

@@ -19,12 +19,6 @@ export const SubmitButton = styled(Button)`
   align-self: flex-end;
 `;
 
-export const EditButton = styled(Button)`
-  position: absolute;
-  top: 8px;
-  right: 16px;
-`;
-
 export const InstitutionField = styled(TextField)`
   grid-column: span 2;
 `;

@@ -2,26 +2,26 @@ import { BaseSyntheticEvent, useState } from 'react';
 import { Education } from '../../../../../../types/employees';
 import EditIcon from '../../../../../icons/edit-icon';
 import TextField from '../../../../../ui/text-field/text-field';
-import { EditButton, EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
+import { EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
 import { useAppDispatch } from '../../../../../../hooks';
 import { updateEmployeeEducationAction } from '../../../../../../store/employees-slice/employees-api-actions';
 import { ValidationError } from '../../../../../../types/validation-error';
 import { toast } from 'react-toastify';
 import { redirectToRoute } from '../../../../../../store/middlewares/redirect';
 import { AppRoute } from '../../../../../../const';
-import { generatePath, useParams } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
+import Button from '../../../../../ui/button/button';
 
 type EditEducationProps = {
   education: Education
 };
 
 export default function EditEducation({ education }: EditEducationProps): JSX.Element {
-  const { id, startedAt, graduatedAt, institution, faculty, speciality } = education;
+  const { id, userId, startedAt, graduatedAt, institution, faculty, speciality } = education;
   const [isLoading, setIsLoading] = useState(false);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
   const [form, setForm] = useState(education.form);
-  const params = useParams();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -36,8 +36,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
       },
       onSuccess() {
         setIsLoading(false);
-        params.employeeId &&
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: params.employeeId })));
+        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: userId })));
         toast.success('Данные успешно обновлены');
       },
     }));
@@ -58,9 +57,9 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
   return (
     <EditModal
       modalButton={
-        <EditButton type="button">
+        <Button type="button">
           <EditIcon height={13} /> Редактировать
-        </EditButton>
+        </Button>
       }
       modalWindow={
         <EditForm as="form" onSubmit={handleFormSubmit}>

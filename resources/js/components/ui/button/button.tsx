@@ -6,6 +6,7 @@ import Spinner from '../spinner/spinner';
 type ButtonProps = PropsWithChildren<{
   href?: string;
   success?: boolean;
+  error?: boolean;
   large?: boolean;
   isLoading?: boolean;
   [rest:string]: any;
@@ -15,6 +16,7 @@ export default function Button({
   children,
   href,
   success,
+  error,
   large,
   isLoading,
   ...rest
@@ -25,6 +27,7 @@ export default function Button({
       as={href ? Link : ''}
       to={href}
       success={success}
+      error={error}
       large={large}
       {...rest}
     >

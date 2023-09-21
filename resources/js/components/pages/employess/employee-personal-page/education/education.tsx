@@ -10,11 +10,11 @@ import { useEffect } from 'react';
 import { fetchEmployeeEducations } from '../../../../../store/employees-slice/employees-api-actions';
 import { useParams } from 'react-router-dom';
 import Hr from '../../../../ui/hr/hr';
-import { EducationsWrapper } from './styled';
+import { Actions, EducationsWrapper } from './styled';
 import EditEducation from './edit-education/edit-education';
 import CreateEducation from './create-education/create-education';
-import Text from '../../../../ui/text/text';
 import BlockNoContent from '../../../../ui/block-no-content/block-no-content';
+import DeleteEducation from './delete-education/delete-education';
 
 export default function Education(): JSX.Element {
   const params = useParams();
@@ -41,7 +41,10 @@ export default function Education(): JSX.Element {
               educations.map((education, index) => (
                 <EducationsWrapper key={education.id}>
                   {index > 0 && <Hr />}
-                  <EditEducation education={education} />
+                  <Actions>
+                    <EditEducation education={education} />
+                    <DeleteEducation education={education} />
+                  </Actions>
                   <DescriptionList
                     list={{
                       'Год поступления': dayjs(education.startedAt).format('D MMM YYYY'),

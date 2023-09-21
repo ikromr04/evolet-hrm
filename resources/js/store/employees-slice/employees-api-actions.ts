@@ -247,3 +247,19 @@ export const storeEmployeeEducationAction = createAsyncThunk<Education, {
     }
   },
 );
+
+export const deleteEmployeeEducationAction = createAsyncThunk<string, {
+  educationId: string;
+  onSuccess?: () => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'employees/deleteEducation',
+  async ({ educationId, onSuccess }, { extra: api }) => {
+    await api.delete(generatePath(APIRoute.Educations, { educationId }));
+    onSuccess && onSuccess();
+    return educationId;
+  },
+);

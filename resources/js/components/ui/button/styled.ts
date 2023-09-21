@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const StyledButton = styled('button').withConfig({
-  shouldForwardProp: (prop) => !['fluid', 'success', 'large'].includes(prop)
-})<{ fluid?: boolean, success?: boolean, large?: boolean }>`
+  shouldForwardProp: (prop) => !['fluid', 'success', 'large', 'error'].includes(prop)
+})<{ fluid?: boolean, success?: boolean, large?: boolean, error?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +25,11 @@ export const StyledButton = styled('button').withConfig({
   `}
   ${({ success }) => success && css`
     background-color: #00b950;
+    color: white;
+  `}
+
+  ${({ error }) => error && css`
+    background-color: #ff3333;
     color: white;
   `}
 

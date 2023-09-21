@@ -34,6 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::post('/employees/{employeeId}/educations', [UserController::class, 'storeEducation']);
 
   Route::put('/educations/{educationId}', [EducationController::class, 'update']);
+  Route::delete('/educations/{educationId}', [EducationController::class, 'delete']);
 
   Route::get('/jobs', [JobController::class, 'index']);
 

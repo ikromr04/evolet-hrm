@@ -29,4 +29,10 @@ class EducationController extends Controller
 
     return Education::find($educationId);
   }
+
+  public function delete($educationId)
+  {
+    Education::find($educationId)->delete();
+    return;
+  }
 }
