@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import EducationIcon from '../../../../icons/education-icon';
 
 export const EducationsWrapper = styled.div`
   position: relative;
