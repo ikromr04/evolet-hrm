@@ -10,8 +10,8 @@ import LoginPage from '../pages/login-page/login-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
 import PageWrapper from '../layouts/page-wrapper/page-wrapper';
-import EmployeePage from '../pages/employess/employee-page/employee-page';
-import EmployeePersonalPage from '../pages/employess/employee-personal-page/employee-personal-page';
+import EmployeePageLayout from '../layouts/employee-page-layout/employee-page-layout';
+import EmployeePage from '../pages/employee-page/employee-page';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthStatus);
@@ -29,12 +29,9 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PageWrapper />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Employee} element={<EmployeePage />}>
-              <Route index element={<EmployeePersonalPage />} />
+            <Route path={AppRoute.Employee} element={<EmployeePageLayout />}>
+              <Route index element={<EmployeePage />} />
               <Route path={AppRoute.EmployeeWork} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.EmployeeAbsence} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.EmployeeEfficiency} element={<p>Not implemented</p>} />
-              <Route path={AppRoute.EmployeeDocuments} element={<p>Not implemented</p>} />
             </Route>
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path={AppRoute.Calendars} element={<p>Not implemented</p>} />

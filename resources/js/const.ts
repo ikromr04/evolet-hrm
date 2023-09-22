@@ -1,19 +1,16 @@
 export enum AppRoute {
   Main = '/',
   Login = '/employees/login',
-  Employees = '/employees',
+
   Employee = '/employees/:employeeId',
   EmployeeWork = '/employees/:employeeId/work',
-  EmployeeAbsence = '/employees/:employeeId/absence',
-  EmployeeEfficiency = '/employees/:employeeId/efficiency',
-  EmployeeDocuments = '/employees/:employeeId/documents',
-  Calendars = '/calendars',
 
+  Employees = '/employees',
+  Calendars = '/calendars',
   Vacancies = '/recruitment/vacancies',
   Applicants = '/recruitment/applicants',
   Hiring = '/recruitment/hiring',
   Tests = '/recruitment/tests',
-
   NotFound = '*',
 }
 

@@ -13,4 +13,5 @@ export const LayoutContainer = styled(Container)`
   gap: 16px;
   z-index: 0;
   padding-bottom: 80px;
+  align-items: flex-start;
 `;
