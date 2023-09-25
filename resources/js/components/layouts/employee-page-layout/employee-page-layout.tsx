@@ -8,6 +8,7 @@ import EmployeeAvatar from './employee-avatar/employee-avatar';
 import EmployeeDetails from './employee-details/employee-details';
 import Spinner from '../../ui/spinner/spinner';
 import EmployeeNavigation from './employee-navigation/employee-navigation';
+import EmployeeSidebar from '../employee-sidebar/employee-sidebar';
 
 export default function EmployeePageLayout(): JSX.Element {
   const params = useParams();
@@ -36,6 +37,7 @@ export default function EmployeePageLayout(): JSX.Element {
 
       <PageWrapper>
         <Outlet />
+        <EmployeeSidebar />
       </PageWrapper>
     </StyledLayout>
   );

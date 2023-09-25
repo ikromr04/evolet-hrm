@@ -15,6 +15,7 @@ import Title from '../../../ui/title/title';
 import Hr from '../../../ui/hr/hr';
 import DescriptionList from '../../../ui/description-list/description-list';
 import BlockNoContent from '../../../ui/block-no-content/block-no-content';
+import IconsBox from '../../../ui/icons-box/icons-box';
 
 export default function Education(): JSX.Element {
   const params = useParams();
@@ -34,9 +35,9 @@ export default function Education(): JSX.Element {
   return (
     <Block as="section">
       <BlockToolbar>
-        <IconWrapper>
-          <EducationIcon width={18} color="#00b950" />
-        </IconWrapper>
+        <IconsBox>
+          <EducationIcon />
+        </IconsBox>
         <Title small>Образование</Title>
         <CreateEducation />
       </BlockToolbar>
