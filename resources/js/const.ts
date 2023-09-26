@@ -28,16 +28,20 @@ export enum APIRoute {
   EmployeeAvatar = '/employees/:employeeId/avatar',
   EmployeePersonalData = '/employees/:employeeId/personal',
   EmployeeEducations = '/employees/:employeeId/educations',
+  EmployeeLanguages = '/employees/:employeeId/languages',
 
   Educations = '/educations/:educationId',
 
   Jobs = '/jobs',
 
   Positions = '/positions',
+
+  Languages = '/languages',
 }
 
 export enum SliceName {
   Employee = 'Employee',
   Job = 'Job',
   Position = 'Position',
+  Language = 'Language',
 };

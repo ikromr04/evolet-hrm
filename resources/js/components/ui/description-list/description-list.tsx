@@ -6,15 +6,20 @@ type DescriptionListProps = {
     [key: string]: any;
   };
   detailed?: boolean;
+  detailedInverse?: boolean;
 }
 
-export default function DescriptionList({ list, detailed }: DescriptionListProps): JSX.Element {
+export default function DescriptionList({
+  list,
+  detailed,
+  detailedInverse
+}: DescriptionListProps): JSX.Element {
   return (
-    <Dl detailed={detailed}>
+    <Dl detailed={detailed} detailedInverse={detailedInverse}>
       {Object.entries(list).map(([term, definition]) => (
         <Fragment key={term}>
-          <Dt detailed={detailed}>{term}</Dt>
-          <Dd detailed={detailed}>{definition}</Dd>
+          <Dt detailed={detailed} detailedInverse={detailedInverse}>{term}</Dt>
+          <Dd detailed={detailed} detailedInverse={detailedInverse}>{definition}</Dd>
         </Fragment>
       ))}
     </Dl>

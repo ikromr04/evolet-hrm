@@ -34,4 +34,9 @@ class User extends Authenticatable
   {
     return $this->belongsTo(Position::class);
   }
+
+  public function languages()
+  {
+    return $this->belongsToMany(Language::class)->withPivot('level');
+  }
 }

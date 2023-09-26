@@ -3,6 +3,7 @@ import { AuthorizationStatus, SliceName } from '../../const';
 import { Educations, Employee, PersonalData } from '../../types/employees';
 import {
   checkAuthAction,
+  createOrUpdateEmployeeLanguagesAction,
   deleteEmployeeEducationAction,
   fetchEmployeeById,
   fetchEmployeeEducations,
@@ -96,6 +97,13 @@ export const employeeSlice = createSlice({
       .addCase(deleteEmployeeEducationAction.fulfilled, (state, action) => {
         const educations = state.educations || [];
         state.educations = educations.filter(({ id }) => id !== action.payload);
+      })
+      .addCase(createOrUpdateEmployeeLanguagesAction.fulfilled, (state, action) => {
+        const employee = state.employee && {
+          ...state.employee,
+          languages: action.payload,
+        };
+        state.employee = employee;
       });
   },
 });

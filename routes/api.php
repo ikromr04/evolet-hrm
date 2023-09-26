@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::put('/employees/{employeeId}/personal', [UserController::class, 'updatePersonalData']);
   Route::get('/employees/{employeeId}/educations', [UserController::class, 'educations']);
   Route::post('/employees/{employeeId}/educations', [UserController::class, 'storeEducation']);
+  Route::post('/employees/{employeeId}/languages', [UserController::class, 'createOrUpdateLanguages']);
 
   Route::put('/educations/{educationId}', [EducationController::class, 'update']);
   Route::delete('/educations/{educationId}', [EducationController::class, 'delete']);
@@ -39,4 +41,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/jobs', [JobController::class, 'index']);
 
   Route::get('/positions', [PositionController::class, 'index']);
+
+  Route::get('/languages', [LanguageController::class, 'index']);
 });

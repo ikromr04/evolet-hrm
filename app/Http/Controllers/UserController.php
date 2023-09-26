@@ -76,7 +76,7 @@ class UserController extends Controller
   }
 
   public function show($employeeId) {
-    return User::with('job', 'position')->find($employeeId);
+    return User::with('job', 'position', 'languages')->find($employeeId);
   }
 
   public function login(Request $request)
@@ -86,7 +86,7 @@ class UserController extends Controller
       'password' => 'required|string',
     ]);
 
-    $user = User::with('job', 'position')->where('login', $fields['login'])->first();
+    $user = User::with('job', 'position', 'languages')->where('login', $fields['login'])->first();
 
     if (!$user || !Hash::check($fields['password'], $user->password)) {
       return response([
@@ -196,5 +196,17 @@ class UserController extends Controller
       'form' => request('form'),
       'speciality' => request('speciality'),
     ]);
+  }
+
+  public function createOrUpdateLanguages($employeeId)
+  {
+    $user = User::find($employeeId);
+    $languages = [];
+    foreach (request('languages') as $language) {
+      $languages[$language['id']] = ['level' => $language['level']];
+    }
+    $user->languages()->sync($languages);
+
+    return User::find($employeeId)->languages;
   }
 }

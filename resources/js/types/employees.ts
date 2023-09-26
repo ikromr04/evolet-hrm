@@ -1,4 +1,5 @@
 import { Job } from './job';
+import { Language } from './language';
 import { Position } from './position';
 
 export type Employee = {
@@ -11,6 +12,7 @@ export type Employee = {
   startedWorkAt: Date;
   job: Job | null;
   position: Position | null;
+  languages: EmployeeLanguages | null;
 };
 
 export type PersonalData = {
@@ -40,3 +42,9 @@ export type Education = {
 };
 
 export type Educations = Education[];
+
+export type EmployeeLanguage = Language & {
+  level: string;
+};
+
+export type EmployeeLanguages = EmployeeLanguage[];

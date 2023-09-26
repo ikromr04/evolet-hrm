@@ -32,9 +32,6 @@ export default function UserNavigation(): JSX.Element {
           <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: user?.id || '' })}>
             Перейти к профилю
           </DropdownNavigation>
-          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: user?.id || '' })}>
-            Настройка учетной записи
-          </DropdownNavigation>
           <Hr />
           <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
         </DropdownMenu>

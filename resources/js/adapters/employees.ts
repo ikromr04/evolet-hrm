@@ -1,17 +1,18 @@
-import { Education, Educations, Employee, PersonalData } from '../types/employees';
+import { Education, Educations, Employee, EmployeeLanguage, EmployeeLanguages, PersonalData } from '../types/employees';
 import { adaptJobToClient } from './jobs';
 import { adaptPositionToClient } from './positions';
 
-export const adaptEmployeeToClient = (employeeUser: {[key: string]: any }): Employee => ({
-  id: employeeUser.id,
-  name: employeeUser.name,
-  surname: employeeUser.surname,
-  patronymic: employeeUser.patronymic,
-  login: employeeUser.login,
-  avatar: employeeUser.avatar,
-  startedWorkAt: employeeUser.started_work_at,
-  job: employeeUser.job_id ? adaptJobToClient(employeeUser.job) : null,
-  position: employeeUser.position_id ? adaptPositionToClient(employeeUser.position) : null,
+export const adaptEmployeeToClient = (serverEmployee: {[key: string]: any }): Employee => ({
+  id: serverEmployee.id,
+  name: serverEmployee.name,
+  surname: serverEmployee.surname,
+  patronymic: serverEmployee.patronymic,
+  login: serverEmployee.login,
+  avatar: serverEmployee.avatar,
+  startedWorkAt: serverEmployee.started_work_at,
+  job: serverEmployee.job_id ? adaptJobToClient(serverEmployee.job) : null,
+  position: serverEmployee.position_id ? adaptPositionToClient(serverEmployee.position) : null,
+  languages: serverEmployee.languages && adaptEmployeeLanguages(serverEmployee.languages)
 });
 
 export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): PersonalData => ({
@@ -42,3 +43,16 @@ export const adaptEmployeeEducationToClient = (serverEducation: {[key: string]: 
 
 export const adaptEmployeeEducationsToClient = (serverEducations: {[key: string]: any }[]): Educations =>
   serverEducations.map((serverEducation) => adaptEmployeeEducationToClient(serverEducation));
+
+export const adaptEmployeeLanguage = (serverLanguage: {[key: string]: any }): EmployeeLanguage => ({
+  id: serverLanguage.id,
+  name: serverLanguage.name,
+  level: serverLanguage.pivot.level,
+});
+
+export const adaptEmployeeLanguages = (serverLanguages: {[key: string]: any }[]): EmployeeLanguages | null => {
+  if (!serverLanguages.length) {
+    return null;
+  }
+  return serverLanguages.map((serverLanguage) => adaptEmployeeLanguage(serverLanguage));
+}
