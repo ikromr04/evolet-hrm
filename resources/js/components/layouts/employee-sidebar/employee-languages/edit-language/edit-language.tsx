@@ -8,7 +8,7 @@ import NewLanguageField from './new-language-field/new-language-field';
 import Button from '../../../../ui/button/button';
 import { useAppDispatch } from '../../../../../hooks';
 import { createOrUpdateEmployeeLanguagesAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { generatePath, useLocation, useParams } from 'react-router-dom';
+import { generatePath, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { redirectToRoute } from '../../../../../store/middlewares/redirect';
 import { toast } from 'react-toastify';
 
@@ -22,6 +22,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const filterLanguages = (employeeLanguage?: EmployeeLanguage): Languages =>
     languages.filter((lang) => {
@@ -93,7 +94,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
       employeeId: params.employeeId,
       languages: employeeLanguages,
       onSuccess() {
-        dispatch(redirectToRoute(location.pathname))
+        navigate(location.pathname);
         toast.success('Данные успешно обновлены');
       },
     }))

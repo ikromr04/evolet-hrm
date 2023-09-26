@@ -16,11 +16,18 @@ import Hr from '../../../ui/hr/hr';
 import DescriptionList from '../../../ui/description-list/description-list';
 import BlockNoContent from '../../../ui/block-no-content/block-no-content';
 import IconsBox from '../../../ui/icons-box/icons-box';
+import { useOnRouteChange } from '../../../../hooks/use-on-route-change';
 
 export default function Education(): JSX.Element {
   const params = useParams();
   const educations = useAppSelector(getEmployeeEducations);
   const dispatch = useAppDispatch();
+
+  useOnRouteChange(() => {
+    params.employeeId && dispatch(fetchEmployeeEducations({
+      employeeId: params.employeeId,
+    }))
+  });
 
   useEffect(() => {
     !educations && params.employeeId && dispatch(fetchEmployeeEducations({

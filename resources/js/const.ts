@@ -24,6 +24,8 @@ export enum APIRoute {
   Login = '/employees/login',
   Logout = '/employees/logout',
   Employee = '/employees/:employeeId',
+  EmployeeNext = '/employees/:employeeId/next',
+  EmployeePrevious = '/employees/:employeeId/previous',
   EmployeeJob = '/employees/:employeeId/job',
   EmployeeAvatar = '/employees/:employeeId/avatar',
   EmployeePersonalData = '/employees/:employeeId/personal',

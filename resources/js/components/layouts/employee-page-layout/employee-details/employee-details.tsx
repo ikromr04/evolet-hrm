@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Details, Info, InfoItem, Name, Position } from './styled';
+import { Details, Info, InfoItem, InfoItemText, Name, Position } from './styled';
 import { Employee } from '../../../../types/employees';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchEmployeePersonalData } from '../../../../store/employees-slice/employees-api-actions';
@@ -28,12 +28,12 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
           {employee.job &&
             <InfoItem>
               <BriefcaseIcon width={16} height={16} />
-              {employee.job?.title}
+              <InfoItemText>{employee.job?.title}</InfoItemText>
             </InfoItem>}
           {personalData?.address &&
             <InfoItem>
               <LocationIcon width={16} height={16} />
-              {personalData.address}
+              <InfoItemText>{personalData.address}</InfoItemText>
             </InfoItem>}
         </Info>}
       {employee.position && <Position>{employee.position?.title}</Position>}

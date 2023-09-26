@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import { EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
 import { toast } from 'react-toastify';
-import { generatePath } from 'react-router-dom';
+import { generatePath, useLocation, useNavigate } from 'react-router-dom';
 import { Education } from '../../../../../types/employees';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
@@ -22,6 +22,8 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
   const [form, setForm] = useState(education.form);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -36,7 +38,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
       },
       onSuccess() {
         setIsLoading(false);
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: userId })));
+        navigate(location.pathname)
         toast.success('Данные успешно обновлены');
       },
     }));

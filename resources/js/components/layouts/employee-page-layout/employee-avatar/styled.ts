@@ -5,6 +5,7 @@ export const StyledAvatar = styled.img`
   border-radius: 50%;
   border: 2px solid white;
   object-fit: cover;
+  min-width: 144px;
 `;
 
 export const Label = styled.span`

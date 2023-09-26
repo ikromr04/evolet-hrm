@@ -8,6 +8,7 @@ import { ValidationError } from '../../types/validation-error';
 import { LoginData } from '../../types/auth';
 import { adaptEmployeeEducationToClient, adaptEmployeeEducationsToClient, adaptEmployeeLanguages, adaptEmployeeToClient, adaptPersonalDataToClient } from '../../adapters/employees';
 import { generatePath } from 'react-router-dom';
+import { redirect, redirectToRoute } from '../middlewares/redirect';
 
 export const checkAuthAction = createAsyncThunk<Employee, undefined, {
   dispatch: AppDispatch;
@@ -284,3 +285,32 @@ export const createOrUpdateEmployeeLanguagesAction = createAsyncThunk<EmployeeLa
   },
 );
 
+export const nextEmployeeAction = createAsyncThunk<void, {
+  employeeId: string;
+  onSuccess: (nextEmployeeId: string) => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'employees/next',
+  async ({ employeeId, onSuccess }, { extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.EmployeeNext, { employeeId }));
+    onSuccess(data);
+  },
+);
+
+export const previousEmployeeAction = createAsyncThunk<void, {
+  employeeId: string;
+  onSuccess: (previousEmployeeId: string) => void;
+}, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'employees/previous',
+  async ({ employeeId, onSuccess }, { extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.EmployeePrevious, { employeeId }));
+    onSuccess(data);
+  },
+);

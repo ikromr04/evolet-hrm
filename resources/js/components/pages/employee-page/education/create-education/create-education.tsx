@@ -1,12 +1,10 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import { CreateForm, CreateModal, InstitutionField, SubmitButton } from './styled';
 import { toast } from 'react-toastify';
-import { generatePath, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import { storeEmployeeEducationAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { AppRoute } from '../../../../../const';
-import { redirectToRoute } from '../../../../../store/middlewares/redirect';
 import Button from '../../../../ui/button/button';
 import PlusIcon from '../../../../icons/plus-icon';
 import TextField from '../../../../ui/text-field/text-field';
@@ -16,6 +14,8 @@ export default function CreateEducation(): JSX.Element {
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
   const params = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -30,8 +30,7 @@ export default function CreateEducation(): JSX.Element {
       },
       onSuccess() {
         setIsLoading(false);
-        params.employeeId &&
-          dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: params.employeeId })));
+        navigate(location.pathname);
         toast.success('Данные успешно обновлены');
         evt.target.reset();
       },

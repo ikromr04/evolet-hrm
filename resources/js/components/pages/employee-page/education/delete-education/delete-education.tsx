@@ -1,13 +1,11 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import { DeleteModal, DeleteWindow, EducationText, SubmitButton } from './styled';
 import { toast } from 'react-toastify';
-import { generatePath } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { Education } from '../../../../../types/employees';
 import { useAppDispatch } from '../../../../../hooks';
 import { deleteEmployeeEducationAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { AppRoute } from '../../../../../const';
-import { redirectToRoute } from '../../../../../store/middlewares/redirect';
 import Button from '../../../../ui/button/button';
 import Hr from '../../../../ui/hr/hr';
 import Text from '../../../../ui/text/text';
@@ -20,6 +18,8 @@ type DeleteEducationProps = {
 export default function DeleteEducation({ education }: DeleteEducationProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -29,7 +29,7 @@ export default function DeleteEducation({ education }: DeleteEducationProps): JS
       educationId: education.id,
       onSuccess() {
         setIsLoading(false);
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: education.userId })));
+        navigate(location.pathname)
         toast.success('Образование удалена');
       },
     }));

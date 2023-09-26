@@ -1,6 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
-import browserHistory from '../../browser-history';
-import HistoryRouter from '../history-route/history-route';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
 import { getAuthStatus } from '../../store/employees-slice/employees-selector';
@@ -21,7 +19,7 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <HistoryRouter history={browserHistory}>
+    <BrowserRouter>
       <Routes>
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
@@ -60,6 +58,6 @@ export default function App(): JSX.Element {
           </Route>
         </Route>
       </Routes>
-    </HistoryRouter>
+    </BrowserRouter>
   );
 }

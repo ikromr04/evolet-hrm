@@ -48,7 +48,6 @@ class UserController extends Controller
       'name' => 'required|string',
       'surname' => 'required|string',
       'patronymic' => 'required|string',
-      'login' => 'required',
       'started_work_at' => 'required',
     ]);
 
@@ -208,5 +207,27 @@ class UserController extends Controller
     $user->languages()->sync($languages);
 
     return User::find($employeeId)->languages;
+  }
+
+  public function next($employeeId)
+  {
+    $user = User::find($employeeId);
+    $nextId = User::where('id', '>', $user->id)->min('id');
+
+    if ($nextId) {
+      return $nextId;
+    }
+    return User::first()->id;
+  }
+
+  public function previous($employeeId)
+  {
+    $user = User::find($employeeId);
+    $prevId = User::where('id', '<', $user->id)->max('id');
+
+    if ($prevId) {
+      return $prevId;
+    }
+    return User::latest()->first()->id;
   }
 }

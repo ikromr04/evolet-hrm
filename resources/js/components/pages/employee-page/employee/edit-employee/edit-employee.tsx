@@ -1,6 +1,6 @@
 import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { generatePath } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Employee } from '../../../../../types/employees';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks';
@@ -9,8 +9,6 @@ import { getPositions } from '../../../../../store/position-slice/position-selec
 import { fetchJobs } from '../../../../../store/job-slice/job-api-actions';
 import { fetchPositions } from '../../../../../store/position-slice/position-api-actions';
 import { updateEmployeeAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { redirectToRoute } from '../../../../../store/middlewares/redirect';
-import { AppRoute } from '../../../../../const';
 import { EditForm, EditModal, SubmitButton } from './styled';
 import Button from '../../../../ui/button/button';
 import EditIcon from '../../../../icons/edit-icon';
@@ -29,6 +27,8 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   const positions = useAppSelector(getPositions);
   const [selectedJobId, setSelectedJobId] = useState(job?.id ?? '');
   const [selectedPositionId, setSelectedPositionId] = useState(position?.id ?? '');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     !jobs && dispatch(fetchJobs());
@@ -48,7 +48,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
       },
       onSuccess() {
         setIsLoading(false);
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, {employeeId: id})));
+        navigate(location.pathname);
         toast.success('Данные успешно обновлены');
       },
     }));

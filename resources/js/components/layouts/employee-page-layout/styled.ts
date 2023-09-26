@@ -25,3 +25,17 @@ export const Sidebar = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
+
+export const HeaderInner = styled('div')`
+  align-self: flex-end;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  flex-grow: 1;
+`;
+
+export const Actions = styled('div')`
+  display: flex;
+  gap: 8px;
+`;

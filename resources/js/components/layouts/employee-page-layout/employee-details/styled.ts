@@ -19,8 +19,9 @@ export const Position = styled.div`
 `;
 
 export const Info = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: flex-start;
   gap: 16px;
   font-size: 14px;
   color: #476887;
@@ -28,7 +29,16 @@ export const Info = styled.div`
 `;
 
 export const InfoItem = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 16px 1fr;
+  align-items: flex-start;
   gap: 8px;
+`;
+
+export const InfoItemText = styled('span')`
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
 `;

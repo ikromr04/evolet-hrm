@@ -5,9 +5,7 @@ import { PersonalData } from '../../../../../types/employees';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import { updateEmployeePersonalDataAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { redirectToRoute } from '../../../../../store/middlewares/redirect';
-import { generatePath } from 'react-router-dom';
-import { AppRoute } from '../../../../../const';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../../../ui/button/button';
 import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/text-field/text-field';
@@ -24,6 +22,8 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
   const [familyStatus, setFamilyStatus] = useState(personalData.familyStatus);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleFormSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -38,7 +38,7 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
       },
       onSuccess() {
         setIsLoading(false);
-        dispatch(redirectToRoute(generatePath(AppRoute.Employee, { employeeId: userId })));
+        navigate(location.pathname);
         toast.success('Данные успешно обновлены');
       },
     }));
