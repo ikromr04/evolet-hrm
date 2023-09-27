@@ -6,7 +6,7 @@ import ClockIcon from '../../icons/clock-icon';
 import HomeIcon from '../../icons/home-icon';
 import UsersIcon from '../../icons/users-icon';
 import NavigationItem from './navigation-item/navigation-item';
-import { Hr, Navigation } from './styled';
+import { StyledBox } from './styled';
 import QuestionIcon from '../../icons/question-icon';
 import FileIcon from '../../icons/file-icon';
 import CubesIcon from '../../icons/cubes-icon';
@@ -17,12 +17,13 @@ import PieChartIcon from '../../icons/pie-chart-icon';
 import CogIcon from '../../icons/cog-icon';
 import ArrowLeftIcon from '../../icons/arrow-left-icon';
 import { useState } from 'react';
+import Hr from '../../ui/hr/hr';
 
 export default function PageNavigation(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   return (
-    <Navigation as="nav">
+    <StyledBox tagName="nav">
       <NavigationItem
         label="Главная страница"
         icon={<HomeIcon width={16} height={16} outlined />}
@@ -123,10 +124,12 @@ export default function PageNavigation(): JSX.Element {
       />
       <NavigationItem
         label="Свернуть"
-        icon={<ArrowLeftIcon width={16} height={12} style={{ transform: isCollapsed && 'scale(-1)', transition: '0.3s', }} />}
+        icon={<ArrowLeftIcon width={16} height={12} style={{
+          transform: isCollapsed && 'scale(-1)', transition: '0.3s',
+        }} />}
         isCollapsed={isCollapsed}
         onClick={() => setIsCollapsed(!isCollapsed)}
       />
-    </Navigation>
+    </StyledBox>
   );
-}
+};

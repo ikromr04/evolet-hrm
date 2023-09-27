@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled('div')`
   position: relative;
   z-index: 1;
   display: flex;
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const StyledButton = styled.button`
+export const StyledButton = styled('button')`
   display: inline-block;
   padding: 0;
   transition: .3s;

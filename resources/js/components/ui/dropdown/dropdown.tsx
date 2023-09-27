@@ -41,4 +41,4 @@ export default function Dropdown({
       </MenuWrapper>
     </StyledDropdown>
   );
-}
+};

@@ -39,4 +39,4 @@ export default function UserNavigation(): JSX.Element {
       menuTop={8}
     />
   );
-}
+};

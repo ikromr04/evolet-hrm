@@ -18,4 +18,4 @@ export default function PageHeader(): JSX.Element {
       </HeaderContainer>
     </Header>
   );
-}
+};

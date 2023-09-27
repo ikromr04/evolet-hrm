@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Block from '../block/block';
+import Box from '../box/box';
 
-export const StyledMenu = styled(Block)`
+export const StyledMenu = styled(Box)`
   padding: 8px 0;
 `;

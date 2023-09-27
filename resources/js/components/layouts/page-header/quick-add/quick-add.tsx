@@ -28,4 +28,4 @@ export default function QuickAdd(): JSX.Element {
       menuTop={8}
     />
   );
-}
+};

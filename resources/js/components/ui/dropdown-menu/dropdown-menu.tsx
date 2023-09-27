@@ -5,4 +5,4 @@ export default function DropdownMenu({ children }: PropsWithChildren): JSX.Eleme
   return (
     <StyledMenu>{children}</StyledMenu>
   );
-}
+};

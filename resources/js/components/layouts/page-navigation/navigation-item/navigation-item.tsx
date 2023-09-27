@@ -1,5 +1,14 @@
-import { Link, useLocation } from "react-router-dom";
-import { ButtonTitle, Label, Links, LinksItem, LinksTitle, MoreIcon, StyledButton, Wrapper } from "./styled";
+import { Link, useLocation } from 'react-router-dom';
+import {
+  ButtonTitle,
+  Label,
+  Links,
+  LinksItem,
+  LinksTitle,
+  MoreIcon,
+  StyledButton,
+  Wrapper
+} from './styled';
 
 type NavigationItemProps = {
   label: string;
@@ -47,4 +56,4 @@ export default function NavigationItem({
         </Links>}
     </Wrapper>
   );
-}
+};

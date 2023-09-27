@@ -15,11 +15,6 @@ import Button from '../../ui/button/button';
 
 export default function LoginPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-
-  if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Main} />
-  }
-
   const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState<LoginData>({ login: '', password: '' });
   const [validationError, setValidationError] = useState<ValidationError>({ message: '' });
@@ -30,7 +25,9 @@ export default function LoginPage(): JSX.Element {
     setLoginData(loginDataCopy);
     const validationErrorCopy = JSON.parse(JSON.stringify(validationError));
     validationErrorCopy.message = '';
-    delete validationErrorCopy.errors[evt.target.name];
+    if (validationErrorCopy?.errors?.[evt.target.name]) {
+      delete validationErrorCopy.errors[evt.target.name];
+    }
     setValidationError(validationErrorCopy);
   };
 
@@ -45,6 +42,10 @@ export default function LoginPage(): JSX.Element {
       },
     }));
   };
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return <Navigate to={AppRoute.Main} />
+  }
 
   return (
     <StyledBox tagName="main">

@@ -1,18 +1,11 @@
 import { styled } from 'styled-components';
-import { StyledBlock } from '../../ui/block/styled';
+import Box from '../../ui/box/box';
 
-export const Navigation = styled(StyledBlock)`
+export const StyledBox = styled(Box)`
   position: sticky;
   top: 83px;
   padding: 16px 0;
-  z-index: 2;
+  z-index: 1;
   transition: .3s;
   height: max-content;
 `;
-
-export const Hr = styled.div`
-  background-color: #d2d2d2;
-  height: 1px;
-  margin: 8px 0;
-`;
-

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled('div')`
   position: relative;
   z-index: 1;
 `;
 
-export const StyledButton = styled.span`
+export const StyledButton = styled('span')`
   border: none;
   padding: 0;
   display: flex;
@@ -16,7 +16,7 @@ export const StyledButton = styled.span`
   font-weight: 600;
   font-size: 14px;
   line-height: 14px;
-  color: ${({ theme }) => theme.color.text.dark };
+  color: #000f30;
   cursor: pointer;
 `;
 
@@ -27,6 +27,6 @@ export const Avatar = styled.img`
 
 export const DropdownIcon = styled(CaretIcon)`
   width: 8px;
-  fill: ${({ theme }) => theme.color.text.gray };
+  fill: #476887;
   transition: .3s;
 `;

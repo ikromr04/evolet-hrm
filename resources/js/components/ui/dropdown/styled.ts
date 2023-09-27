@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const StyledDropdown = styled.div`
+export const StyledDropdown = styled('div')`
   display: flex;
   position: relative;
 `;
 
-export const DropdownButton = styled.button`
+export const DropdownButton = styled('button')`
   padding: 0;
   border: none;
   background-color: transparent;

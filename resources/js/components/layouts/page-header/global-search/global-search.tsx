@@ -8,13 +8,7 @@ type GlobalSearchProps = {
 export default function GlobalSearch({ className }: GlobalSearchProps): JSX.Element {
   return (
     <Wrapper className={className}>
-      <TextField
-        id="search"
-        label="Глобальный поиск"
-        labelHidden
-        placeholder="Поиск..."
-        width={400}
-      />
+      <TextField placeholder="Поиск..." />
     </Wrapper>
   );
-}
+};

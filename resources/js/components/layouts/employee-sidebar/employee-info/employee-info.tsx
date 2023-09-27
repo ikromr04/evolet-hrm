@@ -4,12 +4,12 @@ import { getEmployee, getEmployeePersonalData } from '../../../../store/employee
 import EnvelopeIcon from '../../../icons/envelope-icon';
 import MobileIcon from '../../../icons/mobile-icon';
 import BlockToolbar from '../../../ui/block-toolbar/block-toolbar';
-import Block from '../../../ui/block/block';
 import DescriptionList from '../../../ui/description-list/description-list';
 import IconsBox from '../../../ui/icons-box/icons-box';
 import TextLink from '../../../ui/text-link/text-link';
 import { LinksWrapper } from './styled';
 import { getWorkTime } from '../../../../utils';
+import Box from '../../../ui/box/box';
 
 export default function EmployeeInfo(): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData);
@@ -20,7 +20,7 @@ export default function EmployeeInfo(): JSX.Element {
   }
 
   return (
-    <Block>
+    <Box>
       <BlockToolbar>
         <LinksWrapper>
           <IconsBox>
@@ -44,6 +44,6 @@ export default function EmployeeInfo(): JSX.Element {
         }}
         detailed
       />
-    </Block>
+    </Box>
   );
 };

@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-export const StyledNavigation = styled.button`
+export const StyledNavigation = styled('button')`
   display: flex;
   align-items: center;
   gap: 8px;
   text-decoration: none;
   padding: 8px 16px;
-  color: ${({ theme }) => theme.color.text.gray };
+  color: #476887;
   font-size: 13px;
   transition: .3s;
   border: none;

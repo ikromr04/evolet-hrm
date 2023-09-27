@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled('div')`
   position: relative;
   z-index: 1;
 `;
 
-export const StyledButton = styled.span`
+export const StyledButton = styled('span')`
   border: none;
   padding: 6px 12px;
   display: flex;

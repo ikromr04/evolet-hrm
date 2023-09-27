@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
-import { StyledBlock } from '../../../ui/block/styled';
 import { Link } from 'react-router-dom';
+import Box from '../../../ui/box/box';
 
 export const StyledButton = styled('button').withConfig({
   shouldForwardProp: (prop) => !['isCurrent'].includes(prop)
@@ -22,8 +22,8 @@ export const StyledButton = styled('button').withConfig({
   text-decoration: none;
   transition: .3s;
 
-  ${({ theme, isCurrent }) => isCurrent && css`
-    color: ${theme.color.button.success};
+  ${({ isCurrent }) => isCurrent && css`
+    color: #66bb6a;
     background-color: #f1f5f8;
   `}
 
@@ -32,7 +32,7 @@ export const StyledButton = styled('button').withConfig({
   }
 `;
 
-export const ButtonTitle = styled.span`
+export const ButtonTitle = styled('span')`
   position: absolute;
   left: calc(100% + 8px);
   top: 50%;
@@ -74,8 +74,8 @@ export const Label = styled('span').withConfig({
   white-space: nowrap;
   transition: .3s;
 
-  ${({ theme, isCurrent }) => isCurrent && css`
-    color: ${theme.color.text.dark};
+  ${({ isCurrent }) => isCurrent && css`
+    color: #000f30;
   `}
 
   ${({ isCollapsed }) => isCollapsed && css`
@@ -98,7 +98,7 @@ export const MoreIcon = styled(CaretIcon).withConfig({
   `}
 `;
 
-export const Links = styled(StyledBlock)`
+export const Links = styled(Box)`
   padding: 8px 0;
   display: flex;
   flex-direction: column;
@@ -110,7 +110,7 @@ export const Links = styled(StyledBlock)`
   opacity: 0;
 `;
 
-export const LinksTitle = styled.span`
+export const LinksTitle = styled('span')`
   font-size: 10px;
   font-weight: 500;
   color: #91a4b7;
@@ -141,7 +141,7 @@ export const LinksItem = styled(Link)`
   display: flex;
   text-decoration: none;
   padding: 8px 16px;
-  color: ${({ theme }) => theme.color.text.gray };
+  color: #476887;
   font-size: 13px;
   transition: .3s;
   border: none;
