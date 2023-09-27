@@ -5,12 +5,6 @@ export enum AppRoute {
   Employee = '/employees/:employeeId',
   EmployeeWork = '/employees/:employeeId/work',
 
-  Employees = '/employees',
-  Calendars = '/calendars',
-  Vacancies = '/recruitment/vacancies',
-  Applicants = '/recruitment/applicants',
-  Hiring = '/recruitment/hiring',
-  Tests = '/recruitment/tests',
   NotFound = '*',
 }
 

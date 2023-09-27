@@ -33,13 +33,13 @@ export default function PageNavigation(): JSX.Element {
       <NavigationItem
         label="Сотрудники"
         icon={<AddressBookIcon width={16} height={16} />}
-        href={AppRoute.Employees}
+        href="/employees"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Календарь"
         icon={<CalendarIcon width={16} height={16} />}
-        href={AppRoute.Calendars}
+        href="/calendars"
         isCollapsed={isCollapsed}
       />
       <NavigationItem

@@ -31,7 +31,6 @@ export default function EmployeePageLayout(): JSX.Element {
     }
   }, [dispatch, employee, params]);
 
-
   if (!employee) {
     return (<Spinner />);
   }
