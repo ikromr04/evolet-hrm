@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 import { useEscapeKeydown } from '../../../hooks/use-escape-keydown';
 import { useOnRouteChange } from '../../../hooks/use-on-route-change';
 import { useOutsideClick } from '../../../hooks/use-outside-click';
-import { ModalWindow, StyledModal, Wrapper } from './styled';
+import { ButtonWrapper, ModalWindow, ModalWrapper } from './styled';
 
 type ModalProps = {
   className?: string;
-  modalButton: JSX.Element;
-  modalWindow: JSX.Element;
+  button: JSX.Element;
+  window: JSX.Element;
 }
 
 export default function Modal({
   className,
-  modalButton,
-  modalWindow,
+  button,
+  window,
 }: ModalProps): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useOutsideClick(() => setIsOpen(false));
@@ -30,18 +30,16 @@ export default function Modal({
 
   return (
     <>
-      <Wrapper
+      <ButtonWrapper
         className={className}
         onClick={() => setIsOpen(!isOpen)}
         isOpen={isOpen}
       >
-        {modalButton}
-      </Wrapper>
-      <StyledModal isOpen={isOpen}>
-        <ModalWindow ref={ref} isOpen={isOpen}>
-          {modalWindow}
-        </ModalWindow>
-      </StyledModal>
+        {button}
+      </ButtonWrapper>
+      <ModalWrapper isOpen={isOpen}>
+        <ModalWindow ref={ref} isOpen={isOpen}>{window}</ModalWindow>
+      </ModalWrapper>
     </>
   );
-}
+};

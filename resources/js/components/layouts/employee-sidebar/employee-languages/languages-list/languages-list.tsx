@@ -1,6 +1,7 @@
 import { EmployeeLanguages } from '../../../../../types/employee';
-import BlockNoContent from '../../../../ui/block-no-content/block-no-content';
+import BoxInner from '../../../../ui/box-inner/box-inner';
 import DescriptionList from '../../../../ui/description-list/description-list';
+import Text from '../../../../ui/text/text';
 
 type LanguagesListProps = {
   languages: EmployeeLanguages | null;
@@ -13,11 +14,17 @@ export default function LanguagesList({ languages }: LanguagesListProps): JSX.El
       return acc;
     }, {});
 
-  if (!languages) {
-    return (<BlockNoContent>Не заполнено</BlockNoContent>);
+  if (!languages || !languages.length) {
+    return (
+      <BoxInner>
+        <Text>Не заполнено</Text>
+      </BoxInner>
+    );
   }
 
   return (
-    <DescriptionList list={transformLanguages(languages)} detailedInverse />
+    <BoxInner>
+      <DescriptionList list={transformLanguages(languages)} detailedInverse />
+    </BoxInner>
   );
 };

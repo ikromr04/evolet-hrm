@@ -1,8 +1,11 @@
-import { PropsWithChildren } from 'react';
-import { StyledBox } from './styled';
+import { StyledIconsBox } from './styled';
 
-export default function IconsBox({ children }: PropsWithChildren): JSX.Element {
+type IconsBoxProps = {
+  icon: JSX.Element;
+};
+
+export default function IconsBox({ icon }: IconsBoxProps): JSX.Element {
   return (
-    <StyledBox>{children}</StyledBox>
+    <StyledIconsBox>{icon}</StyledIconsBox>
   );
 };

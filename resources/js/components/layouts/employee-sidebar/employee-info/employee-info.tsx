@@ -27,16 +27,12 @@ export default function EmployeeInfo(): JSX.Element {
     <Box>
       <BoxToolbar>
         <LinksWrapper>
-          <IconsBox>
-            <EnvelopeIcon />
-          </IconsBox>
+          <IconsBox icon={<EnvelopeIcon />} />
           <TextLink href={`mailto:${personalData.email}`}>{personalData.email}</TextLink>
         </LinksWrapper>
 
         <LinksWrapper>
-          <IconsBox>
-            <MobileIcon height={18} />
-          </IconsBox>
+          <IconsBox icon={<MobileIcon height={18} />} />
           <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>
         </LinksWrapper>
       </BoxToolbar>

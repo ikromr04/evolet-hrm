@@ -6,21 +6,22 @@ import { BaseSyntheticEvent, useState } from 'react';
 
 type NewLanguageFieldProps = {
   languages: Languages;
-  insertLanguage: (newLanguage: EmployeeLanguage) => void;
+  languageChangeHandler: (newLanguage: EmployeeLanguage) => void;
 };
 
-export default function NewLanguageField({
+export default function NewLanguageFields({
   languages,
-  insertLanguage,
+  languageChangeHandler,
 }: NewLanguageFieldProps): JSX.Element {
   const [language, setLanguage] = useState<EmployeeLanguage>({
     id: '', name: 'Не выбрано', level: '(А1) – начальный',
   });
 
   const handleLanguageChange = (evt: BaseSyntheticEvent) => {
-    const newLanguage: Language | undefined = languages.find(({ id }) => String(id) === evt.target.value);
+    const newLanguage: Language | undefined = languages
+      .find(({ id }) => String(id) === evt.target.value);
     if (newLanguage) {
-      insertLanguage({
+      languageChangeHandler({
         ...newLanguage,
         level: language.level,
       });

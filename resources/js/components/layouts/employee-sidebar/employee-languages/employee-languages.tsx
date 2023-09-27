@@ -1,4 +1,3 @@
-import BlockToolbar from '../../../ui/block-toolbar/block-toolbar';
 import IconsBox from '../../../ui/icons-box/icons-box';
 import LanguageIcon from '../../../icons/language-icon';
 import Title from '../../../ui/title/title';
@@ -10,6 +9,7 @@ import { useEffect } from 'react';
 import LanguagesList from './languages-list/languages-list';
 import { fetchLanguagesAction } from '../../../../store/language-slice/language-api-actions';
 import Box from '../../../ui/box/box';
+import BoxToolbar from '../../../ui/box-toolbar/box-toolbar';
 
 export default function EmployeeLanguages(): JSX.Element {
   const employee = useAppSelector(getEmployee);
@@ -26,14 +26,11 @@ export default function EmployeeLanguages(): JSX.Element {
 
   return (
     <Box>
-      <BlockToolbar>
-        <IconsBox>
-          <LanguageIcon />
-        </IconsBox>
+      <BoxToolbar>
+        <IconsBox icon={<LanguageIcon />} />
         <Title small>Знание языков</Title>
-
         <EditLanguage employee={employee} languages={languages} />
-      </BlockToolbar>
+      </BoxToolbar>
 
       <LanguagesList languages={employee.languages} />
     </Box>

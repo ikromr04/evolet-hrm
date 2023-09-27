@@ -1,38 +1,31 @@
-import { Label, Message, Select, Wrapper } from './styled';
+import { ErrorMessage, FieldInner, FieldLabel, FieldSelect, StyledField } from './styled';
 
-type TextFieldProps = {
-  label: string;
-  labelHidden?: boolean;
+type SelectFieldProps = {
   className?: string;
-  message?: string;
-  width?: number;
+  label: string;
   options: { value: string; label: string }[];
-  [rest:string]: unknown;
+  errorMessage?: string;
+  [rest: string]: unknown;
 };
 
 export default function SelectField({
-  label,
-  labelHidden,
   className,
-  message,
-  width,
+  label,
   options,
+  errorMessage,
   ...rest
-}: TextFieldProps): JSX.Element {
+}: SelectFieldProps): JSX.Element {
   return (
-    <Wrapper className={className} width={width}>
-      <Label isHidden={labelHidden}>
-        {label}
-      </Label>
-      <Select
-        error={message ? true : false}
-        {...rest}
-      >
-        {options.map(({ value, label }) => (
-          <option key={value} value={value}>{label}</option>
-        ))}
-      </Select>
-      {message && <Message error={message ? true : false}>{message}</Message>}
-    </Wrapper>
+    <StyledField className={className}>
+      <FieldInner>
+        <FieldLabel>{label}</FieldLabel>
+        <FieldSelect error={errorMessage ? true : false} {...rest}>
+          {options.map(({ value, label }) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </FieldSelect>
+      </FieldInner>
+      <ErrorMessage>{errorMessage}</ErrorMessage>
+    </StyledField>
   );
-}
+};

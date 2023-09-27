@@ -1,10 +1,11 @@
-import { DeleteButton, StyledItem } from './styled';
+import { DeleteButton, Wrapper } from './styled';
 import { EmployeeLanguage } from '../../../../../../types/employee';
 import { Languages } from '../../../../../../types/language';
 import SelectField from '../../../../../ui/select-field/select-field';
 import XIcon from '../../../../../icons/x-icon';
+import Button from '../../../../../ui/button/button';
 
-type LanguageFieldProps = {
+type LanguageFieldsProps = {
   currentLanguage: EmployeeLanguage;
   languages: Languages;
   languageChangeHandler: (employeeLanguage: EmployeeLanguage) => void;
@@ -12,15 +13,15 @@ type LanguageFieldProps = {
   deleteHandler: (employeeLanguage: EmployeeLanguage) => void;
 };
 
-export default function LanguageField({
+export default function LanguageFields({
   currentLanguage,
   languages,
   languageChangeHandler,
   levelChangeHandler,
   deleteHandler,
-}: LanguageFieldProps): JSX.Element {
+}: LanguageFieldsProps): JSX.Element {
   return (
-    <StyledItem>
+    <Wrapper>
       <SelectField
         label="Язык"
         options={languages.map((language) => ({ value: language.id, label: language.name }))}
@@ -41,14 +42,14 @@ export default function LanguageField({
         onChange={levelChangeHandler(currentLanguage)}
       />
 
-      <DeleteButton
+      <Button
         type="button"
-        title="Удалить"
-        onClick={deleteHandler(currentLanguage)}
+        title="Удалить язык"
         error
+        onClick={deleteHandler(currentLanguage)}
       >
-        <XIcon width={12} height={13} />
-      </DeleteButton>
-    </StyledItem>
+        <XIcon width={14} />
+      </Button>
+    </Wrapper>
   );
 };

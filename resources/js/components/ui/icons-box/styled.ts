@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledBox = styled('span')`
+export const StyledIconsBox = styled('span')`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -13,5 +13,3 @@ export const StyledBox = styled('span')`
   border-radius: 4px;
   color: #00b950;
 `;
-
-

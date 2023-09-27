@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const Wrapper = styled('div').withConfig({
+export const ButtonWrapper = styled('div').withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
 })<{ isOpen: boolean }>`
   ${({ isOpen }) => isOpen && css`
@@ -8,7 +8,7 @@ export const Wrapper = styled('div').withConfig({
   `}
 `;
 
-export const StyledModal = styled('div').withConfig({
+export const ModalWrapper = styled('div').withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
 })<{ isOpen: boolean }>`
   position: fixed;
