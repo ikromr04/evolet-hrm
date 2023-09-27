@@ -1,4 +1,4 @@
-import { EmployeeLanguages } from '../../../../../types/employees';
+import { EmployeeLanguages } from '../../../../../types/employee';
 import BlockNoContent from '../../../../ui/block-no-content/block-no-content';
 import DescriptionList from '../../../../ui/description-list/description-list';
 

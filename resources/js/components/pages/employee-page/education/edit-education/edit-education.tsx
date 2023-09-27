@@ -2,7 +2,7 @@ import { BaseSyntheticEvent, useState } from 'react';
 import { EditForm, EditModal, InstitutionField, SubmitButton } from './styled';
 import { toast } from 'react-toastify';
 import { generatePath, useLocation, useNavigate } from 'react-router-dom';
-import { Education } from '../../../../../types/employees';
+import { Education } from '../../../../../types/employee';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import { updateEmployeeEducationAction } from '../../../../../store/employees-slice/employees-api-actions';

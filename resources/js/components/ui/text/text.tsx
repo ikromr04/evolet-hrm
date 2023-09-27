@@ -2,13 +2,36 @@ import { StyledText } from './styled';
 import { PropsWithChildren } from 'react';
 
 type TextProps = PropsWithChildren<{
-  [rest:string]: any;
+  className?: string;
+  tagName?: string;
+  small?: boolean;
+  large?: boolean;
+  success?: boolean;
+  warning?: boolean;
+  error?: boolean;
 }>;
 
-export default function Text({ children, ...rest }: TextProps): JSX.Element {
+export default function Text({
+  children,
+  className,
+  tagName,
+  small,
+  large,
+  success,
+  warning,
+  error,
+}: TextProps): JSX.Element {
   return (
-    <StyledText {...rest}>
+    <StyledText
+      className={className}
+      as={tagName}
+      small={small}
+      large={large}
+      success={success}
+      warning={warning}
+      error={error}
+    >
       {children}
     </StyledText>
   );
-}
+};

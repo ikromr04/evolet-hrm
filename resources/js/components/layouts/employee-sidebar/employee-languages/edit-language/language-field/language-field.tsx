@@ -1,5 +1,5 @@
 import { DeleteButton, StyledItem } from './styled';
-import { EmployeeLanguage } from '../../../../../../types/employees';
+import { EmployeeLanguage } from '../../../../../../types/employee';
 import { Languages } from '../../../../../../types/language';
 import SelectField from '../../../../../ui/select-field/select-field';
 import XIcon from '../../../../../icons/x-icon';

@@ -7,10 +7,10 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { logoutAction } from '../../../../store/employees-slice/employees-api-actions';
 import { generatePath } from 'react-router-dom';
 import Dropdown from '../../../ui/dropdown/dropdown';
-import { getAuthEmployee } from '../../../../store/employees-slice/employees-selector';
+import { getAuthorizedEmployee } from '../../../../store/employees-slice/employees-selector';
 
 export default function UserNavigation(): JSX.Element {
-  const user = useAppSelector(getAuthEmployee);
+  const user = useAppSelector(getAuthorizedEmployee);
   const dispatch = useAppDispatch();
 
   return (

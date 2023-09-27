@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
 import { useAppSelector } from '../../hooks';
-import { getAuthStatus } from '../../store/employees-slice/employees-selector';
+import { getAuthorizationStatus } from '../../store/employees-slice/employees-selector';
 import { AppSpinner } from './styled';
 import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';
@@ -12,11 +12,11 @@ import EmployeePageLayout from '../layouts/employee-page-layout/employee-page-la
 import EmployeePage from '../pages/employee-page/employee-page';
 
 export default function App(): JSX.Element {
-  const authorizationStatus = useAppSelector(getAuthStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Unknown) {
     return (<AppSpinner />);
-  }
+  };
 
   return (
     <BrowserRouter>
@@ -56,4 +56,4 @@ export default function App(): JSX.Element {
       </Routes>
     </BrowserRouter>
   );
-}
+};

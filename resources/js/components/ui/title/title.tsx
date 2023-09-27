@@ -2,14 +2,27 @@ import { StyledTitle } from './styled';
 import { PropsWithChildren } from 'react';
 
 type TitleProps = PropsWithChildren<{
-  textAlign?: string;
+  className?: string;
+  tagName?: string;
   small?: boolean;
+  large?: boolean;
 }>;
 
-export default function Title({ children, small = false, ...rest }: TitleProps): JSX.Element {
+export default function Title({
+  children,
+  className,
+  tagName,
+  small,
+  large,
+}: TitleProps): JSX.Element {
   return (
-    <StyledTitle small={small} {...rest}>
+    <StyledTitle
+      className={className}
+      as={tagName}
+      small={small}
+      large={large}
+    >
       {children}
     </StyledTitle>
   );
-}
+};

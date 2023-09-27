@@ -1,5 +1,5 @@
 import { StyledItem } from './styled';
-import { EmployeeLanguage } from '../../../../../../types/employees';
+import { EmployeeLanguage } from '../../../../../../types/employee';
 import { Language, Languages } from '../../../../../../types/language';
 import SelectField from '../../../../../ui/select-field/select-field';
 import { BaseSyntheticEvent, useState } from 'react';

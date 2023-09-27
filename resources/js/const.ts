@@ -1,10 +1,8 @@
 export enum AppRoute {
   Main = '/',
   Login = '/employees/login',
-
   Employee = '/employees/:employeeId',
   EmployeeWork = '/employees/:employeeId/work',
-
   NotFound = '*',
 }
 
@@ -25,13 +23,9 @@ export enum APIRoute {
   EmployeePersonalData = '/employees/:employeeId/personal',
   EmployeeEducations = '/employees/:employeeId/educations',
   EmployeeLanguages = '/employees/:employeeId/languages',
-
   Educations = '/educations/:educationId',
-
   Jobs = '/jobs',
-
   Positions = '/positions',
-
   Languages = '/languages',
 }
 

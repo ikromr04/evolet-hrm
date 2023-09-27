@@ -2,6 +2,11 @@ import { Job } from './job';
 import { Language } from './language';
 import { Position } from './position';
 
+export type LoginData = {
+  login: string;
+  password: string;
+};
+
 export type Employee = {
   id: string;
   name: string;
@@ -30,8 +35,10 @@ export type PersonalData = {
   children: string;
 };
 
+export type EducationId = string;
+
 export type Education = {
-  id: string;
+  id: EducationId;
   userId: string;
   startedAt: Date;
   graduatedAt: Date;

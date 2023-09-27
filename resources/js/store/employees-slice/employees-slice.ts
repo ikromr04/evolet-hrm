@@ -1,13 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { Educations, Employee, PersonalData } from '../../types/employees';
+import { Educations, Employee, PersonalData } from '../../types/employee';
 import {
-  checkAuthAction,
-  createOrUpdateEmployeeLanguagesAction,
+  checkAuthorizationAction,
+  crudEmployeeLanguagesAction,
   deleteEmployeeEducationAction,
-  fetchEmployeeById,
-  fetchEmployeeEducations,
-  fetchEmployeePersonalData,
+  fetchEmployeeByIdAction,
+  fetchEmployeeEducationsAction,
+  fetchEmployeePersonalDataAction,
   loginAction,
   logoutAction,
   storeEmployeeEducationAction,
@@ -18,43 +18,43 @@ import {
 
 export type EmployeesSlice = {
   authorizationStatus: AuthorizationStatus;
-  authEmployee: Employee | null;
+  authorizedEmployee: Employee | null;
   employee: Employee | null;
   employeePersonalData: PersonalData | null;
-  educations: Educations | null;
+  employeeEducations: Educations | null;
 };
 
 const initialState: EmployeesSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
-  authEmployee: null,
+  authorizedEmployee: null,
   employee: null,
   employeePersonalData: null,
-  educations: null,
+  employeeEducations: null,
 };
 
 export const employeeSlice = createSlice({
   name: SliceName.Employee,
   initialState,
   reducers: {
-    setEmployee: (state, action) => {
+    setEmployeeAction: (state, action) => {
       state.employee = action.payload;
     },
-    setAuthEmployee: (state, action) => {
-      state.authEmployee = action.payload;
+    setAuthorizedEmployeeAction: (state, action) => {
+      state.authorizedEmployee = action.payload;
     },
   },
   extraReducers(builder) {
     builder
-      .addCase(checkAuthAction.fulfilled, (state, action) => {
+      .addCase(checkAuthorizationAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
-        state.authEmployee = action.payload;
+        state.authorizedEmployee = action.payload;
       })
-      .addCase(checkAuthAction.rejected, (state) => {
+      .addCase(checkAuthorizationAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
       .addCase(loginAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
-        state.authEmployee = action.payload;
+        state.authorizedEmployee = action.payload;
       })
       .addCase(loginAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
@@ -62,43 +62,43 @@ export const employeeSlice = createSlice({
       .addCase(logoutAction.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
       })
-      .addCase(fetchEmployeeById.fulfilled, (state, action) => {
+      .addCase(fetchEmployeeByIdAction.fulfilled, (state, action) => {
         state.employee = action.payload;
       })
-      .addCase(fetchEmployeePersonalData.fulfilled, (state, action) => {
+      .addCase(fetchEmployeePersonalDataAction.fulfilled, (state, action) => {
         state.employeePersonalData = action.payload;
       })
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.employee = action.payload;
-        if (action.payload.id === state.authEmployee?.id) {
-          state.authEmployee = action.payload;
+        if (action.payload.id === state.authorizedEmployee?.id) {
+          state.authorizedEmployee = action.payload;
         }
       })
       .addCase(updateEmployeePersonalDataAction.fulfilled, (state, action) => {
         state.employeePersonalData = action.payload;
       })
-      .addCase(fetchEmployeeEducations.fulfilled, (state, action) => {
-        state.educations = action.payload;
+      .addCase(fetchEmployeeEducationsAction.fulfilled, (state, action) => {
+        state.employeeEducations = action.payload;
       })
       .addCase(updateEmployeeEducationAction.fulfilled, (state, action) => {
         const updatedEducation = action.payload;
-        if (state.educations) {
-          state.educations = state.educations.map((education) =>
+        if (state.employeeEducations) {
+          state.employeeEducations = state.employeeEducations.map((education) =>
             (education.id === updatedEducation.id) ? updatedEducation : education
           );
         } else {
-          state.educations = [updatedEducation];
+          state.employeeEducations = [updatedEducation];
         }
       })
       .addCase(storeEmployeeEducationAction.fulfilled, (state, action) => {
-        const educations = state.educations || [];
-        state.educations = [...educations, action.payload];
+        const educations = state.employeeEducations || [];
+        state.employeeEducations = [...educations, action.payload];
       })
       .addCase(deleteEmployeeEducationAction.fulfilled, (state, action) => {
-        const educations = state.educations || [];
-        state.educations = educations.filter(({ id }) => id !== action.payload);
+        const educations = state.employeeEducations || [];
+        state.employeeEducations = educations.filter(({ id }) => id !== action.payload);
       })
-      .addCase(createOrUpdateEmployeeLanguagesAction.fulfilled, (state, action) => {
+      .addCase(crudEmployeeLanguagesAction.fulfilled, (state, action) => {
         const employee = state.employee && {
           ...state.employee,
           languages: action.payload,
@@ -108,4 +108,4 @@ export const employeeSlice = createSlice({
   },
 });
 
-export const { setEmployee, setAuthEmployee } = employeeSlice.actions;
+export const { setEmployeeAction, setAuthorizedEmployeeAction } = employeeSlice.actions;

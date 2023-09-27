@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
 import { Positions } from '../../types/position';
-import { fetchPositions } from './position-api-actions';
+import { fetchPositionsAction } from './position-api-actions';
 
 export type PositionSlice = {
   positions: Positions | null;
@@ -17,7 +17,7 @@ export const positionSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchPositions.fulfilled, (state, action) => {
+      .addCase(fetchPositionsAction.fulfilled, (state, action) => {
         state.positions = action.payload;
       });
   },

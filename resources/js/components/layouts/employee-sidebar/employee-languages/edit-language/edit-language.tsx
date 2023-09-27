@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent, useState } from 'react';
-import { Employee, EmployeeLanguage, EmployeeLanguages } from '../../../../../types/employees';
+import { Employee, EmployeeLanguage, EmployeeLanguages } from '../../../../../types/employee';
 import EditIcon from '../../../../icons/edit-icon';
 import { ButtonLabel, ButtonsWrapper, EditButton, EditModal, StyledForm } from './styled';
 import { Language, Languages } from '../../../../../types/language';

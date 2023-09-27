@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Employee } from '../../../../../types/employees';
+import { Employee } from '../../../../../types/employee';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch, useAppSelector } from '../../../../../hooks';
 import { getJobs } from '../../../../../store/job-slice/job-selector';

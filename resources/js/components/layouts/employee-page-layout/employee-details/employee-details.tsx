@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Details, Info, InfoItem, InfoItemText, Name, Position } from './styled';
-import { Employee } from '../../../../types/employees';
+import { Employee } from '../../../../types/employee';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { fetchEmployeePersonalData } from '../../../../store/employees-slice/employees-api-actions';
 import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';

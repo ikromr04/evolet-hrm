@@ -3,7 +3,7 @@ import { DeleteModal, DeleteWindow, EducationText, SubmitButton } from './styled
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { Education } from '../../../../../types/employees';
+import { Education } from '../../../../../types/employee';
 import { useAppDispatch } from '../../../../../hooks';
 import { deleteEmployeeEducationAction } from '../../../../../store/employees-slice/employees-api-actions';
 import Button from '../../../../ui/button/button';

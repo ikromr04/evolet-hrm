@@ -1,117 +1,86 @@
 import { BaseSyntheticEvent, useState } from 'react';
-import Button from '../../ui/button/button';
-import { Main, LoginForm, Logo, PageTitle, Description, Field } from './styled';
+import { StyledBox, Form } from './styled';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { loginAction } from '../../../store/employees-slice/employees-api-actions';
-import { getAuthStatus } from '../../../store/employees-slice/employees-selector';
 import { AuthorizationStatus, AppRoute } from '../../../const';
 import { Navigate } from 'react-router-dom';
 import { ValidationError } from '../../../types/validation-error';
+import { getAuthorizationStatus } from '../../../store/employees-slice/employees-selector';
+import MainLogo from '../../ui/main-logo/main-logo';
+import Title from '../../ui/title/title';
+import Text from '../../ui/text/text';
+import TextField from '../../ui/text-field/text-field';
+import { LoginData } from '../../../types/employee';
+import Button from '../../ui/button/button';
 
 export default function LoginPage(): JSX.Element {
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [validationError, setValidationError] = useState<ValidationError | null>(null);
-  const dispatch = useAppDispatch();
-  const authorizationStatus = useAppSelector(getAuthStatus);
-
-  const handleSubmitClick = (evt: BaseSyntheticEvent) => {
-    evt.preventDefault();
-    setIsLoading(true);
-
-    dispatch(loginAction({
-      body: { login, password },
-      errorHandler(error) {
-        setIsLoading(false);
-        setValidationError(error);
-      },
-    }));
-  };
-
-  const handleLoginInput = (evt: BaseSyntheticEvent) => {
-    setLogin(evt.target.value);
-    setValidationError((prevState) => {
-      const newState = JSON.parse(JSON.stringify(prevState));
-      if (newState?.errors?.email) {
-        delete newState.errors.email
-      }
-      return {
-        ...newState,
-        message: '',
-      };
-    })
-  };
-
-  const handlePasswordInput = (evt: BaseSyntheticEvent) => {
-    setPassword(evt.target.value);
-    setValidationError((prevState) => {
-      const newState = JSON.parse(JSON.stringify(prevState));
-      if (newState?.errors?.password) {
-        delete newState.errors.password
-      }
-      return {
-        ...newState,
-        message: '',
-      };
-    })
-  };
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />
   }
 
+  const dispatch = useAppDispatch();
+  const [loginData, setLoginData] = useState<LoginData>({ login: '', password: '' });
+  const [validationError, setValidationError] = useState<ValidationError>({ message: '' });
+
+  const handleFieldsInput = (evt: BaseSyntheticEvent): void => {
+    const loginDataCopy = JSON.parse(JSON.stringify(loginData));
+    loginDataCopy[evt.target.name] = evt.target.value;
+    setLoginData(loginDataCopy);
+    const validationErrorCopy = JSON.parse(JSON.stringify(validationError));
+    validationErrorCopy.message = '';
+    delete validationErrorCopy.errors[evt.target.name];
+    setValidationError(validationErrorCopy);
+  };
+
+  const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
+    evt.preventDefault();
+    evt.target.setAttribute('disabled', 'disabled');
+    dispatch(loginAction({
+      loginData,
+      errorHandler(error) {
+        evt.target.removeAttribute('disabled');
+        setValidationError(error);
+      },
+    }));
+  };
+
   return (
-    <Main>
-      <LoginForm as="form">
-        <Logo />
-
-        <PageTitle>Добро пожаловать в Evolet</PageTitle>
-        <Description
-          dark={validationError?.message ? false : true}
-          error={validationError?.message ? true : false}
-        >
+    <StyledBox tagName="main">
+      <MainLogo />
+      <Title>Добро пожаловать в Evolet</Title>
+      <Form>
+        <Text error={validationError?.message ? true : false}>
           {validationError?.message ? 'Неверные учетные данные' : 'Введите свои учетные данные'}
-        </Description>
+        </Text>
 
-        <Field
-          id="login"
-          label="Логин"
-          labelHidden
+        <TextField
           name="login"
           type="text"
           placeholder="Логин"
-          defaultValue={login}
-          onInput={handleLoginInput}
-          message={validationError?.errors?.email?.[0]}
-          required
+          defaultValue={loginData.login}
+          onInput={handleFieldsInput}
+          errorMessage={validationError?.errors?.login?.[0]}
         />
 
-        <Field
-          id="password"
-          label="Пароль"
-          labelHidden
+        <TextField
           name="password"
           type="password"
           placeholder="Пароль"
-          defaultValue={password}
-          onInput={handlePasswordInput}
-          message={validationError?.errors?.password?.[0]}
-          required
+          defaultValue={loginData.password}
+          onInput={handleFieldsInput}
+          errorMessage={validationError?.errors?.password?.[0]}
         />
 
         <Button
           type="submit"
-          fluid
-          onClick={handleSubmitClick}
-          disabled={isLoading}
-          isLoading={isLoading}
           success
-          large
+          onClick={handleSubmitButtonClick}
         >
           Войти в систему
         </Button>
-      </LoginForm>
-    </Main>
+      </Form>
+    </StyledBox>
   );
-}
+};

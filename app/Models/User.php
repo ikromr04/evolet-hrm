@@ -22,7 +22,7 @@ class User extends Authenticatable
 
   public function educations()
   {
-    return $this->hasMany(Education::class);
+    return $this->hasMany(Education::class)->orderBy('started_at', 'desc');
   }
 
   public function job()

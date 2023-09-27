@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
     font-family: Inter, sans-serif;
-    background-color: ${({ theme }) => theme.color.pageBackground};
+    background-color: #f1f5f8;
     transition: .3s;
 
     &::-webkit-scrollbar {
@@ -34,6 +34,8 @@ const GlobalStyle = createGlobalStyle`
 
   #root {
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 
   .visually-hidden {

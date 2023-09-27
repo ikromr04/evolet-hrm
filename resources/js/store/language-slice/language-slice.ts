@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
-import { fetchLanguages } from './language-api-actions';
 import { Languages } from '../../types/language';
+import { fetchLanguagesAction } from './language-api-actions';
 
 export type LanguageSlice = {
   languages: Languages | null;
@@ -17,7 +17,7 @@ export const languageSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchLanguages.fulfilled, (state, action) => {
+      .addCase(fetchLanguagesAction.fulfilled, (state, action) => {
         state.languages = action.payload;
       });
   },

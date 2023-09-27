@@ -1,7 +1,7 @@
 import { BaseSyntheticEvent, useState } from 'react';
 import { AddressField, EditForm, EditModal, SubmitButton } from './styled';
 import { toast } from 'react-toastify';
-import { PersonalData } from '../../../../../types/employees';
+import { PersonalData } from '../../../../../types/employee';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import { updateEmployeePersonalDataAction } from '../../../../../store/employees-slice/employees-api-actions';

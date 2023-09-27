@@ -1,44 +1,53 @@
 import styled, { css } from 'styled-components';
 
 export const StyledButton = styled('button').withConfig({
-  shouldForwardProp: (prop) => !['fluid', 'success', 'large', 'error'].includes(prop)
-})<{ fluid?: boolean, success?: boolean, large?: boolean, error?: boolean }>`
+  shouldForwardProp: (props) => !['success', 'warning', 'error', 'large'].includes(props),
+})<{ success?: boolean, warning?: boolean, error?: boolean, large?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
+  padding: 4px 16px;
   border: none;
   background-color: white;
-  color: ${({ theme }) => theme.color.text.gray};
+  color: #476887;
   border-radius: 4px;
   font-size: 13px;
   line-height: 1;
   font-weight: 600;
-  transition: 0.3s;
   text-decoration: none;
   box-shadow: 0 0px 2px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  min-height: 32px;
+  max-height: 32px;
   cursor: pointer;
 
-  ${({ fluid }) => fluid && css`
-    width: 100%;
-  `}
   ${({ success }) => success && css`
-    background-color: #00b950;
+    background-color: #66bb6a;
     color: white;
+    box-shadow: 0 0px 2px #81c784;
+  `}
+
+  ${({ warning }) => warning && css`
+    background-color: #ffb74d;
+    color: white;
+    box-shadow: 0 0px 2px #ffb74d;
   `}
 
   ${({ error }) => error && css`
-    background-color: #ff3333;
+    background-color: #ff5d5d;
     color: white;
+    box-shadow: 0 0px 2px #e57373;
   `}
 
   ${({ large }) => large && css`
-    padding: 10px 16px;
     font-size: 14px;
+    min-height: 36px;
+    max-height: 36px;
   `}
 
-  &:active {
+  &:active,
+  &:hover {
     box-shadow: none;
   }
 

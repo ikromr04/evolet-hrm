@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { SliceName } from '../../const';
-import { fetchJobs } from './job-api-actions';
 import { Jobs } from '../../types/job';
+import { fetchJobsAction } from './job-api-actions';
 
 export type JobSlice = {
   jobs: Jobs | null;
@@ -17,7 +17,7 @@ export const jobSlice = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchJobs.fulfilled, (state, action) => {
+      .addCase(fetchJobsAction.fulfilled, (state, action) => {
         state.jobs = action.payload;
       });
   },

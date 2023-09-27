@@ -1,7 +1,7 @@
 import { generatePath } from 'react-router-dom';
 import NavigationButton from './navigation-button/navigation-button';
 import { NavigationItem, NavigationList } from './styled';
-import { Employee } from '../../../../types/employees';
+import { Employee } from '../../../../types/employee';
 import { AppRoute } from '../../../../const';
 
 type EmployeeNavigationProps = {

@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::put('/employees/{employeeId}/personal', [UserController::class, 'updatePersonalData']);
   Route::get('/employees/{employeeId}/educations', [UserController::class, 'educations']);
   Route::post('/employees/{employeeId}/educations', [UserController::class, 'storeEducation']);
-  Route::post('/employees/{employeeId}/languages', [UserController::class, 'createOrUpdateLanguages']);
+  Route::post('/employees/{employeeId}/languages', [UserController::class, 'crudLanguages']);
 
   Route::put('/educations/{educationId}', [EducationController::class, 'update']);
   Route::delete('/educations/{educationId}', [EducationController::class, 'delete']);

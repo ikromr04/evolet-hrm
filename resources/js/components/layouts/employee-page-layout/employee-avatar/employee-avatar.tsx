@@ -1,16 +1,16 @@
 import { BaseSyntheticEvent } from 'react';
 import { StyledAvatar, Label} from './styled';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { getAuthEmployee, getEmployee } from '../../../../store/employees-slice/employees-selector';
+import { getAuthorizedEmployee, getEmployee } from '../../../../store/employees-slice/employees-selector';
 import { deleteEmployeeAvatar, updateEmployeeAvatar } from '../../../../store/employees-slice/employees-api-actions';
-import { setAuthEmployee, setEmployee } from '../../../../store/employees-slice/employees-slice';
+import { setAuthorizedEmployee, setEmployee } from '../../../../store/employees-slice/employees-slice';
 import Dropdown from '../../../ui/dropdown/dropdown';
 import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
 
 export default function EmployeeAvatar(): JSX.Element {
   const employee = useAppSelector(getEmployee);
-  const user = useAppSelector(getAuthEmployee);
+  const user = useAppSelector(getAuthorizedEmployee);
   const dispatch = useAppDispatch();
 
   const handleInputChange = async (evt: BaseSyntheticEvent) => {
@@ -22,7 +22,7 @@ export default function EmployeeAvatar(): JSX.Element {
         employeeId: employee.id,
         onSuccess(employee) {
           dispatch(setEmployee(employee));
-          user.id === employee.id && dispatch(setAuthEmployee(employee));
+          user.id === employee.id && dispatch(setAuthorizedEmployee(employee));
         },
       }));
     }
@@ -33,7 +33,7 @@ export default function EmployeeAvatar(): JSX.Element {
       employeeId: employee.id,
       onSuccess(employee) {
         dispatch(setEmployee(employee));
-        user.id === employee.id && dispatch(setAuthEmployee(employee));
+        user.id === employee.id && dispatch(setAuthorizedEmployee(employee));
       },
     }))
   };
