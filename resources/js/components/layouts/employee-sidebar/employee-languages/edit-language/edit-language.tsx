@@ -7,10 +7,9 @@ import LanguageField from './language-field/language-field';
 import NewLanguageField from './new-language-field/new-language-field';
 import Button from '../../../../ui/button/button';
 import { useAppDispatch } from '../../../../../hooks';
-import { createOrUpdateEmployeeLanguagesAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { generatePath, useLocation, useNavigate, useParams } from 'react-router-dom';
-import { redirectToRoute } from '../../../../../store/middlewares/redirect';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { crudEmployeeLanguagesAction } from '../../../../../store/employees-slice/employees-api-actions';
 
 type EditLanguageProps = {
   employee: Employee;
@@ -18,7 +17,8 @@ type EditLanguageProps = {
 };
 
 export default function EditLanguage({ employee, languages }: EditLanguageProps): JSX.Element {
-  const [employeeLanguages, setEmployeeLanguages] = useState<EmployeeLanguages | null>(employee.languages);
+  const [employeeLanguages, setEmployeeLanguages] =
+    useState<EmployeeLanguages | null>(employee.languages);
   const dispatch = useAppDispatch();
   const params = useParams();
   const location = useLocation();
@@ -33,7 +33,8 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
     });
 
   const handleLanguageChange = (languageToUpdate: EmployeeLanguage) => (evt: BaseSyntheticEvent) => {
-    const newLanguage: Language | undefined = languages.find(({ id }) => String(id) === evt.target.value);
+    const newLanguage: Language | undefined =
+      languages.find(({ id }) => String(id) === evt.target.value);
 
     if (employeeLanguages && newLanguage) {
       const newEmployeeLanguages: EmployeeLanguages = employeeLanguages.map((language) => {
@@ -90,10 +91,10 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
   const handleButtonSubmit = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
 
-    params.employeeId && dispatch(createOrUpdateEmployeeLanguagesAction({
+    params.employeeId && dispatch(crudEmployeeLanguagesAction({
       employeeId: params.employeeId,
-      languages: employeeLanguages,
-      onSuccess() {
+      employeeLanguages,
+      successHandler() {
         navigate(location.pathname);
         toast.success('Данные успешно обновлены');
       },

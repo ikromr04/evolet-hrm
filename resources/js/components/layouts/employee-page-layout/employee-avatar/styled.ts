@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledAvatar = styled.img`
+export const StyledAvatar = styled('img')`
   display: flex;
   border-radius: 50%;
   border: 2px solid white;
@@ -8,7 +8,7 @@ export const StyledAvatar = styled.img`
   min-width: 144px;
 `;
 
-export const Label = styled.span`
+export const Label = styled('span')`
   position: absolute;
   left: 50%;
   bottom: calc(100% + 8px);

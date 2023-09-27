@@ -6,7 +6,7 @@ import { AppRoute } from '../../../../const';
 
 type EmployeeNavigationProps = {
   employee: Employee;
-}
+};
 
 export default function EmployeeNavigation({ employee } : EmployeeNavigationProps): JSX.Element {
   return (
@@ -21,4 +21,4 @@ export default function EmployeeNavigation({ employee } : EmployeeNavigationProp
       </NavigationItem>
     </NavigationList>
   );
-}
+};

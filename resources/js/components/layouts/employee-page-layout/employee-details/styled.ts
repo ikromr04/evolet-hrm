@@ -1,13 +1,13 @@
 import styled from 'styled-components';
-import { StyledTitle } from '../../../ui/title/styled';
+import Title from '../../../ui/title/title';
 
-export const Details = styled.div``;
+export const Details = styled('div')``;
 
-export const Name = styled(StyledTitle)`
+export const Name = styled(Title)`
   margin-bottom: 16px;
 `;
 
-export const Position = styled.div`
+export const Position = styled('div')`
   background-color: #CCE6FF;
   color: #006CFF;
   border-radius: 20px;
@@ -18,7 +18,7 @@ export const Position = styled.div`
   line-height: 80%;
 `;
 
-export const Info = styled.div`
+export const Info = styled('div')`
   display: grid;
   grid-template-columns: auto 1fr;
   align-items: flex-start;
@@ -28,7 +28,7 @@ export const Info = styled.div`
   margin-bottom: 8px;
 `;
 
-export const InfoItem = styled.div`
+export const InfoItem = styled('div')`
   display: grid;
   grid-template-columns: 16px 1fr;
   align-items: flex-start;

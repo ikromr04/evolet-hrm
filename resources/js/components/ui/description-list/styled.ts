@@ -4,7 +4,6 @@ export const Dl = styled('dl').withConfig({
   shouldForwardProp: (props) => !['detailed', 'detailedInverse'].includes(props),
 })<{ detailed?: boolean, detailedInverse?: boolean }>`
   margin: 0;
-  padding: 16px;
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 16px;

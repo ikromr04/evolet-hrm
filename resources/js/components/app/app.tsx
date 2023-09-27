@@ -26,10 +26,10 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PagesLayout />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            {/* <Route path={AppRoute.Employee} element={<EmployeePageLayout />}>
+            <Route path={AppRoute.Employee} element={<EmployeePageLayout />}>
               <Route index element={<EmployeePage />} />
               <Route path={AppRoute.EmployeeWork} element={<p>Not implemented</p>} />
-            </Route> */}
+            </Route>
 
             <Route path="/employees" element={<p>Not implemented</p>} />
             <Route path="/calendars" element={<p>Not implemented</p>} />

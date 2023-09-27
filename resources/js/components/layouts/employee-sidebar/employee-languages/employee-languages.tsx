@@ -1,5 +1,4 @@
 import BlockToolbar from '../../../ui/block-toolbar/block-toolbar';
-import Block from '../../../ui/block/block';
 import IconsBox from '../../../ui/icons-box/icons-box';
 import LanguageIcon from '../../../icons/language-icon';
 import Title from '../../../ui/title/title';
@@ -8,8 +7,9 @@ import { getEmployee } from '../../../../store/employees-slice/employees-selecto
 import EditLanguage from './edit-language/edit-language';
 import { getLanguages } from '../../../../store/language-slice/language-selector';
 import { useEffect } from 'react';
-import { fetchLanguages } from '../../../../store/language-slice/language-api-actions';
 import LanguagesList from './languages-list/languages-list';
+import { fetchLanguagesAction } from '../../../../store/language-slice/language-api-actions';
+import Box from '../../../ui/box/box';
 
 export default function EmployeeLanguages(): JSX.Element {
   const employee = useAppSelector(getEmployee);
@@ -17,7 +17,7 @@ export default function EmployeeLanguages(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    !languages && dispatch(fetchLanguages());
+    !languages && dispatch(fetchLanguagesAction());
   }, [dispatch, languages]);
 
   if (!employee || !languages) {
@@ -25,7 +25,7 @@ export default function EmployeeLanguages(): JSX.Element {
   }
 
   return (
-    <Block>
+    <Box>
       <BlockToolbar>
         <IconsBox>
           <LanguageIcon />
@@ -36,6 +36,6 @@ export default function EmployeeLanguages(): JSX.Element {
       </BlockToolbar>
 
       <LanguagesList languages={employee.languages} />
-    </Block>
+    </Box>
   );
 };

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { Details, Info, InfoItem, InfoItemText, Name, Position } from './styled';
 import { Employee } from '../../../../types/employee';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
-import { fetchEmployeePersonalData } from '../../../../store/employees-slice/employees-api-actions';
-import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';
 import BriefcaseIcon from '../../../icons/briefcase-icon';
 import LocationIcon from '../../../icons/location-icon';
+import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';
+import { fetchEmployeePersonalDataAction } from '../../../../store/employees-slice/employees-api-actions';
 
 type EmployeeDetailsProps = {
   employee: Employee;
@@ -17,7 +17,7 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
 
   useEffect(() => {
     personalData?.userId !== employee.id &&
-      dispatch(fetchEmployeePersonalData({ employeeId: employee.id }));
+      dispatch(fetchEmployeePersonalDataAction({ employeeId: employee.id }));
   }, [ dispatch, personalData, employee ]);
 
   return (

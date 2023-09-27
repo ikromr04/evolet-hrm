@@ -1,15 +1,19 @@
 import dayjs from 'dayjs';
 import { useAppSelector } from '../../../../hooks';
-import { getEmployee, getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';
 import EnvelopeIcon from '../../../icons/envelope-icon';
 import MobileIcon from '../../../icons/mobile-icon';
-import BlockToolbar from '../../../ui/block-toolbar/block-toolbar';
 import DescriptionList from '../../../ui/description-list/description-list';
 import IconsBox from '../../../ui/icons-box/icons-box';
 import TextLink from '../../../ui/text-link/text-link';
 import { LinksWrapper } from './styled';
 import { getWorkTime } from '../../../../utils';
 import Box from '../../../ui/box/box';
+import BoxToolbar from '../../../ui/box-toolbar/box-toolbar';
+import BoxInner from '../../../ui/box-inner/box-inner';
+import {
+  getEmployee,
+  getEmployeePersonalData
+} from '../../../../store/employees-slice/employees-selector';
 
 export default function EmployeeInfo(): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData);
@@ -21,7 +25,7 @@ export default function EmployeeInfo(): JSX.Element {
 
   return (
     <Box>
-      <BlockToolbar>
+      <BoxToolbar>
         <LinksWrapper>
           <IconsBox>
             <EnvelopeIcon />
@@ -35,15 +39,17 @@ export default function EmployeeInfo(): JSX.Element {
           </IconsBox>
           <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>
         </LinksWrapper>
-      </BlockToolbar>
+      </BoxToolbar>
 
-      <DescriptionList
-        list={{
-          'Дата найма': dayjs(employee.startedWorkAt).format('D MMM YYYY'),
-          'Срок работы': getWorkTime(employee.startedWorkAt),
-        }}
-        detailed
-      />
+      <BoxInner>
+        <DescriptionList
+          list={{
+            'Дата найма': dayjs(employee.startedWorkAt).format('D MMM YYYY'),
+            'Срок работы': getWorkTime(employee.startedWorkAt),
+          }}
+          detailed
+        />
+      </BoxInner>
     </Box>
   );
 };

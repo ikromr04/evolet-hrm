@@ -6,9 +6,9 @@ import { StyledPage } from './styled';
 export default function EmployeePage(): JSX.Element {
   return (
     <StyledPage>
-      <Employee />
+      {/* <Employee />
       <PersonalData />
-      <Education />
+      <Education /> */}
     </StyledPage>
   );
 };

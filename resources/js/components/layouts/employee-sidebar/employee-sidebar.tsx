@@ -6,7 +6,7 @@ export default function EmployeeSidebar(): JSX.Element {
   return (
     <StyledSidebar>
       <EmployeeInfo />
-      <EmployeeLanguages />
+      {/* <EmployeeLanguages /> */}
     </StyledSidebar>
   );
 };

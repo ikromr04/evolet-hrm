@@ -2,8 +2,6 @@ import { Outlet, generatePath, useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { BaseSyntheticEvent, useEffect } from 'react';
 import { getEmployee } from '../../../store/employees-slice/employees-selector';
-import { fetchEmployeeById, nextEmployeeAction } from '../../../store/employees-slice/employees-api-actions';
-import { Actions, HeaderInner, LayoutHeader, PageWrapper, StyledLayout } from './styled';
 import EmployeeAvatar from './employee-avatar/employee-avatar';
 import EmployeeDetails from './employee-details/employee-details';
 import Spinner from '../../ui/spinner/spinner';
@@ -14,6 +12,12 @@ import ChevronLeftIcon from '../../icons/chevron-left-icon';
 import ChevronRightIcon from '../../icons/chevron-right-icon';
 import { useOnRouteChange } from '../../../hooks/use-on-route-change';
 import { AppRoute } from '../../../const';
+import { Actions, HeaderInner, LayoutTop, PageWrapper, StyledLayout } from './styled';
+import {
+  fetchEmployeeByIdAction,
+  fetchNextEmployeeIdAction,
+  fetchPreviousEmployeeIdAction
+} from '../../../store/employees-slice/employees-api-actions';
 
 export default function EmployeePageLayout(): JSX.Element {
   const params = useParams();
@@ -22,12 +26,12 @@ export default function EmployeePageLayout(): JSX.Element {
   const navigate = useNavigate();
 
   useOnRouteChange(() => {
-    params.employeeId && dispatch(fetchEmployeeById({ employeeId: params.employeeId }));
+    params.employeeId && dispatch(fetchEmployeeByIdAction({ employeeId: params.employeeId }));
   });
 
   useEffect(() => {
     if (!employee && params.employeeId) {
-      dispatch(fetchEmployeeById({ employeeId: params.employeeId }));
+      dispatch(fetchEmployeeByIdAction({ employeeId: params.employeeId }));
     }
   }, [dispatch, employee, params]);
 
@@ -37,34 +41,34 @@ export default function EmployeePageLayout(): JSX.Element {
 
   const handleNextClick = (evt: BaseSyntheticEvent) => {
     evt.target.disabled = true;
-    dispatch(nextEmployeeAction({
+    dispatch(fetchNextEmployeeIdAction({
       employeeId: employee.id,
-      onSuccess(nextEmployeeId) {
-        navigate(generatePath(AppRoute.Employee, { employeeId: nextEmployeeId }));
+      successHandler(nextEmployeeId) {
         evt.target.disabled = false;
+        navigate(generatePath(AppRoute.Employee, { employeeId: nextEmployeeId }));
       },
     }))
   };
 
   const handlePreviousClick = (evt: BaseSyntheticEvent) => {
     evt.target.disabled = true;
-    dispatch(nextEmployeeAction({
+    dispatch(fetchPreviousEmployeeIdAction({
       employeeId: employee.id,
-      onSuccess(previousEmployeeId) {
-        navigate(generatePath(AppRoute.Employee, { employeeId: previousEmployeeId }));
+      successHandler(previousEmployeeId) {
         evt.target.disabled = false;
+        navigate(generatePath(AppRoute.Employee, { employeeId: previousEmployeeId }));
       },
     }))
   };
 
   return (
     <StyledLayout>
-      <LayoutHeader>
+      <LayoutTop>
         <EmployeeAvatar />
 
         <HeaderInner>
           <EmployeeDetails employee={employee} />
-
+          
           <Actions>
             <Button onClick={handlePreviousClick} type="button">
               <ChevronLeftIcon height={13} /> Предыдущий
@@ -74,7 +78,7 @@ export default function EmployeePageLayout(): JSX.Element {
             </Button>
           </Actions>
         </HeaderInner>
-      </LayoutHeader>
+      </LayoutTop>
 
       <EmployeeNavigation employee={employee} />
 

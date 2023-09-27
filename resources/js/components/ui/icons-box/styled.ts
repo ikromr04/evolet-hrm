@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledBox = styled.span`
+export const StyledBox = styled('span')`
   display: inline-flex;
   align-items: center;
   justify-content: center;

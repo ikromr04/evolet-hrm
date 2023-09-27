@@ -2,38 +2,38 @@ import { BaseSyntheticEvent } from 'react';
 import { StyledAvatar, Label} from './styled';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { getAuthorizedEmployee, getEmployee } from '../../../../store/employees-slice/employees-selector';
-import { deleteEmployeeAvatar, updateEmployeeAvatar } from '../../../../store/employees-slice/employees-api-actions';
-import { setAuthorizedEmployee, setEmployee } from '../../../../store/employees-slice/employees-slice';
 import Dropdown from '../../../ui/dropdown/dropdown';
 import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
+import { deleteEmployeeAvatarAction, updateEmployeeAvatarAction } from '../../../../store/employees-slice/employees-api-actions';
+import { setAuthorizedEmployeeAction, setEmployeeAction } from '../../../../store/employees-slice/employees-slice';
 
 export default function EmployeeAvatar(): JSX.Element {
   const employee = useAppSelector(getEmployee);
-  const user = useAppSelector(getAuthorizedEmployee);
+  const authorizedEmployee = useAppSelector(getAuthorizedEmployee);
   const dispatch = useAppDispatch();
 
   const handleInputChange = async (evt: BaseSyntheticEvent) => {
-    if (employee && user) {
-      const form = new FormData();
-      form.append('avatar', evt.target.files[0]);
-      dispatch(updateEmployeeAvatar({
-        form,
+    if (employee && authorizedEmployee) {
+      const formData = new FormData();
+      formData.append('avatar', evt.target.files[0]);
+      dispatch(updateEmployeeAvatarAction({
+        formData,
         employeeId: employee.id,
-        onSuccess(employee) {
-          dispatch(setEmployee(employee));
-          user.id === employee.id && dispatch(setAuthorizedEmployee(employee));
+        successHandler(employee) {
+          dispatch(setEmployeeAction(employee));
+          authorizedEmployee.id === employee.id && dispatch(setAuthorizedEmployeeAction(employee));
         },
       }));
     }
   }
 
   const handleDeleteAvatar = () => {
-    employee && user && dispatch(deleteEmployeeAvatar({
+    employee && authorizedEmployee && dispatch(deleteEmployeeAvatarAction({
       employeeId: employee.id,
-      onSuccess(employee) {
-        dispatch(setEmployee(employee));
-        user.id === employee.id && dispatch(setAuthorizedEmployee(employee));
+      successHandler(employee) {
+        dispatch(setEmployeeAction(employee));
+        authorizedEmployee.id === employee.id && dispatch(setAuthorizedEmployeeAction(employee));
       },
     }))
   };
