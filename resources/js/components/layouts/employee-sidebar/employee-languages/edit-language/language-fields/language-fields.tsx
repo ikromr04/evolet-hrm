@@ -1,4 +1,4 @@
-import { DeleteButton, Wrapper } from './styled';
+import { Wrapper } from './styled';
 import { EmployeeLanguage } from '../../../../../../types/employee';
 import { Languages } from '../../../../../../types/language';
 import SelectField from '../../../../../ui/select-field/select-field';
@@ -45,7 +45,7 @@ export default function LanguageFields({
       <Button
         type="button"
         title="Удалить язык"
-        error
+        warning
         onClick={deleteHandler(currentLanguage)}
       >
         <XIcon width={14} />

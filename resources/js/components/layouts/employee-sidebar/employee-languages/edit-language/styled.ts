@@ -8,5 +8,5 @@ export const StyledModal = styled(Modal)`
 export const Buttons = styled('div')`
   display: flex;
   justify-content: flex-end;
-  gap: 16px;
+  gap: 8px;
 `;
