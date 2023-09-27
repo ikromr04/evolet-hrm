@@ -17,8 +17,3 @@ export const Form = styled('form')`
   flex-direction: column;
   gap: 16px;
 `;
-
-// export const Description = styled(StyledText)`
-//   font-size: 14px;
-//   margin-bottom: 8px;
-// `;

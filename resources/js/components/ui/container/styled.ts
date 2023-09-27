@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled('div')`
   width: 90%;
-  max-width: ${({ theme }) => theme.media.extraExtraLarge};
+  max-width: 1400px;
   margin: 0 auto;
 `;

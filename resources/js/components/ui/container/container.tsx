@@ -3,12 +3,17 @@ import { StyledContainer } from './styled';
 
 type ContainerProps = PropsWithChildren<{
   className?: string;
+  tagName?: string;
 }>;
 
-export default function Container({ className, children }: ContainerProps): JSX.Element {
+export default function Container({
+  children,
+  className,
+  tagName,
+}: ContainerProps): JSX.Element {
   return (
-    <StyledContainer className={className}>
+    <StyledContainer className={className} as={tagName}>
       {children}
     </StyledContainer>
   );
-}
+};

@@ -4,13 +4,13 @@ export enum AppRoute {
   Employee = '/employees/:employeeId',
   EmployeeWork = '/employees/:employeeId/work',
   NotFound = '*',
-}
+};
 
 export enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
-}
+};
 
 export enum APIRoute {
   Login = '/employees/login',
@@ -27,7 +27,7 @@ export enum APIRoute {
   Jobs = '/jobs',
   Positions = '/positions',
   Languages = '/languages',
-}
+};
 
 export enum SliceName {
   Employee = 'Employee',

@@ -25,19 +25,16 @@ export const StyledButton = styled('button').withConfig({
   ${({ success }) => success && css`
     background-color: #66bb6a;
     color: white;
-    box-shadow: 0 0px 2px #81c784;
   `}
 
   ${({ warning }) => warning && css`
     background-color: #ffb74d;
     color: white;
-    box-shadow: 0 0px 2px #ffb74d;
   `}
 
   ${({ error }) => error && css`
     background-color: #ff5d5d;
     color: white;
-    box-shadow: 0 0px 2px #e57373;
   `}
 
   ${({ large }) => large && css`
