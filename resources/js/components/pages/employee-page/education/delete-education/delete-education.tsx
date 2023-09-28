@@ -1,63 +1,61 @@
-import { BaseSyntheticEvent, useState } from 'react';
-import { DeleteModal, DeleteWindow, EducationText, SubmitButton } from './styled';
+import { BaseSyntheticEvent } from 'react';
 import { toast } from 'react-toastify';
 import { useLocation, useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { Education } from '../../../../../types/employee';
 import { useAppDispatch } from '../../../../../hooks';
-import { deleteEmployeeEducationAction } from '../../../../../store/employees-slice/employees-api-actions';
 import Button from '../../../../ui/button/button';
 import Hr from '../../../../ui/hr/hr';
 import Text from '../../../../ui/text/text';
 import DeleteIcon from '../../../../icons/delete-icon';
+import ModalInner from '../../../../ui/modal-inner/modal-inner';
+import { StyledModal } from './styled';
+import Buttons from '../../../../ui/buttons/buttons';
+import {
+  deleteEmployeeEducationAction
+} from '../../../../../store/employees-slice/employees-api-actions';
 
 type DeleteEducationProps = {
   education: Education
 };
 
 export default function DeleteEducation({ education }: DeleteEducationProps): JSX.Element {
-  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleFormSubmit = (evt: BaseSyntheticEvent) => {
-    evt.preventDefault();
-    setIsLoading(true);
+  const handleCancelButtonClick = () => navigate(location.pathname);
 
+  const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
+    evt.preventDefault();
     dispatch(deleteEmployeeEducationAction({
       educationId: education.id,
-      onSuccess() {
-        setIsLoading(false);
-        navigate(location.pathname)
+      successHandler() {
         toast.success('Образование удалена');
+        navigate(location.pathname)
       },
     }));
   };
 
   return (
-    <DeleteModal
-      modalButton={
+    <StyledModal
+      button={
         <Button type="button">
           <DeleteIcon height={13} /> Удалить
         </Button>
       }
-      modalWindow={
-        <DeleteWindow as="form" onSubmit={handleFormSubmit}>
+      window={
+        <ModalInner>
           <Text>Вы уверены что хотите удалить это образование?</Text>
-          <EducationText>
+          <Text>
             ({dayjs(education.startedAt).format('YYYY')} - {dayjs(education.graduatedAt).format('YYYY')}) {education.institution}
-          </EducationText>
+          </Text>
           <Hr />
-          <SubmitButton
-            isLoading={isLoading}
-            disabled={isLoading}
-            error
-            large
-          >
-            Удалить
-          </SubmitButton>
-        </DeleteWindow>
+          <Buttons>
+            <Button onClick={handleSubmitButtonClick} type="submit" success>Удалить</Button>
+            <Button onClick={handleCancelButtonClick} type="button" error>Отмена</Button>
+          </Buttons>
+        </ModalInner>
       }
     />
   );

@@ -56,7 +56,7 @@ export default function Education(): JSX.Element {
             <EducationsWrapper>
               <Actions>
                 <EditEducation education={education} />
-                {/* <DeleteEducation education={education} /> */}
+                <DeleteEducation education={education} />
               </Actions>
               <DescriptionList
                 list={{
