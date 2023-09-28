@@ -20,7 +20,7 @@ export const StyledButton = styled('span')`
   cursor: pointer;
 `;
 
-export const Avatar = styled.img`
+export const Avatar = styled('img')`
   object-fit: cover;
   border-radius: 50%;
 `;

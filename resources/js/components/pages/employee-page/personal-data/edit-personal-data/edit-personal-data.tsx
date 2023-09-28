@@ -1,5 +1,5 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react';
-import { AddressField, Buttons, ChildrenField, Form, StyledModal } from './styled';
+import { Form, StyledModal, WideColumn } from './styled';
 import { toast } from 'react-toastify';
 import { PersonalData } from '../../../../../types/employee';
 import { ValidationError } from '../../../../../types/validation-error';
@@ -14,6 +14,7 @@ import { EmptyOptionLabel } from '../../../../../const';
 import {
   updateEmployeePersonalDataAction
 } from '../../../../../store/employees-slice/employees-api-actions';
+import Buttons from '../../../../ui/buttons/buttons';
 
 type EditPersonalDataProps = {
   personalData: PersonalData
@@ -48,6 +49,7 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
     });
     setFamilyStatus(personalData.familyStatus);
     setGender(personalData.gender);
+    setValidationError(null);
     navigate(location.pathname);
   };
 
@@ -126,14 +128,16 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
               errorMessage={validationError?.errors?.citizenship?.[0]}
               onInput={handleInputsChange}
             />
-            <AddressField
-              label="Адрес"
-              type="text"
-              name="address"
-              defaultValue={address}
-              errorMessage={validationError?.errors?.address?.[0]}
-              onInput={handleInputsChange}
-            />
+            <WideColumn>
+              <TextField
+                label="Адрес"
+                type="text"
+                name="address"
+                defaultValue={address}
+                errorMessage={validationError?.errors?.address?.[0]}
+                onInput={handleInputsChange}
+              />
+            </WideColumn>
             <TextField
               label="Эл. почта"
               type="email"
@@ -172,24 +176,22 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
               ]}
               errorMessage={validationError?.errors?.family_status?.[0]}
             />
-            <ChildrenField
-              label="Дети"
-              type="text"
-              name="children"
-              defaultValue={children}
-              errorMessage={validationError?.errors?.children?.[0]}
-              onInput={handleInputsChange}
-            />
-            <Buttons>
-              <Button
-                type="submit"
-                success
-                onClick={handleSubmitButtonClick}
-              >
-                Сохранить
-              </Button>
-              <Button type="reset" error>Отмена</Button>
-            </Buttons>
+            <WideColumn>
+              <TextField
+                label="Дети"
+                type="text"
+                name="children"
+                defaultValue={children}
+                errorMessage={validationError?.errors?.children?.[0]}
+                onInput={handleInputsChange}
+              />
+            </WideColumn>
+            <WideColumn>
+              <Buttons>
+                <Button onClick={handleSubmitButtonClick} type="submit" success>Сохранить</Button>
+                <Button type="reset" error>Отмена</Button>
+              </Buttons>
+            </WideColumn>
           </Form>
         </ModalInner>
       }

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-export const StyledBox = styled.div`
+export const StyledBox = styled('div')`
   background-color: #fff;
   border: 1px solid #dce5ef;
   border-radius: 8px;

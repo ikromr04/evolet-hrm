@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../../../../../hooks';
 import { getJobs } from '../../../../../store/job-slice/job-selector';
 import { getPositions } from '../../../../../store/position-slice/position-selector';
 import { updateEmployeeAction } from '../../../../../store/employees-slice/employees-api-actions';
-import { StyledModal, Form, JobField, Buttons } from './styled';
+import { StyledModal, Form, WideColumn } from './styled';
 import Button from '../../../../ui/button/button';
 import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/text-field/text-field';
@@ -16,6 +16,7 @@ import { fetchPositionsAction } from '../../../../../store/position-slice/positi
 import SelectField from '../../../../ui/select-field/select-field';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 import { EmptyOptionLabel } from '../../../../../const';
+import Buttons from '../../../../ui/buttons/buttons';
 
 type EditEmployeeProps = {
   employee: Employee
@@ -47,6 +48,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
     });
     job && setSelectedJobId(job.id);
     position && setSelectedPositionId(position.id);
+    setValidationError(null);
     navigate(location.pathname);
   };
 
@@ -142,27 +144,25 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
               ] : [{ value: '', label: 'Не выбрано' }]}
             />
 
-            <JobField
-              label="Должность"
-              name="job_id"
-              value={selectedJobId}
-              onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
-              options={jobs ? [
-                { value: '', label: EmptyOptionLabel },
-                ...jobs.map(({ id, title }) => ({ value: id, label: title })),
-              ] : [{ value: '', label: 'Не выбрано' }]}
-            />
+            <WideColumn>
+              <SelectField
+                label="Должность"
+                name="job_id"
+                value={selectedJobId}
+                onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
+                options={jobs ? [
+                  { value: '', label: EmptyOptionLabel },
+                  ...jobs.map(({ id, title }) => ({ value: id, label: title })),
+                ] : [{ value: '', label: 'Не выбрано' }]}
+              />
+            </WideColumn>
 
-            <Buttons>
-              <Button
-                type="submit"
-                success
-                onClick={handleSubmitButtonClick}
-              >
-                Сохранить
-              </Button>
-              <Button type="reset" error>Отмена</Button>
-            </Buttons>
+            <WideColumn>
+              <Buttons>
+                <Button onClick={handleSubmitButtonClick} type="submit" success>Сохранить</Button>
+                <Button type="reset" error>Отмена</Button>
+              </Buttons>
+            </WideColumn>
           </Form>
         </ModalInner>
       }

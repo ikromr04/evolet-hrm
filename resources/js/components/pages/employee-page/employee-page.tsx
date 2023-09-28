@@ -8,7 +8,7 @@ export default function EmployeePage(): JSX.Element {
     <StyledPage>
       <Employee />
       <PersonalData />
-      {/* <Education /> */}
+      <Education />
     </StyledPage>
   );
 };

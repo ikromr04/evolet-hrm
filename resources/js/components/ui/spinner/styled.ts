@@ -1,12 +1,12 @@
 import { styled } from 'styled-components'
 
-export const StyledSpinner = styled.span`
+export const StyledSpinner = styled('span')`
   display: inline-flex;
   justify-content: center;
   align-items: center;
 `;
 
-export const Loader = styled.span<{
+export const Loader = styled('span')<{
   width?: number,
   stroke?: number,
   color?: string,
