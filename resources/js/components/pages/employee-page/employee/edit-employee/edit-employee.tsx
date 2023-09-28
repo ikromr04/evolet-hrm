@@ -15,6 +15,7 @@ import { fetchJobsAction } from '../../../../../store/job-slice/job-api-actions'
 import { fetchPositionsAction } from '../../../../../store/position-slice/position-api-actions';
 import SelectField from '../../../../ui/select-field/select-field';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
+import { EmptyOptionLabel } from '../../../../../const';
 
 type EditEmployeeProps = {
   employee: Employee
@@ -37,13 +38,31 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
     !positions && dispatch(fetchPositionsAction());
   }, [dispatch, jobs, positions]);
 
-  const handleResetButtonClick = async () => {
+  const handleFormReset = (evt: BaseSyntheticEvent): void => {
+    evt.preventDefault();
+    Array.from(evt.target.elements).forEach((input: any) => {
+      if (input.name !== 'job_id' && input.name !== 'position_id') {
+        input.value = input.defaultValue;
+      }
+    });
     job && setSelectedJobId(job.id);
     position && setSelectedPositionId(position.id);
     navigate(location.pathname);
   };
 
-  const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
+  const handleInputsChange = (evt: BaseSyntheticEvent): void =>
+    setValidationError((prevState) => {
+      const newState = JSON.parse(JSON.stringify(prevState));
+      if (newState?.errors?.[evt.target.name]) {
+        delete newState.errors[evt.target.name]
+      }
+      return {
+        ...newState,
+        message: '',
+      };
+  });
+
+  const handleSubmitButtonClick = (evt: BaseSyntheticEvent): void => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled')
     formRef.current && dispatch(updateEmployeeAction({
@@ -61,18 +80,6 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
     }));
   };
 
-  const handleInputsChange = (evt: BaseSyntheticEvent) =>
-    setValidationError((prevState) => {
-      const newState = JSON.parse(JSON.stringify(prevState));
-      if (newState?.errors?.[evt.target.name]) {
-        delete newState.errors[evt.target.name]
-      }
-      return {
-        ...newState,
-        message: '',
-      };
-  });
-
   return (
     <StyledModal
       button={
@@ -82,7 +89,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
       }
       window={
         <ModalInner>
-          <Form ref={formRef}>
+          <Form ref={formRef} onReset={handleFormReset}>
             <TextField
               label="Имя"
               type="text"
@@ -130,7 +137,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
               value={selectedPositionId}
               onChange={(evt: BaseSyntheticEvent) => setSelectedPositionId(evt.target.value)}
               options={positions ? [
-                { value: '', label: 'Не выбрано' },
+                { value: '', label: EmptyOptionLabel },
                 ...positions.map(({ id, title }) => ({ value: id, label: title })),
               ] : [{ value: '', label: 'Не выбрано' }]}
             />
@@ -141,26 +148,20 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
               value={selectedJobId}
               onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
               options={jobs ? [
-                { value: '', label: 'Не выбрано' },
+                { value: '', label: EmptyOptionLabel },
                 ...jobs.map(({ id, title }) => ({ value: id, label: title })),
               ] : [{ value: '', label: 'Не выбрано' }]}
             />
 
             <Buttons>
               <Button
-                type="reset"
-                error
-                onClick={handleResetButtonClick}
-              >
-                Отмена
-              </Button>
-              <Button
                 type="submit"
                 success
                 onClick={handleSubmitButtonClick}
               >
-                Редактировать
+                Сохранить
               </Button>
+              <Button type="reset" error>Отмена</Button>
             </Buttons>
           </Form>
         </ModalInner>

@@ -1,7 +1,8 @@
 import { useAppSelector } from '../../../../hooks';
 import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';
-import BlockToolbar from '../../../ui/block-toolbar/block-toolbar';
-import Block from '../../../ui/block/block';
+import BoxInner from '../../../ui/box-inner/box-inner';
+import BoxToolbar from '../../../ui/box-toolbar/box-toolbar';
+import Box from '../../../ui/box/box';
 import DescriptionList from '../../../ui/description-list/description-list';
 import TextLink from '../../../ui/text-link/text-link';
 import Title from '../../../ui/title/title';
@@ -16,26 +17,28 @@ export default function PersonalData(): JSX.Element {
   }
 
   return (
-    <Block as="section">
-      <BlockToolbar>
+    <Box tagName="section">
+      <BoxToolbar>
         <Title small>Персональные данные</Title>
         <EditPersonalData personalData={personalData} />
-      </BlockToolbar>
+      </BoxToolbar>
 
-      <DescriptionList
-        list={{
-          'Дата рождения': dayjs(personalData.birthDate).format('D MMM YYYY'),
-          'Пол': personalData.gender,
-          'Национальность': personalData.nationality,
-          'Гражданство': personalData.citizenship,
-          'Адрес': personalData.address,
-          'Эл. почта': <TextLink href={`mailto:${personalData.email}`}>{personalData.email}</TextLink>,
-          'Телефон-1': <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>,
-          'Телефон-2': <TextLink href={`tel:${personalData.tel2}`}>{personalData.tel2}</TextLink>,
-          'Семейное положение': personalData.familyStatus,
-          'Дети': personalData.children,
-        }}
-      />
-    </Block>
+      <BoxInner>
+        <DescriptionList
+          list={{
+            'Дата рождения': dayjs(personalData.birthDate).format('D MMM YYYY'),
+            'Пол': personalData.gender,
+            'Национальность': personalData.nationality,
+            'Гражданство': personalData.citizenship,
+            'Адрес': personalData.address,
+            'Эл. почта': <TextLink href={`mailto:${personalData.email}`}>{personalData.email}</TextLink>,
+            'Телефон-1': <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>,
+            'Телефон-2': <TextLink href={`tel:${personalData.tel2}`}>{personalData.tel2}</TextLink>,
+            'Семейное положение': personalData.familyStatus,
+            'Дети': personalData.children,
+          }}
+        />
+      </BoxInner>
+    </Box>
   );
 }

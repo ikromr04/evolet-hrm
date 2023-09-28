@@ -35,3 +35,5 @@ export enum SliceName {
   Position = 'Position',
   Language = 'Language',
 };
+
+export const EmptyOptionLabel = '--Выберите--';

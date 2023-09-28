@@ -25,7 +25,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
   const location = useLocation();
   const navigate = useNavigate();
   const [employeeLanguages, setEmployeeLanguages] =
-    useState<EmployeeLanguages | null>(employee.languages);
+    useState<EmployeeLanguages>(employee.languages || []);
 
   const getFilteredLanguages = (employeeLanguage?: EmployeeLanguage): Languages =>
     languages.filter((lang) => {
@@ -86,7 +86,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
 
   const handleResetButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
-    setEmployeeLanguages(employee.languages);
+    setEmployeeLanguages(employee.languages || []);
     navigate(location.pathname);
   }
 
@@ -128,8 +128,8 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
             languageChangeHandler={addLanguage}
           />
           <Buttons>
+            <Button onClick={handleSubmitButtonClick} type="submit" success>Сохранить</Button>
             <Button onClick={handleResetButtonClick} type="reset" error>Отмена</Button>
-            <Button onClick={handleSubmitButtonClick} type="submit" success>Редактировать</Button>
           </Buttons>
         </ModalInner>
       }

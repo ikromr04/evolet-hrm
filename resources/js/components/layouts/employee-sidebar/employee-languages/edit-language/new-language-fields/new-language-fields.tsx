@@ -3,6 +3,7 @@ import { EmployeeLanguage } from '../../../../../../types/employee';
 import { Language, Languages } from '../../../../../../types/language';
 import SelectField from '../../../../../ui/select-field/select-field';
 import { BaseSyntheticEvent, useState } from 'react';
+import { EmptyOptionLabel } from '../../../../../../const';
 
 type NewLanguageFieldProps = {
   languages: Languages;
@@ -40,7 +41,7 @@ export default function NewLanguageFields({
       <SelectField
         label="Язык"
         options={[
-          { value: '', label: 'Не выбрано' },
+          { value: '', label: EmptyOptionLabel },
           ...languages.map((language) => ({ value: language.id, label: language.name }))
         ]}
         value={language.id}
