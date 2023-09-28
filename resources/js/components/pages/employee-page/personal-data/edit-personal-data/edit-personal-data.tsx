@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useRef, useState } from 'react';
+import { BaseSyntheticEvent, useEffect, useRef, useState } from 'react';
 import { Form, StyledModal, WideColumn } from './styled';
 import { toast } from 'react-toastify';
 import { PersonalData } from '../../../../../types/employee';
@@ -39,6 +39,11 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
   const navigate = useNavigate();
   const location = useLocation();
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  useEffect(() => {
+    setGender(personalData.gender);
+    setFamilyStatus(personalData.familyStatus);
+  }, [personalData]);
 
   const handleFormReset = (evt: BaseSyntheticEvent): void => {
     evt.preventDefault();
@@ -92,7 +97,11 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
       }
       window={
         <ModalInner>
-          <Form ref={formRef} onReset={handleFormReset}>
+          <Form
+            key={personalData.id}
+            ref={formRef}
+            onReset={handleFormReset}
+          >
             <TextField
               label="Дата рождения"
               type="datetime-local"

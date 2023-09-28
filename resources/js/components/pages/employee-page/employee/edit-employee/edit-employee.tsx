@@ -28,8 +28,8 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   const dispatch = useAppDispatch();
   const jobs = useAppSelector(getJobs);
   const positions = useAppSelector(getPositions);
-  const [selectedJobId, setSelectedJobId] = useState(job?.id ?? '');
-  const [selectedPositionId, setSelectedPositionId] = useState(position?.id ?? '');
+  const [selectedJobId, setSelectedJobId] = useState('');
+  const [selectedPositionId, setSelectedPositionId] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
   const formRef = useRef<HTMLFormElement | null>(null);
@@ -37,7 +37,9 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
   useEffect(() => {
     !jobs && dispatch(fetchJobsAction());
     !positions && dispatch(fetchPositionsAction());
-  }, [dispatch, jobs, positions]);
+    setSelectedJobId(job?.id || '');
+    setSelectedPositionId(position?.id || '');
+  }, [dispatch, jobs, positions, job, position]);
 
   const handleFormReset = (evt: BaseSyntheticEvent): void => {
     evt.preventDefault();
@@ -91,7 +93,11 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
       }
       window={
         <ModalInner>
-          <Form ref={formRef} onReset={handleFormReset}>
+          <Form
+            key={employee.id}
+            ref={formRef}
+            onReset={handleFormReset}
+          >
             <TextField
               label="Имя"
               type="text"

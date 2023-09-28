@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useState } from 'react';
+import { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { Employee, EmployeeLanguage, EmployeeLanguages } from '../../../../../types/employee';
 import EditIcon from '../../../../icons/edit-icon';
 import { Buttons, StyledModal } from './styled';
@@ -26,6 +26,10 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
   const navigate = useNavigate();
   const [employeeLanguages, setEmployeeLanguages] =
     useState<EmployeeLanguages>(employee.languages || []);
+
+  useEffect(() => {
+    setEmployeeLanguages(employee.languages || []);
+  }, [employee]);
 
   const getFilteredLanguages = (employeeLanguage?: EmployeeLanguage): Languages =>
     languages.filter((lang) => {

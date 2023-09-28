@@ -68,7 +68,7 @@ export default function EmployeePageLayout(): JSX.Element {
 
         <HeaderInner>
           <EmployeeDetails employee={employee} />
-          
+
           <Actions>
             <Button onClick={handlePreviousClick} type="button">
               <ChevronLeftIcon height={13} /> Предыдущий

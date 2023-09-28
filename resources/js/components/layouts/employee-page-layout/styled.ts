@@ -27,6 +27,7 @@ export const HeaderInner = styled('div')`
   justify-content: space-between;
   gap: 32px;
   flex-grow: 1;
+  min-height: 88px;
 `;
 
 export const Actions = styled('div')`
