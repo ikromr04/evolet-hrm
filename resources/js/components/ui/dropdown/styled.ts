@@ -16,13 +16,14 @@ export const MenuWrapper = styled('div').withConfig({
 })<{ isOpen: boolean, menuFullWidth: boolean }>`
   position: absolute;
   right: 0;
-  top: calc(100% + 8px);
+  top: calc(100%);
   padding: 0;
   min-width: max-content;
   z-index: 1;
   opacity: 1;
   visibility: visible;
   transition: .3s;
+
   ${({ menuFullWidth }) => menuFullWidth && css`
     width: 100%;
   `}

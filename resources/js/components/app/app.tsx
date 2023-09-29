@@ -9,7 +9,7 @@ import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
 import EmployeePageLayout from '../layouts/employee-page-layout/employee-page-layout';
 import EmployeePage from '../pages/employee-page/employee-page';
-import PagesLayout from '../layouts/pages-layout/pages-layout';
+import PageLayout from '../layouts/page-layout/page-layout';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -24,7 +24,7 @@ export default function App(): JSX.Element {
         <Route path={AppRoute.Login} element={<LoginPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
         <Route element={<PrivateRoute />}>
-          <Route element={<PagesLayout />}>
+          <Route element={<PageLayout />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
             <Route path={AppRoute.Employee} element={<EmployeePageLayout />}>
               <Route index element={<EmployeePage />} />
@@ -32,15 +32,8 @@ export default function App(): JSX.Element {
 
             <Route path="/employees" element={<p>Not implemented</p>} />
             <Route path="/calendars" element={<p>Not implemented</p>} />
-            <Route path="/recruitment/vacancies" element={<p>Not implemented</p>} />
-            <Route path="/recruitment/applicants" element={<p>Not implemented</p>} />
-            <Route path="/recruitment/hiring" element={<p>Not implemented</p>} />
-            <Route path="/recruitment/tests" element={<p>Not implemented</p>} />
-            <Route path="/efficiency/review" element={<p>Not implemented</p>} />
-            <Route path="/efficiency/one-on-one" element={<p>Not implemented</p>} />
-            <Route path="/efficiency/kpi" element={<p>Not implemented</p>} />
-            <Route path="/efficiency/goals" element={<p>Not implemented</p>} />
-            <Route path="/efficiency/grade" element={<p>Not implemented</p>} />
+            <Route path="/recruitment" element={<p>Not implemented</p>} />
+            <Route path="/efficiency" element={<p>Not implemented</p>} />
             <Route path="/attendance" element={<p>Not implemented</p>} />
             <Route path="/polls" element={<p>Not implemented</p>} />
             <Route path="/documents" element={<p>Not implemented</p>} />

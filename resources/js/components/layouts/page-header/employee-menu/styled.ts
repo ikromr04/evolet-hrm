@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
+import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 
 export const Wrapper = styled('div')`
   position: relative;
@@ -29,4 +30,8 @@ export const DropdownIcon = styled(CaretIcon)`
   width: 8px;
   fill: #476887;
   transition: .3s;
+`;
+
+export const Menu = styled(DropdownMenu)`
+  margin-top: 8px;
 `;

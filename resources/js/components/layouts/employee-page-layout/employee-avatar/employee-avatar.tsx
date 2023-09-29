@@ -69,7 +69,6 @@ export default function EmployeeAvatar(): JSX.Element {
         </DropdownMenu>
       }
       menuFullWidth
-      onMenuClickHide
     />
   );
 };

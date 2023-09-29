@@ -5,8 +5,7 @@ import CalendarIcon from '../../icons/calendar-icon';
 import ClockIcon from '../../icons/clock-icon';
 import HomeIcon from '../../icons/home-icon';
 import UsersIcon from '../../icons/users-icon';
-import NavigationItem from './navigation-item/navigation-item';
-import { StyledBox } from './styled';
+import { NavigationLink, StyledBox, ToggleButton } from './styled';
 import QuestionIcon from '../../icons/question-icon';
 import FileIcon from '../../icons/file-icon';
 import CubesIcon from '../../icons/cubes-icon';
@@ -18,117 +17,120 @@ import CogIcon from '../../icons/cog-icon';
 import ArrowLeftIcon from '../../icons/arrow-left-icon';
 import { useState } from 'react';
 import Hr from '../../ui/hr/hr';
+import { useLocation } from 'react-router-dom';
 
-export default function PageNavigation(): JSX.Element {
+function PageNavigation(): JSX.Element {
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const location = useLocation();
 
   return (
-    <StyledBox tagName="nav">
-      <NavigationItem
-        label="Главная страница"
-        icon={<HomeIcon width={16} height={16} />}
-        href={AppRoute.Main}
-        isCollapsed={isCollapsed}
-      />
+    <StyledBox tagName="nav" isCollapsed={isCollapsed}>
+      <NavigationLink
+        to={AppRoute.Main}
+        isCurrent={location.pathname === AppRoute.Main}
+        data-title="Главная страница"
+      >
+        <HomeIcon width={16} height={16} /> Главная страница
+      </NavigationLink>
       <Hr />
-      <NavigationItem
-        label="Сотрудники"
-        icon={<AddressBookIcon width={16} height={16} />}
-        href="/employees"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Календарь"
-        icon={<CalendarIcon width={16} height={16} />}
-        href="/calendars"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Рекрутинг"
-        icon={<UsersIcon width={16} height={16} />}
-        links={[
-          { label: 'Вакансии', path: '/recruitment/vacancies' },
-          { label: 'Кандидаты', path: '/recruitment/applicants' },
-          { label: 'План найма', path: '/recruitment/hiring' },
-          { label: 'Тесты', path: '/recruitment/tests' },
-        ]}
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Эффективность"
-        icon={<AwardIcon width={16} height={16} />}
-        links={[
-          { label: 'Обзор', path: '/efficiency/review' },
-          { label: '1-on-1', path: '/efficiency/one-on-one' },
-          { label: 'KPI', path: '/efficiency/kpi' },
-          { label: 'Цели', path: '/efficiency/goals' },
-          { label: 'Оценка', path: '/efficiency/grade' },
-        ]}
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Учет посещаемости"
-        icon={<ClockIcon width={16} height={16} />}
-        href="/attendance"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Опросы"
-        icon={<QuestionIcon width={16} height={16} />}
-        href="/polls"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Документы"
-        icon={<FileIcon width={16} height={16} />}
-        href="/documents"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Имущество"
-        icon={<CubesIcon width={16} height={16} />}
-        href="/store"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="База знаний"
-        icon={<BookIcon width={16} height={16} />}
-        href="/knowledge"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Кейсы"
-        icon={<CommentIcon width={16} height={16} />}
-        href="/cases"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Процессы"
-        icon={<NetwordIcon width={16} height={16} />}
-        href="/process"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Отчеты"
-        icon={<PieChartIcon width={16} height={16} />}
-        href="/reports"
-        isCollapsed={isCollapsed}
-      />
+      <NavigationLink
+        to="/employees"
+        isCurrent={location.pathname.startsWith('/employees')}
+        data-title="Сотрудники"
+      >
+        <AddressBookIcon width={16} height={16} /> Сотрудники
+      </NavigationLink>
+      <NavigationLink
+        to="/calendars"
+        isCurrent={location.pathname === '/calendars'}
+        data-title="Календарь"
+      >
+        <CalendarIcon width={16} height={16} /> Календарь
+      </NavigationLink>
+      <NavigationLink
+        to="/recruitment"
+        isCurrent={location.pathname === '/recruitment'}
+        data-title="Рекрутинг"
+      >
+        <UsersIcon width={16} height={16} /> Рекрутинг
+      </NavigationLink>
+      <NavigationLink
+        to="/efficiency"
+        isCurrent={location.pathname === '/efficiency'}
+        data-title="Эффективность"
+      >
+        <AwardIcon width={16} height={16} /> Эффективность
+      </NavigationLink>
+      <NavigationLink
+        to="/attendance"
+        isCurrent={location.pathname === '/attendance'}
+        data-title="Учет посещаемости"
+      >
+        <ClockIcon width={16} height={16} /> Учет посещаемости
+      </NavigationLink>
+      <NavigationLink
+        to="/polls"
+        isCurrent={location.pathname === '/polls'}
+        data-title="Опросы"
+      >
+        <QuestionIcon width={16} height={16} /> Опросы
+      </NavigationLink>
+      <NavigationLink
+        to="/documents"
+        isCurrent={location.pathname === '/documents'}
+        data-title="Документы"
+      >
+        <FileIcon width={16} height={16} /> Документы
+      </NavigationLink>
+      <NavigationLink
+        to="/store"
+        isCurrent={location.pathname === '/store'}
+        data-title="Имущество"
+      >
+        <CubesIcon width={16} height={16} /> Имущество
+      </NavigationLink>
+      <NavigationLink
+        to="/knowledge"
+        isCurrent={location.pathname === '/knowledge'}
+        data-title="База знаний"
+      >
+        <BookIcon width={16} height={16} /> База знаний
+      </NavigationLink>
+      <NavigationLink
+        to="/cases"
+        isCurrent={location.pathname === '/cases'}
+        data-title="Кейсы"
+      >
+        <CommentIcon width={16} height={16} /> Кейсы
+      </NavigationLink>
+      <NavigationLink
+        to="/process"
+        isCurrent={location.pathname === '/process'}
+        data-title="Процессы"
+      >
+        <NetwordIcon width={16} height={16} /> Процессы
+      </NavigationLink>
+      <NavigationLink
+        to="/reports"
+        isCurrent={location.pathname === '/reports'}
+        data-title="Отчеты"
+      >
+        <PieChartIcon width={16} height={16} /> Отчеты
+      </NavigationLink>
       <Hr />
-      <NavigationItem
-        label="Настройки"
-        icon={<CogIcon width={16} height={16} />}
-        href="/settings"
-        isCollapsed={isCollapsed}
-      />
-      <NavigationItem
-        label="Свернуть"
-        icon={<ArrowLeftIcon width={16} height={16} style={{
-          transform: isCollapsed && 'scale(-1)', transition: '0.3s',
-        }} />}
-        isCollapsed={isCollapsed}
-        onClick={() => setIsCollapsed(!isCollapsed)}
-      />
+      <NavigationLink
+        to="/settings"
+        isCurrent={location.pathname === '/settings'}
+        data-title="Настройки"
+      >
+        <CogIcon width={16} height={16} /> Настройки
+      </NavigationLink>
+
+      <ToggleButton onClick={() => setIsCollapsed(!isCollapsed)} type="button">
+        <ArrowLeftIcon width={16} height={16} /> Свернуть
+      </ToggleButton>
     </StyledBox>
   );
 };
+
+export default PageNavigation;

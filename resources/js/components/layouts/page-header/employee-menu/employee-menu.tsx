@@ -1,5 +1,4 @@
-import { Avatar, DropdownIcon, StyledButton } from './styled';
-import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
+import { Avatar, DropdownIcon, Menu, StyledButton } from './styled';
 import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
 import { AppRoute, DEFAULT_AVATAR_PATH } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
@@ -32,13 +31,13 @@ function EmployeeMenu(): JSX.Element {
         </StyledButton>
       }
       dropdownMenu={
-        <DropdownMenu>
+        <Menu>
           <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
             Перейти к профилю
           </DropdownNavigation>
           <Hr />
           <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
-        </DropdownMenu>
+        </Menu>
       }
     />
   );
