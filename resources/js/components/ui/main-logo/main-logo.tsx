@@ -6,7 +6,7 @@ type MainLogoProps = {
   width?: number;
 };
 
-export default function MainLogo({ className, width = 120 }: MainLogoProps): JSX.Element {
+function MainLogo({ className, width = 120 }: MainLogoProps): JSX.Element {
   return (
     <StyledLogo
       className={className}
@@ -22,3 +22,5 @@ export default function MainLogo({ className, width = 120 }: MainLogoProps): JSX
     </StyledLogo>
   );
 };
+
+export default MainLogo;

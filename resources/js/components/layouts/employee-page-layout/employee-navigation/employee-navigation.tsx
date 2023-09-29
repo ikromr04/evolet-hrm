@@ -15,9 +15,6 @@ export default function EmployeeNavigation({ employee } : EmployeeNavigationProp
         <NavigationButton href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
           Личное
         </NavigationButton>
-        <NavigationButton href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
-          Работа
-        </NavigationButton>
       </NavigationItem>
     </NavigationList>
   );

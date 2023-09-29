@@ -1,8 +1,10 @@
+export const EMPTY_OPTION_LABEL = '--Выберите--';
+export const DEFAULT_AVATAR_PATH = '/img/default-avatar.png';
+
 export enum AppRoute {
   Main = '/',
   Login = '/employees/login',
   Employee = '/employees/:employeeId',
-  EmployeeWork = '/employees/:employeeId/work',
   NotFound = '*',
 };
 
@@ -35,5 +37,3 @@ export enum SliceName {
   Position = 'Position',
   Language = 'Language',
 };
-
-export const EmptyOptionLabel = '--Выберите--';

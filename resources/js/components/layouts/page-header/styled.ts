@@ -3,22 +3,21 @@ import Container from '../../ui/container/container';
 
 export const Header = styled('header')`
   position: sticky;
-  z-index: 1;
   top: 0;
-  background-color: white;
-  align-items: center;
-  box-shadow: 0px 1px 0px #dce5ef, 0px 1px 4px rgba(9, 8, 61, 0.08);
-  display: flex;
+  z-index: 2;
   padding: 16px 0;
+  background-color: white;
+  box-shadow: 0 0px 4px rgba(0,0,0,0.05);
   transition: .3s;
 
   .modal-shown & {
     transform: translateY(-100%);
   }
-`;
+  `;
 
 export const HeaderContainer = styled(Container)`
   display: flex;
   align-items: center;
-  gap: 32px;
+  justify-content: space-between;
+  gap: 24px;
 `;

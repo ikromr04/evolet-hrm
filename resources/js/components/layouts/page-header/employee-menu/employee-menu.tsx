@@ -1,7 +1,7 @@
 import { Avatar, DropdownIcon, StyledButton } from './styled';
 import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
-import { AppRoute } from '../../../../const';
+import { AppRoute, DEFAULT_AVATAR_PATH } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { logoutAction } from '../../../../store/employees-slice/employees-api-actions';
@@ -9,34 +9,39 @@ import { generatePath } from 'react-router-dom';
 import Dropdown from '../../../ui/dropdown/dropdown';
 import { getAuthorizedEmployee } from '../../../../store/employees-slice/employees-selector';
 
-export default function UserNavigation(): JSX.Element {
-  const user = useAppSelector(getAuthorizedEmployee);
+function EmployeeMenu(): JSX.Element {
+  const employee = useAppSelector(getAuthorizedEmployee);
   const dispatch = useAppDispatch();
+
+  if (!employee) {
+    return <></>;
+  }
 
   return (
     <Dropdown
       dropdownButton={
         <StyledButton>
           <Avatar
-            src={user?.avatar || '/img/default-avatar.png'}
+            src={employee.avatar || DEFAULT_AVATAR_PATH}
             width={32}
             height={32}
-            alt={user?.name}
+            alt={employee.name}
           />
-          {user?.name}
+          {employee.name}
           <DropdownIcon width={16} height={16} />
         </StyledButton>
       }
       dropdownMenu={
         <DropdownMenu>
-          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: user?.id || '' })}>
+          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
             Перейти к профилю
           </DropdownNavigation>
           <Hr />
           <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
         </DropdownMenu>
       }
-      menuTop={8}
     />
   );
 };
+
+export default EmployeeMenu;

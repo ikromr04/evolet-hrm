@@ -15,8 +15,8 @@ import { fetchJobsAction } from '../../../../../store/job-slice/job-api-actions'
 import { fetchPositionsAction } from '../../../../../store/position-slice/position-api-actions';
 import SelectField from '../../../../ui/select-field/select-field';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
-import { EmptyOptionLabel } from '../../../../../const';
 import Buttons from '../../../../ui/buttons/buttons';
+import { EMPTY_OPTION_LABEL } from '../../../../../const';
 
 type EditEmployeeProps = {
   employee: Employee;
@@ -145,7 +145,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
               value={selectedPositionId}
               onChange={(evt: BaseSyntheticEvent) => setSelectedPositionId(evt.target.value)}
               options={positions ? [
-                { value: '', label: EmptyOptionLabel },
+                { value: '', label: EMPTY_OPTION_LABEL },
                 ...positions.map(({ id, title }) => ({ value: id, label: title })),
               ] : [{ value: '', label: 'Не выбрано' }]}
             />
@@ -157,7 +157,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
                 value={selectedJobId}
                 onChange={(evt: BaseSyntheticEvent) => setSelectedJobId(evt.target.value)}
                 options={jobs ? [
-                  { value: '', label: EmptyOptionLabel },
+                  { value: '', label: EMPTY_OPTION_LABEL },
                   ...jobs.map(({ id, title }) => ({ value: id, label: title })),
                 ] : [{ value: '', label: 'Не выбрано' }]}
               />

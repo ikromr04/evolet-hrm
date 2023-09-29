@@ -10,11 +10,11 @@ import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/text-field/text-field';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 import SelectField from '../../../../ui/select-field/select-field';
-import { EmptyOptionLabel } from '../../../../../const';
 import {
   updateEmployeePersonalDataAction
 } from '../../../../../store/employees-slice/employees-api-actions';
 import Buttons from '../../../../ui/buttons/buttons';
+import { EMPTY_OPTION_LABEL } from '../../../../../const';
 
 type EditPersonalDataProps = {
   personalData: PersonalData
@@ -177,7 +177,7 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
               value={familyStatus}
               onChange={(evt: BaseSyntheticEvent) => setFamilyStatus(evt.target.value)}
               options={[
-                { value: '', label: EmptyOptionLabel },
+                { value: '', label: EMPTY_OPTION_LABEL },
                 { value: 'Не женат', label: 'Не женат' },
                 { value: 'Не замужем', label: 'Не замужем' },
                 { value: 'Женат', label: 'Женат' },

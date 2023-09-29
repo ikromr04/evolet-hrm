@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 export const StyledDropdown = styled('div')`
-  display: flex;
   position: relative;
+  display: flex;
 `;
 
 export const DropdownButton = styled('button')`
@@ -12,11 +12,11 @@ export const DropdownButton = styled('button')`
 `;
 
 export const MenuWrapper = styled('div').withConfig({
-  shouldForwardProp: (props) => !['isOpen', 'menuFullWidth', 'menuTop'].includes(props),
-})<{ isOpen: boolean, menuFullWidth: boolean, menuTop: number }>`
+  shouldForwardProp: (props) => !['isOpen', 'menuFullWidth'].includes(props),
+})<{ isOpen: boolean, menuFullWidth: boolean }>`
   position: absolute;
   right: 0;
-  top: calc(100% + ${({ menuTop }) => menuTop + 'px'});
+  top: calc(100% + 8px);
   padding: 0;
   min-width: max-content;
   z-index: 1;
