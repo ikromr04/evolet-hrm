@@ -32,7 +32,7 @@ export default function CreateEducation(): JSX.Element {
         ...newState,
         message: '',
       };
-  })
+  });
 
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -62,7 +62,7 @@ export default function CreateEducation(): JSX.Element {
     <StyledModal
       button={
         <Button type="button">
-          <PlusIcon height={14} /> Добавить
+          <PlusIcon width={14} height={14} /> Добавить
         </Button>
       }
       window={

@@ -14,7 +14,7 @@ export default function PersonalData(): JSX.Element {
 
   if (!personalData) {
     return <></>;
-  }
+  };
 
   return (
     <Box tagName="section">
@@ -41,4 +41,4 @@ export default function PersonalData(): JSX.Element {
       </BoxInner>
     </Box>
   );
-}
+};

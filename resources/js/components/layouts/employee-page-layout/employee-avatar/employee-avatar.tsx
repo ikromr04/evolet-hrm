@@ -26,7 +26,7 @@ export default function EmployeeAvatar(): JSX.Element {
         },
       }));
     }
-  }
+  };
 
   const handleDeleteAvatar = () => {
     employee && authorizedEmployee && dispatch(deleteEmployeeAvatarAction({
@@ -73,4 +73,4 @@ export default function EmployeeAvatar(): JSX.Element {
       onMenuClickHide
     />
   );
-}
+};

@@ -37,7 +37,7 @@ export default function EmployeePageLayout(): JSX.Element {
 
   if (!employee) {
     return (<Spinner />);
-  }
+  };
 
   const handleNextClick = (evt: BaseSyntheticEvent) => {
     evt.target.disabled = true;
@@ -71,10 +71,10 @@ export default function EmployeePageLayout(): JSX.Element {
 
           <Actions>
             <Button onClick={handlePreviousClick} type="button">
-              <ChevronLeftIcon height={13} /> Предыдущий
+              <ChevronLeftIcon width={14} height={14} /> Предыдущий
             </Button>
             <Button onClick={handleNextClick} type="button">
-              Следующий <ChevronRightIcon height={13} />
+              Следующий <ChevronRightIcon width={14} height={13} />
             </Button>
           </Actions>
         </HeaderInner>

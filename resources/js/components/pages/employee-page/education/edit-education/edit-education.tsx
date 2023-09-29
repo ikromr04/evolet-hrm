@@ -16,7 +16,7 @@ import Buttons from '../../../../ui/buttons/buttons';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 
 type EditEducationProps = {
-  education: Education
+  education: Education;
 };
 
 export default function EditEducation({ education }: EditEducationProps): JSX.Element {
@@ -74,7 +74,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
     <StyledModal
       button={
         <Button type="button">
-          <EditIcon height={13} /> Редактировать
+          <EditIcon width={14} height={14} /> Редактировать
         </Button>
       }
       window={

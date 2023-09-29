@@ -19,7 +19,7 @@ import { EmptyOptionLabel } from '../../../../../const';
 import Buttons from '../../../../ui/buttons/buttons';
 
 type EditEmployeeProps = {
-  employee: Employee
+  employee: Employee;
 };
 
 export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Element {
@@ -88,7 +88,7 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
     <StyledModal
       button={
         <Button type="button">
-          <EditIcon width={14} /> Редактировать
+          <EditIcon width={14} height={14} /> Редактировать
         </Button>
       }
       window={
@@ -174,4 +174,4 @@ export default function EditEmployee({ employee }: EditEmployeeProps): JSX.Eleme
       }
     />
   );
-}
+};

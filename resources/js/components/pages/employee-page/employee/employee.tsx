@@ -13,7 +13,7 @@ export default function Employee(): JSX.Element {
 
   if (!employee) {
     return <></>;
-  }
+  };
 
   return (
     <Box tagName="section">
@@ -38,4 +38,4 @@ export default function Employee(): JSX.Element {
       </BoxInner>
     </Box>
   );
-}
+};

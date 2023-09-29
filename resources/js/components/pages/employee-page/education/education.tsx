@@ -40,12 +40,12 @@ export default function Education(): JSX.Element {
 
   if (!educations) {
     return <></>;
-  }
+  };
 
   return (
     <Box tagName="section">
       <BoxToolbar>
-        <IconsBox icon={<EducationIcon />} />
+        <IconsBox icon={<EducationIcon width={14} height={14} />} />
         <Title small>Образование</Title>
         <CreateEducation />
       </BoxToolbar>

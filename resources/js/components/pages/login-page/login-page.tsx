@@ -45,7 +45,7 @@ export default function LoginPage(): JSX.Element {
 
   if (authorizationStatus === AuthorizationStatus.Auth) {
     return <Navigate to={AppRoute.Main} />
-  }
+  };
 
   return (
     <StyledBox tagName="main">

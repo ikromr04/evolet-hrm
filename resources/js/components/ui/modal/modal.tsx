@@ -8,7 +8,7 @@ type ModalProps = {
   className?: string;
   button: JSX.Element;
   window: JSX.Element;
-}
+};
 
 export default function Modal({
   className,

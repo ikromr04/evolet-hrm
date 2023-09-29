@@ -6,7 +6,7 @@ type SpinnerProps = {
   stroke?: number;
   color?: string;
   [rest: string]: any;
-}
+};
 
 export default function Spinner(props: SpinnerProps): JSX.Element {
   const { className, width, stroke, color, ...rest } = props;
@@ -22,5 +22,5 @@ export default function Spinner(props: SpinnerProps): JSX.Element {
         color={color}
       />
     </StyledSpinner>
-  )
-}
+  );
+};

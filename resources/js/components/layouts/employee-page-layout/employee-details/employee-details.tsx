@@ -9,7 +9,7 @@ import { fetchEmployeePersonalDataAction } from '../../../../store/employees-sli
 
 type EmployeeDetailsProps = {
   employee: Employee;
-}
+};
 
 export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX.Element {
   const personalData = useAppSelector(getEmployeePersonalData);
@@ -39,4 +39,4 @@ export default function EmployeeDetails({ employee }: EmployeeDetailsProps): JSX
       {employee.position && <Position>{employee.position?.title}</Position>}
     </Details>
   );
-}
+};

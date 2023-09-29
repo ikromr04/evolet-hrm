@@ -92,7 +92,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
     evt.preventDefault();
     setEmployeeLanguages(employee.languages || []);
     navigate(location.pathname);
-  }
+  };
 
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
@@ -106,7 +106,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
         navigate(location.pathname);
       },
     }))
-  }
+  };
 
   return (
     <StyledModal

@@ -9,17 +9,18 @@ import {
   StyledButton,
   Wrapper
 } from './styled';
+import { memo } from 'react';
 
 type NavigationItemProps = {
   label: string;
   icon?: JSX.Element;
   href?: string;
-  isCollapsed?: boolean,
+  isCollapsed?: boolean;
   links?: { path: string, label: string }[];
-  [rest: string]: unknown,
-}
+  [rest: string]: any;
+};
 
-export default function NavigationItem({
+function NavigationItem({
   label,
   icon,
   href,
@@ -57,3 +58,5 @@ export default function NavigationItem({
     </Wrapper>
   );
 };
+
+export default memo(NavigationItem);

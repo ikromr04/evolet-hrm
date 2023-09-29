@@ -11,4 +11,4 @@ export default function TextLink({ href, children }: TextLinkProps): JSX.Element
       {children}
     </StyledLink>
   );
-}
+};

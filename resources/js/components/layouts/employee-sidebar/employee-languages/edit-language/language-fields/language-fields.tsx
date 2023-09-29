@@ -48,7 +48,7 @@ export default function LanguageFields({
         warning
         onClick={deleteHandler(currentLanguage)}
       >
-        <XIcon width={14} />
+        <XIcon width={14} height={14} />
       </Button>
     </Wrapper>
   );

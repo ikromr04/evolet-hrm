@@ -3,7 +3,7 @@ import Box from '../../ui/box/box';
 
 export const StyledBox = styled(Box)`
   position: sticky;
-  top: 83px;
+  top: 80px;
   padding: 16px 0;
   z-index: 1;
   transition: .3s;

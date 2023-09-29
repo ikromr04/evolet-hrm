@@ -5,8 +5,8 @@ export default function Notification(): JSX.Element {
   return (
     <Wrapper>
       <StyledButton title="Уведомлении">
-        <BellIcon height={16} />
+        <BellIcon width={14} height={14} />
       </StyledButton>
     </Wrapper>
-  )
-}
+  );
+};
