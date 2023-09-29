@@ -26,26 +26,26 @@ export default function PageNavigation(): JSX.Element {
     <StyledBox tagName="nav">
       <NavigationItem
         label="Главная страница"
-        icon={<HomeIcon width={14} height={14} />}
+        icon={<HomeIcon width={16} height={16} />}
         href={AppRoute.Main}
         isCollapsed={isCollapsed}
       />
       <Hr />
       <NavigationItem
         label="Сотрудники"
-        icon={<AddressBookIcon width={14} height={14} />}
+        icon={<AddressBookIcon width={16} height={16} />}
         href="/employees"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Календарь"
-        icon={<CalendarIcon width={14} height={14} />}
+        icon={<CalendarIcon width={16} height={16} />}
         href="/calendars"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Рекрутинг"
-        icon={<UsersIcon width={14} height={14} />}
+        icon={<UsersIcon width={16} height={16} />}
         links={[
           { label: 'Вакансии', path: '/recruitment/vacancies' },
           { label: 'Кандидаты', path: '/recruitment/applicants' },
@@ -56,7 +56,7 @@ export default function PageNavigation(): JSX.Element {
       />
       <NavigationItem
         label="Эффективность"
-        icon={<AwardIcon width={14} height={14} />}
+        icon={<AwardIcon width={16} height={16} />}
         links={[
           { label: 'Обзор', path: '/efficiency/review' },
           { label: '1-on-1', path: '/efficiency/one-on-one' },
@@ -68,62 +68,62 @@ export default function PageNavigation(): JSX.Element {
       />
       <NavigationItem
         label="Учет посещаемости"
-        icon={<ClockIcon width={14} height={14} />}
+        icon={<ClockIcon width={16} height={16} />}
         href="/attendance"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Опросы"
-        icon={<QuestionIcon width={14} height={14} />}
+        icon={<QuestionIcon width={16} height={16} />}
         href="/polls"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Документы"
-        icon={<FileIcon width={14} height={14} />}
+        icon={<FileIcon width={16} height={16} />}
         href="/documents"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Имущество"
-        icon={<CubesIcon width={14} height={14} />}
+        icon={<CubesIcon width={16} height={16} />}
         href="/store"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="База знаний"
-        icon={<BookIcon width={14} height={14} />}
+        icon={<BookIcon width={16} height={16} />}
         href="/knowledge"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Кейсы"
-        icon={<CommentIcon width={14} height={14} />}
+        icon={<CommentIcon width={16} height={16} />}
         href="/cases"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Процессы"
-        icon={<NetwordIcon width={14} height={14} />}
+        icon={<NetwordIcon width={16} height={16} />}
         href="/process"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Отчеты"
-        icon={<PieChartIcon width={14} height={14} />}
+        icon={<PieChartIcon width={16} height={16} />}
         href="/reports"
         isCollapsed={isCollapsed}
       />
       <Hr />
       <NavigationItem
         label="Настройки"
-        icon={<CogIcon width={14} height={14} />}
+        icon={<CogIcon width={16} height={16} />}
         href="/settings"
         isCollapsed={isCollapsed}
       />
       <NavigationItem
         label="Свернуть"
-        icon={<ArrowLeftIcon width={14} height={14} style={{
+        icon={<ArrowLeftIcon width={16} height={16} style={{
           transform: isCollapsed && 'scale(-1)', transition: '0.3s',
         }} />}
         isCollapsed={isCollapsed}

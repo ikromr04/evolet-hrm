@@ -112,7 +112,7 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
     <StyledModal
       button={
         <Button title="Редактировать">
-          <EditIcon height={14} width={14} />
+          <EditIcon width={16} height={16} />
         </Button>
       }
       window={

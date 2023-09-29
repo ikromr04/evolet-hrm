@@ -24,7 +24,7 @@ export default function UserNavigation(): JSX.Element {
             alt={user?.name}
           />
           {user?.name}
-          <DropdownIcon width={14} height={14} />
+          <DropdownIcon width={16} height={16} />
         </StyledButton>
       }
       dropdownMenu={

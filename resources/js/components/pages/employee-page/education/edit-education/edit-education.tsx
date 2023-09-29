@@ -74,7 +74,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
     <StyledModal
       button={
         <Button type="button">
-          <EditIcon width={14} height={14} /> Редактировать
+          <EditIcon width={16} height={16} /> Редактировать
         </Button>
       }
       window={
@@ -107,7 +107,7 @@ export default function EditEducation({ education }: EditEducationProps): JSX.El
               />
             </WideColumn>
             <WideColumn>
-                <TextField
+              <TextField
                 label="Факультет"
                 type="text"
                 name="faculty"

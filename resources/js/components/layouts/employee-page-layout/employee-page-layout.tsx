@@ -71,10 +71,10 @@ export default function EmployeePageLayout(): JSX.Element {
 
           <Actions>
             <Button onClick={handlePreviousClick} type="button">
-              <ChevronLeftIcon width={14} height={14} /> Предыдущий
+              <ChevronLeftIcon width={16} height={16} /> Предыдущий
             </Button>
             <Button onClick={handleNextClick} type="button">
-              Следующий <ChevronRightIcon width={14} height={13} />
+              Следующий <ChevronRightIcon width={16} height={16} />
             </Button>
           </Actions>
         </HeaderInner>

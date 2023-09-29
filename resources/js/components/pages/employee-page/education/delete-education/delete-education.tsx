@@ -41,7 +41,7 @@ export default function DeleteEducation({ education }: DeleteEducationProps): JS
     <StyledModal
       button={
         <Button type="button">
-          <DeleteIcon width={14} height={14} /> Удалить
+          <DeleteIcon width={16} height={16} /> Удалить
         </Button>
       }
       window={

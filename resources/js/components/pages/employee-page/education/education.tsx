@@ -45,7 +45,7 @@ export default function Education(): JSX.Element {
   return (
     <Box tagName="section">
       <BoxToolbar>
-        <IconsBox icon={<EducationIcon width={14} height={14} />} />
+        <IconsBox icon={<EducationIcon width={16} height={16} />} />
         <Title small>Образование</Title>
         <CreateEducation />
       </BoxToolbar>

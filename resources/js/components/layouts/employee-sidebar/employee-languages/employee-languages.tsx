@@ -27,7 +27,7 @@ export default function EmployeeLanguages(): JSX.Element {
   return (
     <Box>
       <BoxToolbar>
-        <IconsBox icon={<LanguageIcon width={14} height={14} />} />
+        <IconsBox icon={<LanguageIcon width={16} height={16} />} />
         <Title small>Знание языков</Title>
         <EditLanguage employee={employee} languages={languages} />
       </BoxToolbar>

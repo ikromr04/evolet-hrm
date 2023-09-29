@@ -20,7 +20,7 @@ export default function NotFoundPage(): JSX.Element {
         что произошла ошибка, то сообщите своему администратору или дайте нам знать.
       </Text>
       <Button href={AppRoute.Main} success>
-        <HomeIcon width={14} height={14} /> Вернуться на главную страницу
+        <HomeIcon width={16} height={16} /> Вернуться на главную страницу
       </Button>
     </StyledPage>
   );

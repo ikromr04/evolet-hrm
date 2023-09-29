@@ -9,19 +9,19 @@ export default function QuickAdd(): JSX.Element {
     <Dropdown
       dropdownButton={
         <StyledButton>
-          <PlusIcon width={14} height={14} /> Быстрое добавление
+          <PlusIcon width={16} height={16} /> Быстрое добавление
         </StyledButton>
       }
       dropdownMenu={
         <DropdownMenu>
           <DropdownNavigation>
-            <PlusIcon width={14} height={14} /> Создать сотрудника
+            <PlusIcon width={16} height={16} /> Создать сотрудника
           </DropdownNavigation>
           <DropdownNavigation>
-            <PlusIcon width={14} height={14} /> Создать кандидата
+            <PlusIcon width={16} height={16} /> Создать кандидата
           </DropdownNavigation>
           <DropdownNavigation>
-            <PlusIcon width={14} height={14} /> Создать отдел
+            <PlusIcon width={16} height={16} /> Создать отдел
           </DropdownNavigation>
         </DropdownMenu>
       }

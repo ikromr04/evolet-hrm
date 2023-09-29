@@ -92,7 +92,7 @@ export default function EditPersonalData({ personalData }: EditPersonalDataProps
     <StyledModal
       button={
         <Button type="button">
-          <EditIcon width={14} height={14} /> Редактировать
+          <EditIcon width={16} height={16} /> Редактировать
         </Button>
       }
       window={

@@ -62,7 +62,7 @@ export default function CreateEducation(): JSX.Element {
     <StyledModal
       button={
         <Button type="button">
-          <PlusIcon width={14} height={14} /> Добавить
+          <PlusIcon width={16} height={16} /> Добавить
         </Button>
       }
       window={
@@ -91,13 +91,15 @@ export default function CreateEducation(): JSX.Element {
                 onInput={handleInputsChange}
               />
             </WideColumn>
-            <TextField
-              label="Факультет"
-              type="text"
-              name="faculty"
-              errorMessage={validationError?.errors?.faculty?.[0]}
-              onInput={handleInputsChange}
-            />
+            <WideColumn>
+              <TextField
+                label="Факультет"
+                type="text"
+                name="faculty"
+                errorMessage={validationError?.errors?.faculty?.[0]}
+                onInput={handleInputsChange}
+              />
+            </WideColumn>
             <SelectField
               label="Форма обучения"
               name="form"
