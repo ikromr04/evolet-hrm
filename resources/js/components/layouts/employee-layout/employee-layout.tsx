@@ -7,6 +7,7 @@ import EmployeeNavigation from './employee-navigation/employee-navigation';
 import { SectionInner, Section } from './styled';
 import { fetchEmployeeByIdAction } from '../../../store/employees-slice/employees-api-actions';
 import EmployeeHeader from './employee-header/employee-header';
+import EmployeeSidebar from '../employee-sidebar/employee-sidebar';
 
 function EmployeeLayout(): JSX.Element {
   const params = useParams();
@@ -32,7 +33,7 @@ function EmployeeLayout(): JSX.Element {
 
       <SectionInner>
         <Outlet />
-        {/* <EmployeeSidebar /> */}
+        <EmployeeSidebar />
       </SectionInner>
     </Section>
   );

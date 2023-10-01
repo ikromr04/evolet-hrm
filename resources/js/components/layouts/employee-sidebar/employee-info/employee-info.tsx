@@ -14,10 +14,11 @@ import {
   getEmployee,
   getEmployeePersonalData
 } from '../../../../store/employees-slice/employees-selector';
+import { memo } from 'react';
 
-export default function EmployeeInfo(): JSX.Element {
-  const personalData = useAppSelector(getEmployeePersonalData);
+function EmployeeInfo(): JSX.Element {
   const employee = useAppSelector(getEmployee);
+  const personalData = useAppSelector(getEmployeePersonalData);
 
   if (!personalData || !employee) {
     return <></>;
@@ -49,3 +50,5 @@ export default function EmployeeInfo(): JSX.Element {
     </Box>
   );
 };
+
+export default memo(EmployeeInfo);

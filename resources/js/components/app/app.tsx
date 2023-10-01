@@ -27,8 +27,8 @@ export default function App(): JSX.Element {
           <Route element={<PageLayout />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
             <Route path={AppRoute.Employee} element={<EmployeeLayout />}>
-              <Route index element={<EmployeePage />} />
-              <Route path={AppRoute.EmployeeWork} element={<></>} />
+              <Route index element={<>employee</>} />
+              <Route path={AppRoute.EmployeeWork} element={<>work</>} />
             </Route>
 
             <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
