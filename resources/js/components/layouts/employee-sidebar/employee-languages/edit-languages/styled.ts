@@ -1,12 +1,13 @@
 import styled from 'styled-components';
-import Modal from '../../../../ui/modal/modal';
+import Button from '../../../../ui/button/button';
+import { StyledInfo } from '../../../../ui/info/styled';
 
-export const StyledModal = styled(Modal)`
+export const EditButton = styled(Button)`
+  position: relative;
   margin-left: auto;
-`;
 
-export const Buttons = styled('div')`
-  display: flex;
-  justify-content: flex-end;
-  gap: 8px;
+  &:hover ${StyledInfo} {
+    opacity: 1;
+    visibility: visible;
+  }
 `;

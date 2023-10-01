@@ -3,6 +3,7 @@ import { StyledButton } from './styled';
 import { Link } from 'react-router-dom';
 
 type ButtonProps = PropsWithChildren<{
+  className?: string;
   href?: string;
   success?: boolean;
   warning?: boolean;
@@ -13,6 +14,7 @@ type ButtonProps = PropsWithChildren<{
 
 function Button({
   children,
+  className,
   href,
   success,
   warning,
@@ -22,6 +24,7 @@ function Button({
 }: ButtonProps): JSX.Element {
   return (
     <StyledButton
+      className={className}
       as={href ? Link : ''}
       to={href}
       success={success}

@@ -1,14 +1,7 @@
 import styled, { css } from 'styled-components';
+import Box from '../box/box';
 
-export const ButtonWrapper = styled('div').withConfig({
-  shouldForwardProp: (props) => !['isOpen'].includes(props),
-})<{ isOpen: boolean }>`
-  ${({ isOpen }) => isOpen && css`
-    pointer-events: none;
-  `}
-`;
-
-export const ModalWrapper = styled('div').withConfig({
+export const StyledModal = styled('div').withConfig({
   shouldForwardProp: (props) => !['isOpen'].includes(props),
 })<{ isOpen: boolean }>`
   position: fixed;
@@ -30,20 +23,19 @@ export const ModalWrapper = styled('div').withConfig({
     pointer-events: all;
     opacity: 1;
     visibility: visible;
+
+    ${ModalInner} {
+      transform: translateX(-50%) translateY(32px);
+    }
   `}
 `;
 
-export const ModalWindow = styled('div').withConfig({
-  shouldForwardProp: (props) => !['isOpen'].includes(props),
-})<{ isOpen: boolean }>`
+export const ModalInner = styled(Box)`
   position: fixed;
-  z-index: 3;
   top: 0;
   left: 50%;
   transform: translateX(-50%) translateY(-100%);
+  z-index: 3;
+  padding: 24px 32px;
   transition: .3s;
-
-  ${({ isOpen }) => isOpen && css`
-    transform: translateX(-50%) translateY(32px);
-  `}
 `;

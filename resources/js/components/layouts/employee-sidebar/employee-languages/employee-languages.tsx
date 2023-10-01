@@ -14,7 +14,7 @@ function EmployeeLanguages(): JSX.Element {
       <BoxToolbar>
         <IconsBox icon={<LanguageIcon width={16} height={16} />} />
         <Title small>Знание языков</Title>
-        {/* <EditLanguages /> */}
+        <EditLanguages />
       </BoxToolbar>
 
       <BoxInner>
