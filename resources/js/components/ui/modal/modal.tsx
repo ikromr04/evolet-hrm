@@ -20,7 +20,7 @@ function Modal({ children, isOpen, setIsOpen }: ModalProps): JSX.Element {
   return (
     <StyledModal isOpen={isOpen}>
       <div ref={ref}>
-        <ModalInner>{children}</ModalInner>
+        <ModalInner>{isOpen && children}</ModalInner>
       </div>
     </StyledModal>
   );
