@@ -1,30 +1,27 @@
+import { useAppSelector } from '../../../../../hooks';
+import { getEmployee } from '../../../../../store/employees-slice/employees-selector';
 import { EmployeeLanguages } from '../../../../../types/employee';
-import BoxInner from '../../../../ui/box-inner/box-inner';
 import DescriptionList from '../../../../ui/description-list/description-list';
 import Text from '../../../../ui/text/text';
 
-type LanguagesListProps = {
-  languages: EmployeeLanguages | null;
-};
+function LanguagesList(): JSX.Element {
+  const employee = useAppSelector(getEmployee);
 
-export default function LanguagesList({ languages }: LanguagesListProps): JSX.Element {
+  if (!employee) {
+    return <></>;
+  }
+
   const transformLanguages = (languages: EmployeeLanguages) =>
     languages.reduce((acc: { [key: string]: string; }, language) => {
       acc[language.name] = language.level;
       return acc;
     }, {});
 
-  if (!languages || !languages.length) {
-    return (
-      <BoxInner>
-        <Text>Не заполнено</Text>
-      </BoxInner>
-    );
+  if (!employee.languages || !employee.languages.length) {
+    return (<Text>Не заполнено</Text>);
   }
 
-  return (
-    <BoxInner>
-      <DescriptionList list={transformLanguages(languages)} detailedInverse />
-    </BoxInner>
-  );
+  return (<DescriptionList list={transformLanguages(employee.languages)} detailedInverse />);
 };
+
+export default LanguagesList;

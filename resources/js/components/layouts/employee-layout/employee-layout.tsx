@@ -14,7 +14,7 @@ function EmployeeLayout({ children }: PropsWithChildren): JSX.Element {
   const params = useParams();
 
   useEffect(() => {
-    if (params.employeeId && String(params.employeeId) !== String(employee?.id)) {
+    if (params.employeeId && params.employeeId !== String(employee?.id)) {
       dispatch(fetchEmployeeByIdAction({ employeeId: params.employeeId }));
     }
   }, [params.employeeId]);

@@ -14,16 +14,8 @@ import {
   crudEmployeeLanguagesAction
 } from '../../../../../store/employees-slice/employees-api-actions';
 
-type EditLanguageProps = {
-  employee: Employee;
-  languages: Languages;
-};
-
-export default function EditLanguage({ employee, languages }: EditLanguageProps): JSX.Element {
+function EditLanguages(): JSX.Element {
   const dispatch = useAppDispatch();
-  const params = useParams();
-  const location = useLocation();
-  const navigate = useNavigate();
   const [employeeLanguages, setEmployeeLanguages] =
     useState<EmployeeLanguages>(employee.languages || []);
 
@@ -140,3 +132,5 @@ export default function EditLanguage({ employee, languages }: EditLanguageProps)
     />
   );
 };
+
+export default EditLanguages;

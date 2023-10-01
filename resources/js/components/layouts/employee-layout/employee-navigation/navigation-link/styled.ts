@@ -23,5 +23,6 @@ export const StyledLink = styled(Link).withConfig({
     border: 1px solid #dce5ef;
     box-shadow: 0px 1px 4px rgba(9,8,61,0.08);
     background-color: white;
+    pointer-events: none;
   `}
 `;

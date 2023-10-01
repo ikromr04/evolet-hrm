@@ -1,22 +1,24 @@
-import { generatePath, useParams } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
 import { Navigation } from './styled';
 import { AppRoute } from '../../../../const';
 import { memo } from 'react';
 import NavigationLink from './navigation-link/navigation-link';
+import { useAppSelector } from '../../../../hooks';
+import { getEmployee } from '../../../../store/employees-slice/employees-selector';
 
 function EmployeeNavigation(): JSX.Element {
-  const params = useParams();
+  const employee = useAppSelector(getEmployee);
 
-  if (!params.employeeId) {
+  if (!employee) {
     return <></>;
   }
 
   return (
     <Navigation>
-      <NavigationLink href={generatePath(AppRoute.Employee, { employeeId: params.employeeId })}>
+      <NavigationLink href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
         Личное
       </NavigationLink>
-      <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: params.employeeId })}>
+      <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
         Работа
       </NavigationLink>
     </Navigation>
