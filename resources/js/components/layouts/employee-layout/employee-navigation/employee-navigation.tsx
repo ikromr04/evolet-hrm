@@ -1,21 +1,22 @@
-import { generatePath } from 'react-router-dom';
+import { generatePath, useParams } from 'react-router-dom';
 import { Navigation } from './styled';
-import { Employee } from '../../../../types/employee';
 import { AppRoute } from '../../../../const';
 import { memo } from 'react';
 import NavigationLink from './navigation-link/navigation-link';
 
-type EmployeeNavigationProps = {
-  employee: Employee;
-};
+function EmployeeNavigation(): JSX.Element {
+  const params = useParams();
 
-function EmployeeNavigation({ employee } : EmployeeNavigationProps): JSX.Element {
+  if (!params.employeeId) {
+    return <></>;
+  }
+
   return (
     <Navigation>
-      <NavigationLink href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
+      <NavigationLink href={generatePath(AppRoute.Employee, { employeeId: params.employeeId })}>
         Личное
       </NavigationLink>
-      <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
+      <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: params.employeeId })}>
         Работа
       </NavigationLink>
     </Navigation>

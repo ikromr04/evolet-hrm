@@ -4,6 +4,7 @@ import { StyledSidebar } from './styled';
 import { useAppDispatch } from '../../../hooks';
 import { useParams } from 'react-router-dom';
 import { fetchEmployeePersonalDataAction } from '../../../store/employees-slice/employees-api-actions';
+import EmployeeLanguages from './employee-languages/employee-languages';
 
 function EmployeeSidebar(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ function EmployeeSidebar(): JSX.Element {
   return (
     <StyledSidebar>
       <EmployeeInfo />
-      {/* <EmployeeLanguages /> */}
+      <EmployeeLanguages />
     </StyledSidebar>
   );
 };

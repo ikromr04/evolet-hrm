@@ -9,6 +9,6 @@ export const Section = styled('section')`
 
 export const SectionInner = styled('div')`
   display: grid;
-  grid-template-columns: 75% 1fr;
+  grid-template-columns: 75% calc(25% - 16px);
   gap: 16px;
 `;

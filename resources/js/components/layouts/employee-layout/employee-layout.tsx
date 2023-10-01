@@ -29,7 +29,7 @@ function EmployeeLayout(): JSX.Element {
     <Section>
       <EmployeeHeader />
 
-      <EmployeeNavigation employee={employee} />
+      <EmployeeNavigation />
 
       <SectionInner>
         <Outlet />

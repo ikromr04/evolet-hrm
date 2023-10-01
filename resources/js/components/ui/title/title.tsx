@@ -1,5 +1,5 @@
 import { StyledTitle } from './styled';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, memo } from 'react';
 
 type TitleProps = PropsWithChildren<{
   className?: string;
@@ -8,7 +8,7 @@ type TitleProps = PropsWithChildren<{
   large?: boolean;
 }>;
 
-export default function Title({
+function Title({
   children,
   className,
   tagName,
@@ -26,3 +26,5 @@ export default function Title({
     </StyledTitle>
   );
 };
+
+export default memo(Title);

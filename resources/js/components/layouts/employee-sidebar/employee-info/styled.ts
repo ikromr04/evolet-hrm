@@ -4,4 +4,5 @@ export const LinksWrapper = styled('div')`
   display: flex;
   align-items: center;
   gap: 8px;
+  overflow: hidden;
 `;
