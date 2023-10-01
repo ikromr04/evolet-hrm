@@ -7,9 +7,9 @@ import PrivateRoute from '../private-route/private-route';
 import LoginPage from '../pages/login-page/login-page';
 import NotFoundPage from '../pages/not-found-page/not-found-page';
 import MainPage from '../pages/main-page/main-page';
-import EmployeePageLayout from '../layouts/employee-page-layout/employee-page-layout';
 import EmployeePage from '../pages/employee-page/employee-page';
 import PageLayout from '../layouts/page-layout/page-layout';
+import EmployeeLayout from '../layouts/employee-layout/employee-layout';
 
 export default function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
@@ -26,11 +26,12 @@ export default function App(): JSX.Element {
         <Route element={<PrivateRoute />}>
           <Route element={<PageLayout />}>
             <Route path={AppRoute.Main} element={<MainPage />} />
-            <Route path={AppRoute.Employee} element={<EmployeePageLayout />}>
+            <Route path={AppRoute.Employee} element={<EmployeeLayout />}>
               <Route index element={<EmployeePage />} />
+              <Route path={AppRoute.EmployeeWork} element={<></>} />
             </Route>
 
-            <Route path="/employees" element={<p>Not implemented</p>} />
+            <Route path={AppRoute.Employees} element={<p>Not implemented</p>} />
             <Route path="/calendars" element={<p>Not implemented</p>} />
             <Route path="/recruitment" element={<p>Not implemented</p>} />
             <Route path="/efficiency" element={<p>Not implemented</p>} />

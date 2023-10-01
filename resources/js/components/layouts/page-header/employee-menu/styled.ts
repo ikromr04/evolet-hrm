@@ -1,19 +1,10 @@
 import styled from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
-import DropdownMenu from '../../../ui/dropdown-menu/dropdown-menu';
 
-export const Wrapper = styled('div')`
-  position: relative;
-  z-index: 1;
-`;
-
-export const StyledButton = styled('span')`
-  border: none;
-  padding: 0;
+export const Span = styled('span')`
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: transparent;
   font-weight: 600;
   font-size: 14px;
   line-height: 14px;
@@ -30,8 +21,4 @@ export const DropdownIcon = styled(CaretIcon)`
   width: 8px;
   fill: #476887;
   transition: .3s;
-`;
-
-export const Menu = styled(DropdownMenu)`
-  margin-top: 8px;
 `;

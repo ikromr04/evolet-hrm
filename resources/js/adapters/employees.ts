@@ -1,6 +1,21 @@
-import { Education, Educations, Employee, EmployeeLanguage, EmployeeLanguages, PersonalData } from '../types/employee';
+import {
+  AuthorizedEmployee,
+  Education,
+  Educations,
+  Employee,
+  EmployeeLanguage,
+  EmployeeLanguages,
+  PersonalData
+} from '../types/employee';
 import { adaptJobToClient } from './jobs';
 import { adaptPositionToClient } from './positions';
+
+export const adaptAuthorizedEmployeeToClient = (serverEmployee: any): AuthorizedEmployee => ({
+  id: serverEmployee.id,
+  name: serverEmployee.name,
+  surname: serverEmployee.surname,
+  avatar: serverEmployee.avatar,
+});
 
 export const adaptEmployeeToClient = (serverEmployee: any): Employee => ({
   id: serverEmployee.id,
@@ -9,6 +24,8 @@ export const adaptEmployeeToClient = (serverEmployee: any): Employee => ({
   patronymic: serverEmployee.patronymic,
   login: serverEmployee.login,
   avatar: serverEmployee.avatar,
+  previousEmployeeId: serverEmployee.previous_employee_id,
+  nextEmployeeId: serverEmployee.next_employee_id,
   startedWorkAt: serverEmployee.started_work_at,
   job: serverEmployee.job ? adaptJobToClient(serverEmployee.job) : null,
   position: serverEmployee.position ? adaptPositionToClient(serverEmployee.position) : null,

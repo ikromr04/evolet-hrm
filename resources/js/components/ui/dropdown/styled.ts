@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Box from '../box/box';
 
 export const StyledDropdown = styled('div')`
   position: relative;
@@ -11,25 +12,25 @@ export const DropdownButton = styled('button')`
   background-color: transparent;
 `;
 
-export const MenuWrapper = styled('div').withConfig({
-  shouldForwardProp: (props) => !['isOpen', 'menuFullWidth'].includes(props),
-})<{ isOpen: boolean, menuFullWidth: boolean }>`
+export const DropdownMenu = styled(Box).withConfig({
+  shouldForwardProp: (props) => !['isOpen', 'fullWidthMenu'].includes(props),
+})<{ isOpen: boolean, fullWidthMenu: boolean }>`
   position: absolute;
   right: 0;
   top: calc(100%);
-  padding: 0;
+  padding: 8px 0;
   min-width: max-content;
   z-index: 1;
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
   transition: .3s;
 
-  ${({ menuFullWidth }) => menuFullWidth && css`
-    width: 100%;
+  ${({ isOpen }) => isOpen && css`
+    opacity: 1;
+    visibility: visible;
   `}
 
-  ${({ isOpen }) => !isOpen && css`
-    opacity: 0;
-    visibility: hidden;
+  ${({ fullWidthMenu }) => fullWidthMenu && css`
+    width: 100%;
   `}
 `;

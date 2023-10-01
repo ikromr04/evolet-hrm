@@ -1,24 +1,26 @@
-import { PropsWithChildren } from 'react';
-import { StyledNavigation } from './styled';
+import { PropsWithChildren, memo } from 'react';
+import { MenuItem } from './styled';
 import { Link } from 'react-router-dom';
 
-type DropdownNavigationProps = PropsWithChildren<{
+type DropdownMenuItemProps = PropsWithChildren<{
   href?: string;
-  [rest: string]: unknown;
+  [rest: string]: any;
 }>;
 
-export default function DropdownNavigation({
+function DropdownMenuItem({
   href,
   children,
   ...rest
-} : DropdownNavigationProps): JSX.Element {
+} : DropdownMenuItemProps): JSX.Element {
   return (
-    <StyledNavigation
+    <MenuItem
       as={href ? Link : ''}
       to={href}
       {...rest}
     >
       {children}
-    </StyledNavigation>
+    </MenuItem>
   );
 };
+
+export default memo(DropdownMenuItem);

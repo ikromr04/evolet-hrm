@@ -7,6 +7,13 @@ export type LoginData = {
   password: string;
 };
 
+export type AuthorizedEmployee = {
+  id: string;
+  name: string;
+  surname: string;
+  avatar: string;
+};
+
 export type Employee = {
   id: string;
   name: string;
@@ -14,11 +21,15 @@ export type Employee = {
   patronymic: string;
   login: string;
   avatar: string;
+  previousEmployeeId: string;
+  nextEmployeeId: string;
   startedWorkAt: Date;
   job: Job | null;
   position: Position | null;
   languages: EmployeeLanguages | null;
 };
+
+export type AvatarPath = string;
 
 export type PersonalData = {
   id: string;

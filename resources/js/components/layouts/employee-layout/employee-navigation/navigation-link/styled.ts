@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 
-export const StyledNavigation = styled('button').withConfig({
+export const StyledLink = styled(Link).withConfig({
   shouldForwardProp: (props) => !['isCurrent'].includes(props),
 })<{ isCurrent: boolean }>`
   display: flex;

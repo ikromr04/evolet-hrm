@@ -5,6 +5,8 @@ import { dropToken, saveToken } from '../../services/token';
 import { generatePath } from 'react-router-dom';
 import { ValidationError } from '../../types/validation-error';
 import {
+  AuthorizedEmployee,
+  AvatarPath,
   Education,
   EducationId,
   Educations,
@@ -21,7 +23,7 @@ import {
   adaptPersonalDataToClient
 } from '../../adapters/employees';
 
-export const checkAuthorizationAction = createAsyncThunk<Employee, undefined, {
+export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, undefined, {
   extra: AxiosInstance;
 }>(
   'employees/checkAuthorization',
@@ -31,7 +33,7 @@ export const checkAuthorizationAction = createAsyncThunk<Employee, undefined, {
   },
 );
 
-export const loginAction = createAsyncThunk<Employee, {
+export const loginAction = createAsyncThunk<AuthorizedEmployee, {
   loginData: LoginData,
   errorHandler: (error: ValidationError) => void;
 }, {
@@ -80,7 +82,7 @@ export const fetchEmployeePersonalDataAction = createAsyncThunk<PersonalData, {
 export const updateEmployeeAvatarAction = createAsyncThunk<void, {
   formData: FormData;
   employeeId: string;
-  successHandler: (employee: Employee) => void;
+  successHandler: (avatarPath: AvatarPath | null) => void;
  }, {
   extra: AxiosInstance;
 }>(
@@ -90,20 +92,20 @@ export const updateEmployeeAvatarAction = createAsyncThunk<void, {
     const { data } = await api.post(
       generatePath(APIRoute.EmployeeAvatar, { employeeId }), formData
     );
-    successHandler(adaptEmployeeToClient(data));
+    successHandler(data);
   },
 );
 
 export const deleteEmployeeAvatarAction = createAsyncThunk<void, {
   employeeId: string;
-  successHandler: (employee: Employee) => void;
+  successHandler: () => void;
  }, {
   extra: AxiosInstance;
 }>(
   'employees/deleteEmployeeAvatar',
   async ({ employeeId, successHandler }, { extra: api }) => {
-    const { data } = await api.delete(generatePath(APIRoute.EmployeeAvatar, { employeeId }));
-    successHandler(adaptEmployeeToClient(data));
+    await api.delete(generatePath(APIRoute.EmployeeAvatar, { employeeId }));
+    successHandler();
   },
 );
 
@@ -279,31 +281,5 @@ export const crudEmployeeLanguagesAction = createAsyncThunk<EmployeeLanguages | 
       return null;
     }
     return adaptEmployeeLanguages(data);
-  },
-);
-
-export const fetchNextEmployeeIdAction = createAsyncThunk<void, {
-  employeeId: string;
-  successHandler: (nextEmployeeId: string) => void;
-}, {
-  extra: AxiosInstance;
-}>(
-  'employees/fetchNextEmployeeId',
-  async ({ employeeId, successHandler }, { extra: api }) => {
-    const { data } = await api.get(generatePath(APIRoute.EmployeeNext, { employeeId }));
-    successHandler(data);
-  },
-);
-
-export const fetchPreviousEmployeeIdAction = createAsyncThunk<void, {
-  employeeId: string;
-  successHandler: (previousEmployeeId: string) => void;
-}, {
-  extra: AxiosInstance;
-}>(
-  'employees/previous',
-  async ({ employeeId, successHandler }, { extra: api }) => {
-    const { data } = await api.get(generatePath(APIRoute.EmployeePrevious, { employeeId }));
-    successHandler(data);
   },
 );

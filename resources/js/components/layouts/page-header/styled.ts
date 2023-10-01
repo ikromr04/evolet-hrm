@@ -9,12 +9,13 @@ export const Header = styled('header')`
   background-color: white;
   border-bottom: 1px solid #dce5ef;
   box-shadow: 0 0px 4px rgba(0,0,0,0.05);
+  margin-bottom: 16px;
   transition: .3s;
 
   .modal-shown & {
     transform: translateY(-100%);
   }
-  `;
+`;
 
 export const HeaderContainer = styled(Container)`
   display: flex;

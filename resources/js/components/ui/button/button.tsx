@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, memo } from 'react';
 import { StyledButton } from './styled';
 import { Link } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ type ButtonProps = PropsWithChildren<{
   [rest: string]: unknown;
 }>;
 
-export default function Button({
+function Button({
   children,
   href,
   success,
@@ -34,3 +34,5 @@ export default function Button({
     </StyledButton>
   );
 };
+
+export default memo(Button);

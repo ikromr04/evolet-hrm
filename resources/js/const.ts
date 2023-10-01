@@ -4,7 +4,9 @@ export const DEFAULT_AVATAR_PATH = '/img/default-avatar.png';
 export enum AppRoute {
   Main = '/',
   Login = '/employees/login',
+  Employees = '/employees',
   Employee = '/employees/:employeeId',
+  EmployeeWork = '/employees/:employeeId/work',
   NotFound = '*',
 };
 
@@ -18,8 +20,6 @@ export enum APIRoute {
   Login = '/employees/login',
   Logout = '/employees/logout',
   Employee = '/employees/:employeeId',
-  EmployeeNext = '/employees/:employeeId/next',
-  EmployeePrevious = '/employees/:employeeId/previous',
   EmployeeJob = '/employees/:employeeId/job',
   EmployeeAvatar = '/employees/:employeeId/avatar',
   EmployeePersonalData = '/employees/:employeeId/personal',
@@ -32,6 +32,7 @@ export enum APIRoute {
 };
 
 export enum SliceName {
+  App = 'App',
   Employee = 'Employee',
   Job = 'Job',
   Position = 'Position',

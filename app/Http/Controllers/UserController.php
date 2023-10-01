@@ -25,7 +25,7 @@ class UserController extends Controller
       'password' => 'required|string',
     ]);
 
-    $user = User::with('job', 'position', 'languages')->where('login', request('login'))->first();
+    $user = User::where('login', request('login'))->first();
 
     if (!$user || !Hash::check(request('password'), $user->password)) {
       return response(['message' => 'Неверные учетные данные'], 400);
@@ -86,7 +86,22 @@ class UserController extends Controller
   }
 
   public function show($employeeId) {
-    return User::with('job', 'position', 'languages')->find($employeeId);
+    $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $nextId = User::where('id', '>', $user->id)->min('id');
+    $prevId = User::where('id', '<', $user->id)->max('id');
+
+    if ($nextId) {
+      $user->next_employee_id = $nextId;
+    } else {
+      $user->next_employee_id = User::orderBy('id', 'asc')->first()->id;
+    }
+    if ($prevId) {
+      $user->previous_employee_id = $prevId;
+    } else {
+      $user->previous_employee_id = User::orderBy('id', 'desc')->first()->id;
+    }
+
+    return $user;
   }
 
   public function logout()
@@ -124,7 +139,7 @@ class UserController extends Controller
 
   public function updateAvatar($employeeId)
   {
-    $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $user = User::find($employeeId);
 
     if ($user->avatar && file_exists(public_path($user->avatar))) {
       unlink(public_path($user->avatar));
@@ -137,7 +152,7 @@ class UserController extends Controller
     $user->avatar = '/img/users/' . $fileName;
     $user->update();
 
-    return $user;
+    return $user->avatar;
   }
 
   public function deleteAvatar($employeeId)
@@ -151,7 +166,7 @@ class UserController extends Controller
       $user->update();
     }
 
-    return $user;
+    return $user->avatar;
   }
 
   public function educations($employeeId)
@@ -191,27 +206,5 @@ class UserController extends Controller
     $user->languages()->sync($languages);
 
     return User::find($employeeId)->languages;
-  }
-
-  public function next($employeeId)
-  {
-    $user = User::find($employeeId);
-    $nextId = User::where('id', '>', $user->id)->min('id');
-
-    if ($nextId) {
-      return $nextId;
-    }
-    return User::first()->id;
-  }
-
-  public function previous($employeeId)
-  {
-    $user = User::find($employeeId);
-    $prevId = User::where('id', '<', $user->id)->max('id');
-
-    if ($prevId) {
-      return $prevId;
-    }
-    return User::latest()->first()->id;
   }
 }

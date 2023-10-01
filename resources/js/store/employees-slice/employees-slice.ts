@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { Educations, Employee, PersonalData } from '../../types/employee';
+import { AuthorizedEmployee, AvatarPath, Educations, Employee, PersonalData } from '../../types/employee';
 import {
   checkAuthorizationAction,
   crudEmployeeLanguagesAction,
@@ -18,8 +18,10 @@ import {
 
 export type EmployeesSlice = {
   authorizationStatus: AuthorizationStatus;
-  authorizedEmployee: Employee | null;
+  authorizedEmployee: AuthorizedEmployee | null;
+  authorizedEmployeeAvatar: AvatarPath | null;
   employee: Employee | null;
+  employeeAvatar: AvatarPath | null;
   employeePersonalData: PersonalData | null;
   employeeEducations: Educations | null;
 };
@@ -28,6 +30,8 @@ const initialState: EmployeesSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
   authorizedEmployee: null,
   employee: null,
+  employeeAvatar: null,
+  authorizedEmployeeAvatar: null,
   employeePersonalData: null,
   employeeEducations: null,
 };
@@ -36,11 +40,11 @@ export const employeeSlice = createSlice({
   name: SliceName.Employee,
   initialState,
   reducers: {
-    setEmployeeAction: (state, action) => {
-      state.employee = action.payload;
-    },
-    setAuthorizedEmployeeAction: (state, action) => {
-      state.authorizedEmployee = action.payload;
+    setEmployeeAvatarAction: (state, action) => {
+      state.employeeAvatar = action.payload;
+      if (state.authorizedEmployee?.id === state.employee?.id ) {
+        state.authorizedEmployeeAvatar = action.payload;
+      }
     },
   },
   extraReducers(builder) {
@@ -48,6 +52,7 @@ export const employeeSlice = createSlice({
       .addCase(checkAuthorizationAction.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Auth;
         state.authorizedEmployee = action.payload;
+        state.authorizedEmployeeAvatar = action.payload.avatar;
       })
       .addCase(checkAuthorizationAction.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuth;
@@ -64,6 +69,7 @@ export const employeeSlice = createSlice({
       })
       .addCase(fetchEmployeeByIdAction.fulfilled, (state, action) => {
         state.employee = action.payload;
+        state.employeeAvatar = action.payload.avatar;
       })
       .addCase(fetchEmployeePersonalDataAction.fulfilled, (state, action) => {
         state.employeePersonalData = action.payload;
@@ -108,4 +114,4 @@ export const employeeSlice = createSlice({
   },
 });
 
-export const { setEmployeeAction, setAuthorizedEmployeeAction } = employeeSlice.actions;
+export const { setEmployeeAvatarAction } = employeeSlice.actions;

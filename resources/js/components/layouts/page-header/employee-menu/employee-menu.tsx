@@ -1,15 +1,19 @@
-import { Avatar, DropdownIcon, Menu, StyledButton } from './styled';
-import DropdownNavigation from '../../../ui/dropdown-navigation/dropdown-navigation';
+import { Avatar, DropdownIcon, Span } from './styled';
 import { AppRoute, DEFAULT_AVATAR_PATH } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { logoutAction } from '../../../../store/employees-slice/employees-api-actions';
 import { generatePath } from 'react-router-dom';
 import Dropdown from '../../../ui/dropdown/dropdown';
-import { getAuthorizedEmployee } from '../../../../store/employees-slice/employees-selector';
+import {
+  getAuthorizedEmployee,
+  getAuthorizedEmployeeAvatar
+} from '../../../../store/employees-slice/employees-selector';
+import DropdownMenuItem from '../../../ui/dropdown-navigation/dropdown-navigation';
 
 function EmployeeMenu(): JSX.Element {
   const employee = useAppSelector(getAuthorizedEmployee);
+  const avatar = useAppSelector(getAuthorizedEmployeeAvatar);
   const dispatch = useAppDispatch();
 
   if (!employee) {
@@ -18,26 +22,26 @@ function EmployeeMenu(): JSX.Element {
 
   return (
     <Dropdown
-      dropdownButton={
-        <StyledButton>
+      button={
+        <Span>
           <Avatar
-            src={employee.avatar || DEFAULT_AVATAR_PATH}
+            src={avatar || DEFAULT_AVATAR_PATH}
             width={32}
             height={32}
             alt={employee.name}
           />
           {employee.name}
           <DropdownIcon width={16} height={16} />
-        </StyledButton>
+        </Span>
       }
-      dropdownMenu={
-        <Menu>
-          <DropdownNavigation href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
+      menu={
+        <>
+          <DropdownMenuItem href={generatePath(AppRoute.Employee, { employeeId: employee.id })}>
             Перейти к профилю
-          </DropdownNavigation>
+          </DropdownMenuItem>
           <Hr />
-          <DropdownNavigation onClick={() => dispatch(logoutAction())}>Выйти</DropdownNavigation>
-        </Menu>
+          <DropdownMenuItem onClick={() => dispatch(logoutAction())}>Выйти</DropdownMenuItem>
+        </>
       }
     />
   );
