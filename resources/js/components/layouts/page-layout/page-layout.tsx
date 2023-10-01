@@ -1,19 +1,19 @@
 import { LayoutContainer } from './styled';
 import PageHeader from '../page-header/page-header';
-import { Outlet } from 'react-router-dom';
 import PageNavigation from '../page-navigation/page-navigation';
+import { PropsWithChildren, memo } from 'react';
 
-function PageLayout(): JSX.Element {
+function PageLayout({ children }: PropsWithChildren): JSX.Element {
   return (
     <>
       <PageHeader />
 
       <LayoutContainer>
         <PageNavigation />
-        <Outlet />
+        {children}
       </LayoutContainer>
     </>
   );
 };
 
-export default PageLayout;
+export default memo(PageLayout);

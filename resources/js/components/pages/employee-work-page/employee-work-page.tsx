@@ -1,20 +1,16 @@
 import EmployeeLayout from '../../layouts/employee-layout/employee-layout';
 import PageLayout from '../../layouts/page-layout/page-layout';
 import PrivateRoute from '../../private-route/private-route';
-import Education from './education/education';
-import Employee from './employee/employee';
-import PersonalData from './personal-data/personal-data';
-import { Main } from './styled';
+import Title from '../../ui/title/title';
+import { Main } from '../main-page/styled';
 
-function EmployeePage(): JSX.Element {
+function EmployeeWorkPage(): JSX.Element {
   return (
     <PrivateRoute>
       <PageLayout>
         <EmployeeLayout>
           <Main>
-            {/* <Employee /> */}
-            {/* <PersonalData /> */}
-            {/* <Education /> */}
+            <Title tagName="h1">Трудовая деятельность</Title>
           </Main>
         </EmployeeLayout>
       </PageLayout>
@@ -22,4 +18,4 @@ function EmployeePage(): JSX.Element {
   );
 };
 
-export default EmployeePage;
+export default EmployeeWorkPage;
