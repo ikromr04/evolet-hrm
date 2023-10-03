@@ -1,26 +1,44 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react';
 import { Form, StyledModal, WideColumn } from './styled';
 import { toast } from 'react-toastify';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Education } from '../../../../../types/employee';
 import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import Button from '../../../../ui/button/button';
-import PlusIcon from '../../../../icons/plus-icon';
+import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/input/input';
 import SelectField from '../../../../ui/select/select';
 import {
-  storeEmployeeEducationAction
+  updateEmployeeEducationAction
 } from '../../../../../store/employees-slice/employees-api-actions';
 import Buttons from '../../../../ui/buttons/buttons';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 
-export default function CreateEducation(): JSX.Element {
+type EditEducationProps = {
+  education: Education;
+};
+
+export default function EditEducation({ education }: EditEducationProps): JSX.Element {
+  const { id, startedAt, graduatedAt, institution, faculty, speciality } = education;
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
+  const [form, setForm] = useState(education.form);
   const dispatch = useAppDispatch();
-  const params = useParams();
   const navigate = useNavigate();
   const location = useLocation();
   const formRef = useRef<HTMLFormElement | null>(null);
+
+  const handleFormReset = (evt: BaseSyntheticEvent): void => {
+    evt.preventDefault();
+    Array.from(evt.target.elements).forEach((input: any) => {
+      if (input.name !== 'form') {
+        input.value = input.defaultValue;
+      }
+    });
+    setForm(education.form);
+    setValidationError(null);
+    navigate(location.pathname);
+  };
 
   const handleInputsChange = (evt: BaseSyntheticEvent) =>
     setValidationError((prevState) => {
@@ -37,41 +55,36 @@ export default function CreateEducation(): JSX.Element {
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled');
-    formRef.current && params.employeeId && dispatch(storeEmployeeEducationAction({
+    formRef.current && dispatch(updateEmployeeEducationAction({
       formData: new FormData(formRef.current),
-      employeeId: params.employeeId,
+      educationId: id,
       errorHandler(error) {
-        evt.target.removeAttribute('disabled')
+        evt.target.removeAttribute('disabled');
         setValidationError(error);
       },
       successHandler() {
-        evt.target.removeAttribute('disabled');
-        formRef.current && formRef.current.reset();
         toast.success('Данные успешно обновлены');
-        navigate(location.pathname);
+        evt.target.removeAttribute('disabled');
+        navigate(location.pathname)
       },
     }));
-  };
-
-  const handleResetButtonClick = () => {
-    setValidationError(null);
-    navigate(location.pathname);
   };
 
   return (
     <StyledModal
       button={
         <Button type="button">
-          <PlusIcon width={16} height={16} /> Добавить
+          <EditIcon width={16} height={16} /> Редактировать
         </Button>
       }
       window={
         <ModalInner>
-          <Form ref={formRef}>
+          <Form ref={formRef} onReset={handleFormReset}>
             <TextField
               label="Год поступления"
               type="datetime-local"
               name="started_at"
+              defaultValue={startedAt}
               errorMessage={validationError?.errors?.started_at?.[0]}
               onInput={handleInputsChange}
             />
@@ -79,6 +92,7 @@ export default function CreateEducation(): JSX.Element {
               label="Год окончания"
               type="datetime-local"
               name="graduated_at"
+              defaultValue={graduatedAt}
               errorMessage={validationError?.errors?.graduated_at?.[0]}
               onInput={handleInputsChange}
             />
@@ -87,6 +101,7 @@ export default function CreateEducation(): JSX.Element {
                 label="Учебное заведение"
                 type="text"
                 name="institution"
+                defaultValue={institution}
                 errorMessage={validationError?.errors?.institution?.[0]}
                 onInput={handleInputsChange}
               />
@@ -96,6 +111,7 @@ export default function CreateEducation(): JSX.Element {
                 label="Факультет"
                 type="text"
                 name="faculty"
+                defaultValue={faculty}
                 errorMessage={validationError?.errors?.faculty?.[0]}
                 onInput={handleInputsChange}
               />
@@ -103,6 +119,8 @@ export default function CreateEducation(): JSX.Element {
             <SelectField
               label="Форма обучения"
               name="form"
+              value={form}
+              onChange={(evt: BaseSyntheticEvent) => setForm(evt.target.value)}
               options={[
                 { value: 'Очно', label: 'Очно' },
                 { value: 'Заочно', label: 'Заочно' },
@@ -112,14 +130,15 @@ export default function CreateEducation(): JSX.Element {
               label="Специальность"
               type="text"
               name="speciality"
+              defaultValue={speciality}
               errorMessage={validationError?.errors?.speciality?.[0]}
               onInput={handleInputsChange}
             />
 
             <WideColumn>
               <Buttons>
-                <Button onClick={handleSubmitButtonClick} type="submit" success>Добавить</Button>
-                <Button onClick={handleResetButtonClick} type="reset" error>Отмена</Button>
+                <Button onClick={handleSubmitButtonClick} type="submit" success>Сохранить</Button>
+                <Button type="reset" error>Отмена</Button>
               </Buttons>
             </WideColumn>
           </Form>

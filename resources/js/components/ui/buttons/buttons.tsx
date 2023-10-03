@@ -1,8 +1,12 @@
 import { PropsWithChildren } from 'react';
 import { StyledButtons } from './styled';
 
-export default function Buttons({ children }: PropsWithChildren): JSX.Element {
+type ButtonsProps = PropsWithChildren<{
+  className?: string;
+}>
+
+export default function Buttons({ className, children }: ButtonsProps): JSX.Element {
   return (
-    <StyledButtons>{children}</StyledButtons>
+    <StyledButtons className={className}>{children}</StyledButtons>
   );
 };

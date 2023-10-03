@@ -16,7 +16,7 @@ export const StyledButton = styled('button').withConfig({
   border-radius: 4px;
   font-size: 13px;
   line-height: 1;
-  font-weight: 600;
+  font-weight: 500;
   text-decoration: none;
   box-shadow: 0 0px 2px rgba(0,0,0,0.2);
   transition: 0.3s;

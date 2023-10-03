@@ -47,3 +47,8 @@ export const languageLevelOptions = [
   { value: '(C1) – продвинутый', label: '(C1) – продвинутый' },
   { value: '(C2) – профессиональный', label: '(C2) – профессиональный' },
 ];
+
+export const educationFormOptions = [
+  { value: 'Очно', label: 'Очно' },
+  { value: 'Заочно', label: 'Заочно' },
+];

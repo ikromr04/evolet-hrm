@@ -1,9 +1,13 @@
 import { PropsWithChildren } from 'react';
 import { StyledToolbar } from './styled';
 
-function BoxToolbar({ children }: PropsWithChildren) {
+type BoxToolbarProps = PropsWithChildren<{
+  className?: string;
+}>;
+
+function BoxToolbar({ className, children }: BoxToolbarProps) {
   return (
-    <StyledToolbar>{children}</StyledToolbar>
+    <StyledToolbar className={className}>{children}</StyledToolbar>
   );
 };
 
