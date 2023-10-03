@@ -125,10 +125,6 @@ class UserController extends Controller
 
   public function updatePersonalData($employeeId)
   {
-    request()->validate([
-      'birth_date' => 'required',
-      'gender' => 'required',
-    ]);
     $personalData = PersonalData::find($employeeId);
     $personalData->update([
       'birth_date' => request('birth_date'),

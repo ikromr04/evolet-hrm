@@ -1,41 +1,41 @@
-import { useAppSelector } from '../../../../hooks';
-import { getEmployeePersonalData } from '../../../../store/employees-slice/employees-selector';
 import BoxInner from '../../../ui/box-inner/box-inner';
 import BoxToolbar from '../../../ui/box-toolbar/box-toolbar';
 import Box from '../../../ui/box/box';
 import DescriptionList from '../../../ui/description-list/description-list';
-import TextLink from '../../../ui/text-link/text-link';
 import Title from '../../../ui/title/title';
+import BirthDate from './details/birth-date';
+import Gender from './details/gender';
+import Nationality from './details/nationality';
+import Citizenship from './details/citizenship';
+import Address from './details/address';
+import Email from './details/email';
+import Tel1 from './details/tel-1';
+import Tel2 from './details/tel-2';
+import FamilyStatus from './details/family-status';
+import Children from './details/children';
 import EditPersonalData from './edit-personal-data/edit-personal-data';
-import dayjs from 'dayjs';
 
 export default function PersonalData(): JSX.Element {
-  const personalData = useAppSelector(getEmployeePersonalData);
-
-  if (!personalData) {
-    return <></>;
-  };
-
   return (
     <Box tagName="section">
       <BoxToolbar>
         <Title small>Персональные данные</Title>
-        <EditPersonalData personalData={personalData} />
+        <EditPersonalData />
       </BoxToolbar>
 
       <BoxInner>
         <DescriptionList
           list={{
-            'Дата рождения': dayjs(personalData.birthDate).format('D MMM YYYY'),
-            'Пол': personalData.gender,
-            'Национальность': personalData.nationality,
-            'Гражданство': personalData.citizenship,
-            'Адрес': personalData.address,
-            'Эл. почта': <TextLink href={`mailto:${personalData.email}`}>{personalData.email}</TextLink>,
-            'Телефон-1': <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>,
-            'Телефон-2': <TextLink href={`tel:${personalData.tel2}`}>{personalData.tel2}</TextLink>,
-            'Семейное положение': personalData.familyStatus,
-            'Дети': personalData.children,
+            'Дата рождения': <BirthDate />,
+            'Пол': <Gender />,
+            'Национальность': <Nationality />,
+            'Гражданство': <Citizenship />,
+            'Адрес': <Address />,
+            'Эл. почта': <Email />,
+            'Телефон-1': <Tel1 />,
+            'Телефон-2': <Tel2 />,
+            'Семейное положение': <FamilyStatus />,
+            'Дети': <Children />,
           }}
         />
       </BoxInner>

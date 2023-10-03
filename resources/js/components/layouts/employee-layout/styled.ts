@@ -5,6 +5,7 @@ export const Section = styled('section')`
   flex-direction: column;
   flex-grow: 1;
   gap: 16px;
+  margin-bottom: 80px;
 `;
 
 export const SectionInner = styled('div')`

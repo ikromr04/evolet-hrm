@@ -16,8 +16,8 @@ class CreatePersonalDataTable extends Migration
     Schema::create('personal_data', function (Blueprint $table) {
       $table->id();
       $table->integer('user_id');
-      $table->timestamp('birth_date');
-      $table->string('gender');
+      $table->timestamp('birth_date')->nullable();
+      $table->string('gender')->nullable();
       $table->string('nationality')->nullable();
       $table->string('citizenship')->nullable();
       $table->string('address')->nullable();

@@ -12,7 +12,7 @@ function EditEmployee(): JSX.Element {
     <>
       <EditButton type="button" onClick={() => setIsOpen(true)}>
         <EditIcon width={16} height={16} />
-        <Info left>Редактировать</Info>
+        <Info right>Редактировать</Info>
       </EditButton>
       <Modal isOpen={isOpen} closeModalHandler={() => setIsOpen(false)}>
         <EmployeeEditForm closeModalHandler={() => setIsOpen(false)} />
