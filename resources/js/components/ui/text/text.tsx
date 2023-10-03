@@ -11,7 +11,7 @@ type TextProps = PropsWithChildren<{
   error?: boolean;
 }>;
 
-export default function Text({
+function Text({
   children,
   className,
   tagName,
@@ -35,3 +35,5 @@ export default function Text({
     </StyledText>
   );
 };
+
+export default Text;

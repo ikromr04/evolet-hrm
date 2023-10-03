@@ -5,7 +5,7 @@ import Text from '../../ui/text/text';
 import Title from '../../ui/title/title';
 import { StyledPage } from './styled';
 
-export default function NotFoundPage(): JSX.Element {
+function NotFoundPage(): JSX.Element {
   return (
     <StyledPage tagName="main">
       <img
@@ -25,3 +25,5 @@ export default function NotFoundPage(): JSX.Element {
     </StyledPage>
   );
 };
+
+export default NotFoundPage;

@@ -13,7 +13,7 @@ import TextField from '../../ui/input/input';
 import { LoginData } from '../../../types/employee';
 import Button from '../../ui/button/button';
 
-export default function LoginPage(): JSX.Element {
+function LoginPage(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const dispatch = useAppDispatch();
   const [loginData, setLoginData] = useState<LoginData>({ login: '', password: '' });
@@ -85,3 +85,5 @@ export default function LoginPage(): JSX.Element {
     </StyledBox>
   );
 };
+
+export default LoginPage;

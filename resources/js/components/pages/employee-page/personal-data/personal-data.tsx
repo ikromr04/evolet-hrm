@@ -15,7 +15,7 @@ import FamilyStatus from './details/family-status';
 import Children from './details/children';
 import EditPersonalData from './edit-personal-data/edit-personal-data';
 
-export default function PersonalData(): JSX.Element {
+function PersonalData(): JSX.Element {
   return (
     <Box tagName="section">
       <BoxToolbar>
@@ -42,3 +42,5 @@ export default function PersonalData(): JSX.Element {
     </Box>
   );
 };
+
+export default PersonalData;

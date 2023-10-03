@@ -5,8 +5,10 @@ type ButtonsProps = PropsWithChildren<{
   className?: string;
 }>
 
-export default function Buttons({ className, children }: ButtonsProps): JSX.Element {
+function Buttons({ className, children }: ButtonsProps): JSX.Element {
   return (
     <StyledButtons className={className}>{children}</StyledButtons>
   );
 };
+
+export default Buttons;

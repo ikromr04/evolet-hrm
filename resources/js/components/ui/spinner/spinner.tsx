@@ -8,7 +8,7 @@ type SpinnerProps = {
   [rest: string]: any;
 };
 
-export default function Spinner(props: SpinnerProps): JSX.Element {
+function Spinner(props: SpinnerProps): JSX.Element {
   const { className, width, stroke, color, ...rest } = props;
 
   return (
@@ -24,3 +24,5 @@ export default function Spinner(props: SpinnerProps): JSX.Element {
     </StyledSpinner>
   );
 };
+
+export default Spinner;

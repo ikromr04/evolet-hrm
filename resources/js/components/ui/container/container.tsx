@@ -6,7 +6,7 @@ type ContainerProps = PropsWithChildren<{
   tagName?: string;
 }>;
 
-export default function Container({
+function Container({
   children,
   className,
   tagName,
@@ -17,3 +17,5 @@ export default function Container({
     </StyledContainer>
   );
 };
+
+export default Container;
