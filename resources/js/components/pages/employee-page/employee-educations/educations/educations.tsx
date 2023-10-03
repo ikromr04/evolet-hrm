@@ -19,7 +19,7 @@ function Educations(): JSX.Element {
   const employee = useAppSelector(getEmployee);
 
   useEffect(() => {
-    if (employee && (!educations || educations[0].id !== employee.id)) {
+    if (employee && (!educations || !educations.length || educations[0].userId !== employee.id)) {
       dispatch(fetchEmployeeEducationsAction({ employeeId: employee.id }));
     }
   }, [employee]);
