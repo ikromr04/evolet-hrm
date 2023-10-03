@@ -15,7 +15,7 @@ function EditLanguages(): JSX.Element {
         <Info top>Редактировать</Info>
       </EditButton>
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
-        <EmployeeLanguagesForm closeFormModal={() => setIsOpen(false)} />
+        <EmployeeLanguagesForm closeModal={() => setIsOpen(false)} />
       </Modal>
     </>
   );

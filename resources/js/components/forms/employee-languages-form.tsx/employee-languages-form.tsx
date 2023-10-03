@@ -14,10 +14,10 @@ import { toast } from 'react-toastify';
 import { crudEmployeeLanguagesAction } from '../../../store/employees-slice/employees-api-actions';
 
 type EmployeeLanguagesFormProps = {
-  closeFormModal: () => void;
+  closeModal: () => void;
 };
 
-function EmployeeLanguagesForm({ closeFormModal }: EmployeeLanguagesFormProps): JSX.Element {
+function EmployeeLanguagesForm({ closeModal }: EmployeeLanguagesFormProps): JSX.Element {
   const employee = useAppSelector(getEmployee);
   const languages = useAppSelector(getLanguages);
   const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ function EmployeeLanguagesForm({ closeFormModal }: EmployeeLanguagesFormProps): 
       successHandler() {
         toast.success('Данные успешно обновлены');
         evt.target.removeAttribute('disabled');
-        closeFormModal();
+        closeModal();
       },
     }))
   }
@@ -81,7 +81,7 @@ function EmployeeLanguagesForm({ closeFormModal }: EmployeeLanguagesFormProps): 
         <Button
           type="reset"
           error
-          onClick={closeFormModal}
+          onClick={closeModal}
         >
           Отмена
         </Button>
