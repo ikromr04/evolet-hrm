@@ -13,7 +13,7 @@ import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/text-field/text-field';
 import { fetchJobsAction } from '../../../../../store/job-slice/job-api-actions';
 import { fetchPositionsAction } from '../../../../../store/position-slice/position-api-actions';
-import SelectField from '../../../../ui/select-field/select-field';
+import SelectField from '../../../../ui/select/select';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 import Buttons from '../../../../ui/buttons/buttons';
 import { EMPTY_OPTION_LABEL } from '../../../../../const';

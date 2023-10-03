@@ -3,7 +3,7 @@ import EditIcon from '../../../../icons/edit-icon';
 import Info from '../../../../ui/info/info';
 import { EditButton } from './styled';
 import Modal from '../../../../ui/modal/modal';
-import EmployeeLanguagesForm from '../../../../forms/employee-languages-form.tsx/crud-employee-languages';
+import EmployeeLanguagesForm from '../../../../forms/employee-languages-form.tsx/employee-languages-form';
 
 function EditLanguages(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ function EditLanguages(): JSX.Element {
         <Info top>Редактировать</Info>
       </EditButton>
       <Modal isOpen={isOpen} setIsOpen={() => setIsOpen(false)}>
-        <EmployeeLanguagesForm />
+        <EmployeeLanguagesForm closeFormModal={() => setIsOpen(false)} />
       </Modal>
     </>
   );

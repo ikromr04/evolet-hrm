@@ -38,3 +38,12 @@ export enum SliceName {
   Position = 'Position',
   Language = 'Language',
 };
+
+export const languageLevelOptions = [
+  { value: '(А1) – начальный', label: '(А1) – начальный' },
+  { value: '(А2) – ниже среднего', label: '(А2) – ниже среднего' },
+  { value: '(В1) – средний', label: '(В1) – средний' },
+  { value: '(В2) – выше среднего', label: '(В2) – выше среднего' },
+  { value: '(C1) – продвинутый', label: '(C1) – продвинутый' },
+  { value: '(C2) – профессиональный', label: '(C2) – профессиональный' },
+];

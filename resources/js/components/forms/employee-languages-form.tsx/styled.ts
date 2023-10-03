@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export const Form = styled('form')`
-  width: 600px;
+  width: 560px;
 `;

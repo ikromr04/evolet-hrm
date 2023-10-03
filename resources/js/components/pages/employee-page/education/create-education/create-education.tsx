@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../../../../hooks';
 import Button from '../../../../ui/button/button';
 import PlusIcon from '../../../../icons/plus-icon';
 import TextField from '../../../../ui/text-field/text-field';
-import SelectField from '../../../../ui/select-field/select-field';
+import SelectField from '../../../../ui/select/select';
 import {
   storeEmployeeEducationAction
 } from '../../../../../store/employees-slice/employees-api-actions';

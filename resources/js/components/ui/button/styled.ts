@@ -1,8 +1,10 @@
 import styled, { css } from 'styled-components';
+import { StyledInfo } from '../info/styled';
 
 export const StyledButton = styled('button').withConfig({
   shouldForwardProp: (props) => !['success', 'warning', 'error', 'large'].includes(props),
 })<{ success?: boolean, warning?: boolean, error?: boolean, large?: boolean }>`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,5 +53,10 @@ export const StyledButton = styled('button').withConfig({
   &:disabled {
     opacity: 0.5;
     pointer-events: none;
+  }
+
+  &:hover ${StyledInfo} {
+    opacity: 1;
+    visibility: visible;
   }
 `;

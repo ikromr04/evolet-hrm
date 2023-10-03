@@ -9,7 +9,7 @@ import Button from '../../../../ui/button/button';
 import EditIcon from '../../../../icons/edit-icon';
 import TextField from '../../../../ui/text-field/text-field';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
-import SelectField from '../../../../ui/select-field/select-field';
+import SelectField from '../../../../ui/select/select';
 import {
   updateEmployeePersonalDataAction
 } from '../../../../../store/employees-slice/employees-api-actions';
