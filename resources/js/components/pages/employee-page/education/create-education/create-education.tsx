@@ -6,7 +6,7 @@ import { ValidationError } from '../../../../../types/validation-error';
 import { useAppDispatch } from '../../../../../hooks';
 import Button from '../../../../ui/button/button';
 import PlusIcon from '../../../../icons/plus-icon';
-import TextField from '../../../../ui/text-field/text-field';
+import TextField from '../../../../ui/input/input';
 import SelectField from '../../../../ui/select/select';
 import {
   storeEmployeeEducationAction

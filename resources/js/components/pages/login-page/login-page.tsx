@@ -9,7 +9,7 @@ import { getAuthorizationStatus } from '../../../store/employees-slice/employees
 import MainLogo from '../../ui/main-logo/main-logo';
 import Title from '../../ui/title/title';
 import Text from '../../ui/text/text';
-import TextField from '../../ui/text-field/text-field';
+import TextField from '../../ui/input/input';
 import { LoginData } from '../../../types/employee';
 import Button from '../../ui/button/button';
 

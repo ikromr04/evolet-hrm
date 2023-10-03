@@ -7,7 +7,7 @@ import { useAppDispatch } from '../../../../../hooks';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from '../../../../ui/button/button';
 import EditIcon from '../../../../icons/edit-icon';
-import TextField from '../../../../ui/text-field/text-field';
+import TextField from '../../../../ui/input/input';
 import ModalInner from '../../../../ui/modal-inner/modal-inner';
 import SelectField from '../../../../ui/select/select';
 import {

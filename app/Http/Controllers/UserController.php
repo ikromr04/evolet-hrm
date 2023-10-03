@@ -68,7 +68,7 @@ class UserController extends Controller
 
     if (request('login') != $user->login) {
       request()->validate([
-        'login' => 'unique:users,login',
+        'login' => 'required|unique:users,login',
       ]);
       $user->update(['login' => request('login')]);
     }
@@ -82,11 +82,21 @@ class UserController extends Controller
       'position_id' => request('position_id'),
     ]);
 
-    return User::with('job', 'position')->find($employeeId);
+    $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $user = $this->appendNextPreviousEmployeesId($user);
+
+    return $user;
   }
 
   public function show($employeeId) {
     $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $user = $this->appendNextPreviousEmployeesId($user);
+
+    return $user;
+  }
+
+  private function appendNextPreviousEmployeesId($user)
+  {
     $nextId = User::where('id', '>', $user->id)->min('id');
     $prevId = User::where('id', '<', $user->id)->max('id');
 
@@ -100,7 +110,6 @@ class UserController extends Controller
     } else {
       $user->previous_employee_id = User::orderBy('id', 'desc')->first()->id;
     }
-
     return $user;
   }
 

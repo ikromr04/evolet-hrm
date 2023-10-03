@@ -1,18 +1,18 @@
 import styled, { css } from 'styled-components';
 
-export const StyledField = styled('div')`
+export const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-export const FieldInner = styled('label')`
+export const Label = styled('label')`
   display: flex;
   flex-direction: column;
   gap: 4px;
 `;
 
-export const FieldLabel = styled('span')`
+export const Span = styled('span')`
   font-size: 12px;
   color: #000f30;
   font-weight: 400;
@@ -22,9 +22,9 @@ export const FieldLabel = styled('span')`
   }
 `;
 
-export const FieldInput = styled('input').withConfig({
+export const StyledInput = styled('input').withConfig({
   shouldForwardProp: (props) => !['error'].includes(props),
-})<{ error?: boolean }>`
+})<{ error?: string }>`
   display: flex;
   font-size: 14px;
   border-radius: 4px;
