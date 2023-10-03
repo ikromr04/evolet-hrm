@@ -6,7 +6,7 @@ type BoxInnerProps = PropsWithChildren<{
   tagName?: string;
 }>;
 
-export default function BoxInner({ children, clasName, tagName }: BoxInnerProps): JSX.Element {
+function BoxInner({ children, clasName, tagName }: BoxInnerProps): JSX.Element {
   return (
     <StyledBoxInner
       className={clasName}
@@ -16,3 +16,5 @@ export default function BoxInner({ children, clasName, tagName }: BoxInnerProps)
     </StyledBoxInner>
   );
 };
+
+export default BoxInner;

@@ -1,14 +1,14 @@
 import { PropsWithChildren, useEffect } from 'react';
 import { ModalInner, StyledModal } from './styled';
-import { useModalRef } from '../../../hooks/use-modal-ref';
+import { useModalClose } from '../../../hooks/use-modal-close';
 
 type ModalProps = PropsWithChildren<{
   isOpen: boolean;
-  setIsOpen: () => void;
+  closeModalHandler: () => void;
 }>;
 
-function Modal({ children, isOpen, setIsOpen }: ModalProps): JSX.Element {
-  const ref = useModalRef(() => setIsOpen());
+function Modal({ children, isOpen, closeModalHandler }: ModalProps): JSX.Element {
+  const ref = useModalClose(() => closeModalHandler());
 
   useEffect(() => {
     isOpen

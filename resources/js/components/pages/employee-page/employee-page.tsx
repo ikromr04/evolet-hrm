@@ -12,7 +12,7 @@ function EmployeePage(): JSX.Element {
       <PageLayout>
         <EmployeeLayout>
           <Main>
-            {/* <Employee /> */}
+            <Employee />
             {/* <PersonalData /> */}
             {/* <Education /> */}
           </Main>

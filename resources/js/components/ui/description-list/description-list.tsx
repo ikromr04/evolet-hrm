@@ -9,19 +9,21 @@ type DescriptionListProps = {
   detailedInverse?: boolean;
 }
 
-export default function DescriptionList({
+function DescriptionList({
   list,
   detailed,
-  detailedInverse
+  detailedInverse,
 }: DescriptionListProps): JSX.Element {
   return (
     <Dl detailed={detailed} detailedInverse={detailedInverse}>
       {Object.entries(list).map(([term, definition]) => (
         <Fragment key={term}>
-          <Dt detailed={detailed} detailedInverse={detailedInverse}>{term}</Dt>
-          <Dd detailed={detailed} detailedInverse={detailedInverse}>{definition}</Dd>
+          <Dt>{term}</Dt>
+          <Dd>{definition}</Dd>
         </Fragment>
       ))}
     </Dl>
   );
 };
+
+export default DescriptionList;

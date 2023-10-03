@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-export const useModalRef = (callback: () => void) => {
+export const useModalClose = (callback: () => void) => {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
