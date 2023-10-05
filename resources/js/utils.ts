@@ -2,13 +2,11 @@ import dayjs from 'dayjs';
 
 export const getWorkTime = (startedTime: Date): string => {
   const date = dayjs();
-  const days = Math.floor(date.diff(startedTime, 'day', true));
+  const years = Math.floor(date.diff(startedTime, 'year', true));
+  const months = Math.floor(date.diff(startedTime, 'month', true)) % 12;
+  const days = Math.floor(date.diff(startedTime, 'day', true) % 365 % 30.5);
 
-  if (days === 1) {
-    return '1 день';
-  }
-
-  return `${days} дней`;
+  return `${years}г ${months}м ${days}д`;
 };
 
 export const debounce = <F extends (...args: any) => any>(

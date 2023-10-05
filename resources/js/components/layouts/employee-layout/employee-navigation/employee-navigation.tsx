@@ -19,7 +19,7 @@ function EmployeeNavigation(): JSX.Element {
         Личное
       </NavigationLink>
       <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
-        Работа
+        Опыт
       </NavigationLink>
     </Navigation>
   );

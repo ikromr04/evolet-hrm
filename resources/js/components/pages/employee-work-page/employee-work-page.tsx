@@ -1,8 +1,8 @@
 import EmployeeLayout from '../../layouts/employee-layout/employee-layout';
 import PageLayout from '../../layouts/page-layout/page-layout';
 import PrivateRoute from '../../private-route/private-route';
-import Title from '../../ui/title/title';
 import { Main } from '../main-page/styled';
+import LaborActivity from './labor-activity/labor-activity';
 
 function EmployeeWorkPage(): JSX.Element {
   return (
@@ -10,7 +10,7 @@ function EmployeeWorkPage(): JSX.Element {
       <PageLayout>
         <EmployeeLayout>
           <Main>
-            <Title tagName="h1">Трудовая деятельность</Title>
+            <LaborActivity />
           </Main>
         </EmployeeLayout>
       </PageLayout>
