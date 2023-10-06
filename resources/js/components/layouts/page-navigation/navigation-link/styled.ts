@@ -25,7 +25,6 @@ export const StyledLink = styled(Link).withConfig({
   ${({ isCurrent }) => isCurrent && css`
     color: #476887;
     background-color: #f1f5f8;
-    pointer-events: none;
 
     svg {
       color: #66bb6a !important;
