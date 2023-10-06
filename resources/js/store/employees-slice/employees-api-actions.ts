@@ -5,6 +5,9 @@ import { dropToken, saveToken } from '../../services/token';
 import { generatePath } from 'react-router-dom';
 import { ValidationError } from '../../types/validation-error';
 import {
+  Activities,
+  Activity,
+  ActivityId,
   AuthorizedEmployee,
   AvatarPath,
   Education,
@@ -16,6 +19,8 @@ import {
   PersonalData
 } from '../../types/employee';
 import {
+  adaptEmployeeActivitiesToClient,
+  adaptEmployeeActivityToClient,
   adaptEmployeeEducationToClient,
   adaptEmployeeEducationsToClient,
   adaptEmployeeLanguages,
@@ -206,7 +211,7 @@ export const updateEmployeeEducationAction = createAsyncThunk<Education, {
     try {
       formData.append('_method', 'put');
       const { data } = await api.post(
-        generatePath(APIRoute.Educations, { educationId }), formData
+        generatePath(APIRoute.Education, { educationId }), formData
       );
       successHandler();
       return adaptEmployeeEducationToClient(data);
@@ -258,7 +263,7 @@ export const deleteEmployeeEducationAction = createAsyncThunk<EducationId, {
 }>(
   'employees/deleteEmployeeEducation',
   async ({ educationId, successHandler }, { extra: api }) => {
-    await api.delete(generatePath(APIRoute.Educations, { educationId }));
+    await api.delete(generatePath(APIRoute.Education, { educationId }));
     successHandler();
     return educationId;
   },
@@ -283,3 +288,89 @@ export const crudEmployeeLanguagesAction = createAsyncThunk<EmployeeLanguages | 
     return adaptEmployeeLanguages(data);
   },
 );
+
+export const fetchEmployeeActivitiesAction = createAsyncThunk<Activities, {
+  employeeId: string;
+}, {
+  extra: AxiosInstance;
+}>(
+  'employees/fetchEmployeeActivities',
+  async ({ employeeId }, { extra: api }) => {
+    const { data } = await api.get(generatePath(APIRoute.EmployeeActivities, { employeeId }));
+    return adaptEmployeeActivitiesToClient(data);
+  },
+);
+
+export const updateEmployeeActivityAction = createAsyncThunk<Activity, {
+  formData: FormData;
+  activityId: string;
+  errorHandler: (error: ValidationError) => void;
+  successHandler: () => void;
+}, {
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/updateActivity',
+  async (arg, { extra: api, rejectWithValue }) => {
+    const { formData, activityId, errorHandler, successHandler } = arg;
+    try {
+      formData.append('_method', 'put');
+      const { data } = await api.post(
+        generatePath(APIRoute.Activity, { activityId }), formData
+      );
+      successHandler();
+      return adaptEmployeeActivityToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const storeEmployeeActivityAction = createAsyncThunk<Activity, {
+  formData: FormData;
+  employeeId: string;
+  errorHandler: (error: ValidationError) => void;
+  successHandler: () => void;
+}, {
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/storeEmployeeActivity',
+  async (arg, { extra: api, rejectWithValue }) => {
+    const { formData, employeeId, errorHandler, successHandler } = arg;
+    try {
+      const { data } = await api.post(
+        generatePath(APIRoute.EmployeeActivities, { employeeId }), formData
+      );
+      successHandler();
+      return adaptEmployeeActivityToClient(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
+  },
+);
+
+export const deleteEmployeeActivityAction = createAsyncThunk<ActivityId, {
+  activityId: string;
+  successHandler: () => void;
+}, {
+  extra: AxiosInstance;
+}>(
+  'employees/deleteEmployeeActivity',
+  async ({ activityId, successHandler }, { extra: api }) => {
+    await api.delete(generatePath(APIRoute.Activity, { activityId }));
+    successHandler();
+    return activityId;
+  },
+);
+

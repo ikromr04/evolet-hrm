@@ -10,6 +10,7 @@ import { storeEmployeeEducationAction } from '../../../store/employees-slice/emp
 import Buttons from '../../ui/buttons/buttons';
 import Button from '../../ui/button/button';
 import { educationFormOptions } from '../../../const';
+import { debounce } from '../../../utils';
 
 type CreateEducationFormProps = {
   closeModalHandler: () => void;
@@ -21,7 +22,7 @@ function CreateEducationForm({ closeModalHandler }: CreateEducationFormProps): J
   const employee = useAppSelector(getEmployee);
   const formRef = useRef<HTMLFormElement | null>(null);
 
-  const handleInputsChange = (evt: BaseSyntheticEvent) =>
+  const handleInputsChange = debounce((evt: BaseSyntheticEvent) =>
     setValidationError((prevState) => {
       const newState = JSON.parse(JSON.stringify(prevState));
       if (newState?.errors?.[evt.target.name]) {
@@ -31,7 +32,7 @@ function CreateEducationForm({ closeModalHandler }: CreateEducationFormProps): J
         ...newState,
         message: '',
       };
-  });
+  }));
 
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();

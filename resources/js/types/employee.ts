@@ -61,6 +61,19 @@ export type Education = {
 
 export type Educations = Education[];
 
+export type ActivityId = string;
+
+export type Activity = {
+  id: ActivityId;
+  userId: string;
+  hiredAt: Date;
+  dismissedAt: Date;
+  organization: string;
+  job: string;
+};
+
+export type Activities = Activity[];
+
 export type EmployeeLanguage = Language & {
   level: string;
 };

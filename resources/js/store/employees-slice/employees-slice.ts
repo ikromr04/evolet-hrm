@@ -1,17 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { AuthorizedEmployee, AvatarPath, Educations, Employee, PersonalData } from '../../types/employee';
+import { Activities, AuthorizedEmployee, AvatarPath, Educations, Employee, PersonalData } from '../../types/employee';
 import {
   checkAuthorizationAction,
   crudEmployeeLanguagesAction,
+  deleteEmployeeActivityAction,
   deleteEmployeeEducationAction,
+  fetchEmployeeActivitiesAction,
   fetchEmployeeByIdAction,
   fetchEmployeeEducationsAction,
   fetchEmployeePersonalDataAction,
   loginAction,
   logoutAction,
+  storeEmployeeActivityAction,
   storeEmployeeEducationAction,
   updateEmployeeAction,
+  updateEmployeeActivityAction,
   updateEmployeeEducationAction,
   updateEmployeePersonalDataAction
 } from './employees-api-actions';
@@ -24,6 +28,7 @@ export type EmployeesSlice = {
   employeeAvatar: AvatarPath | null;
   employeePersonalData: PersonalData | null;
   employeeEducations: Educations | null;
+  employeeActivities: Activities | null;
 };
 
 const initialState: EmployeesSlice = {
@@ -34,6 +39,7 @@ const initialState: EmployeesSlice = {
   authorizedEmployeeAvatar: null,
   employeePersonalData: null,
   employeeEducations: null,
+  employeeActivities: null,
 };
 
 export const employeeSlice = createSlice({
@@ -103,6 +109,27 @@ export const employeeSlice = createSlice({
       .addCase(deleteEmployeeEducationAction.fulfilled, (state, action) => {
         const educations = state.employeeEducations || [];
         state.employeeEducations = educations.filter(({ id }) => id !== action.payload);
+      })
+      .addCase(fetchEmployeeActivitiesAction.fulfilled, (state, action) => {
+        state.employeeActivities = action.payload;
+      })
+      .addCase(updateEmployeeActivityAction.fulfilled, (state, action) => {
+        const updatedActivity = action.payload;
+        if (state.employeeActivities) {
+          state.employeeActivities = state.employeeActivities.map((activity) =>
+            (activity.id === updatedActivity.id) ? updatedActivity : activity
+          );
+        } else {
+          state.employeeActivities = [updatedActivity];
+        }
+      })
+      .addCase(storeEmployeeActivityAction.fulfilled, (state, action) => {
+        const activities = state.employeeActivities || [];
+        state.employeeActivities = [...activities, action.payload];
+      })
+      .addCase(deleteEmployeeActivityAction.fulfilled, (state, action) => {
+        const activities = state.employeeActivities || [];
+        state.employeeActivities = activities.filter(({ id }) => id !== action.payload);
       })
       .addCase(crudEmployeeLanguagesAction.fulfilled, (state, action) => {
         const employee = state.employee && {

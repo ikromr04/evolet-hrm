@@ -2,7 +2,7 @@ import EmployeeLayout from '../../layouts/employee-layout/employee-layout';
 import PageLayout from '../../layouts/page-layout/page-layout';
 import PrivateRoute from '../../private-route/private-route';
 import { Main } from '../main-page/styled';
-import LaborActivity from './labor-activity/labor-activity';
+import LaborActivities from './labor-activities/labor-activities';
 
 function EmployeeWorkPage(): JSX.Element {
   return (
@@ -10,7 +10,7 @@ function EmployeeWorkPage(): JSX.Element {
       <PageLayout>
         <EmployeeLayout>
           <Main>
-            <LaborActivity />
+            <LaborActivities />
           </Main>
         </EmployeeLayout>
       </PageLayout>

@@ -1,4 +1,6 @@
 import {
+  Activities,
+  Activity,
   AuthorizedEmployee,
   Education,
   Educations,
@@ -73,3 +75,15 @@ export const adaptEmployeeLanguages = (serverLanguages: {[key: string]: any }[])
   }
   return serverLanguages.map((serverLanguage) => adaptEmployeeLanguage(serverLanguage));
 }
+
+export const adaptEmployeeActivityToClient = (serverActivity: {[key: string]: any }): Activity => ({
+  id: serverActivity.id,
+  userId: serverActivity.user_id,
+  hiredAt: serverActivity.hired_at,
+  dismissedAt: serverActivity.dismissed_at,
+  organization: serverActivity.organization,
+  job: serverActivity.job,
+});
+
+export const adaptEmployeeActivitiesToClient = (serverActivities: {[key: string]: any }[]): Activities =>
+  serverActivities.map((serverActivity) => adaptEmployeeActivityToClient(serverActivity));

@@ -25,6 +25,11 @@ class User extends Authenticatable
     return $this->hasMany(Education::class)->orderBy('started_at', 'desc');
   }
 
+  public function activities()
+  {
+    return $this->hasMany(LaborActivity::class)->orderBy('hired_at', 'desc');
+  }
+
   public function job()
   {
     return $this->belongsTo(Job::class);

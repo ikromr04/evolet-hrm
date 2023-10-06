@@ -1,5 +1,6 @@
 import { AuthorizationStatus, SliceName } from '../../const';
 import {
+  Activities,
   AuthorizedEmployee,
   AvatarPath,
   Educations,
@@ -28,3 +29,6 @@ export const getEmployeePersonalData = (state: State): PersonalData | null =>
 
 export const getEmployeeEducations = (state: State): Educations | null =>
   state[SliceName.Employee].employeeEducations;
+
+export const getEmployeeActivities = (state: State): Activities | null =>
+  state[SliceName.Employee].employeeActivities;

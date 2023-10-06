@@ -6,25 +6,25 @@ import { ValidationError } from '../../../types/validation-error';
 import { useAppDispatch } from '../../../hooks';
 import { toast } from 'react-toastify';
 import {
+  updateEmployeeActivityAction,
   updateEmployeeEducationAction
 } from '../../../store/employees-slice/employees-api-actions';
 import Buttons from '../../ui/buttons/buttons';
 import Button from '../../ui/button/button';
-import { Education } from '../../../types/employee';
+import { Activity, Education } from '../../../types/employee';
 import { educationFormOptions } from '../../../const';
 import { debounce } from '../../../utils';
 
-type CreateEducationFormProps = {
-  education: Education;
+type EditActivityFormProps = {
+  activity: Activity;
   closeModalHandler: () => void;
 };
 
-function EditEducationForm({
-  education,
+function EditActivityForm({
+  activity,
   closeModalHandler
-}: CreateEducationFormProps): JSX.Element {
+}: EditActivityFormProps): JSX.Element {
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
-  const [form, setForm] = useState(education.form);
   const dispatch = useAppDispatch();
   const formRef = useRef<HTMLFormElement | null>(null);
 
@@ -43,9 +43,9 @@ function EditEducationForm({
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled');
-    formRef.current && dispatch(updateEmployeeEducationAction({
+    formRef.current && dispatch(updateEmployeeActivityAction({
       formData: new FormData(formRef.current),
-      educationId: education.id,
+      activityId: activity.id,
       errorHandler(error) {
         evt.target.removeAttribute('disabled');
         setValidationError(error);
@@ -61,56 +61,41 @@ function EditEducationForm({
   return (
     <Form ref={formRef}>
       <Input
-        label="Год поступления"
+        label="Дата принятия"
         type="datetime-local"
-        name="started_at"
-        defaultValue={education.startedAt}
-        errorMessage={validationError?.errors?.started_at?.[0]}
+        name="hired_at"
+        defaultValue={activity.hiredAt}
+        errorMessage={validationError?.errors?.hired_at?.[0]}
         onInput={handleInputsChange}
       />
       <Input
-        label="Год окончания"
+        label="Год уволнения"
         type="datetime-local"
-        name="graduated_at"
-        defaultValue={education.graduatedAt}
-        errorMessage={validationError?.errors?.graduated_at?.[0]}
+        name="dismissed_at"
+        defaultValue={activity.dismissedAt}
+        errorMessage={validationError?.errors?.dismissed_at?.[0]}
         onInput={handleInputsChange}
       />
       <WideColumn>
         <Input
-          label="Учебное заведение"
+          label="Организация"
           type="text"
-          name="institution"
-          defaultValue={education.institution}
-          errorMessage={validationError?.errors?.institution?.[0]}
+          name="organization"
+          defaultValue={activity.organization}
+          errorMessage={validationError?.errors?.organization?.[0]}
           onInput={handleInputsChange}
         />
       </WideColumn>
       <WideColumn>
         <Input
-          label="Факультет"
+          label="Должность"
           type="text"
-          name="faculty"
-          defaultValue={education.faculty}
-          errorMessage={validationError?.errors?.faculty?.[0]}
+          name="job"
+          defaultValue={activity.job}
+          errorMessage={validationError?.errors?.job?.[0]}
           onInput={handleInputsChange}
         />
       </WideColumn>
-      <Select
-        label="Форма обучения"
-        name="form"
-        value={form}
-        onChange={(evt: BaseSyntheticEvent) => setForm(evt.target.value)}
-        options={educationFormOptions}
-      />
-      <Input
-        label="Специальность"
-        type="text"
-        name="speciality"
-        defaultValue={education.speciality}
-        errorMessage={validationError?.errors?.speciality?.[0]}
-        onInput={handleInputsChange}
-      />
 
       <Buttons>
         <Button
@@ -132,4 +117,4 @@ function EditEducationForm({
   );
 };
 
-export default EditEducationForm;
+export default EditActivityForm;

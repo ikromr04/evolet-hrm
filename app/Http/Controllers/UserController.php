@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Education;
+use App\Models\LaborActivity;
 use App\Models\PersonalData;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -176,7 +177,12 @@ class UserController extends Controller
 
   public function educations($employeeId)
   {
-    return Education::where('user_id', $employeeId)->orderBy('started_at', 'desc')->get();
+    return Education::where('user_id', $employeeId)->get();
+  }
+
+  public function activities($employeeId)
+  {
+    return LaborActivity::where('user_id', $employeeId)->get();
   }
 
   public function storeEducation($employeeId)
@@ -198,6 +204,24 @@ class UserController extends Controller
       'faculty' => request('faculty'),
       'form' => request('form'),
       'speciality' => request('speciality'),
+    ]);
+  }
+
+  public function storeActivity($employeeId)
+  {
+    request()->validate([
+      'hired_at' => 'required',
+      'dismissed_at' => 'required',
+      'organization' => 'required',
+      'job' => 'required',
+    ]);
+
+    return LaborActivity::create([
+      'user_id' => $employeeId,
+      'hired_at' => request('hired_at'),
+      'dismissed_at' => request('dismissed_at'),
+      'organization' => request('organization'),
+      'job' => request('job'),
     ]);
   }
 

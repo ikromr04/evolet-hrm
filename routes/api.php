@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\LaborActivityController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\UserController;
@@ -34,9 +35,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::get('/employees/{employeeId}/educations', [UserController::class, 'educations']);
   Route::post('/employees/{employeeId}/educations', [UserController::class, 'storeEducation']);
   Route::post('/employees/{employeeId}/languages', [UserController::class, 'crudLanguages']);
+  Route::get('/employees/{employeeId}/activities', [UserController::class, 'activities']);
+  Route::post('/employees/{employeeId}/activities', [UserController::class, 'storeActivity']);
 
   Route::put('/educations/{educationId}', [EducationController::class, 'update']);
   Route::delete('/educations/{educationId}', [EducationController::class, 'delete']);
+
+  Route::put('/labor-activities/{activityId}', [LaborActivityController::class, 'update']);
+  Route::delete('/labor-activities/{activityId}', [LaborActivityController::class, 'delete']);
 
   Route::get('/jobs', [JobController::class, 'index']);
 

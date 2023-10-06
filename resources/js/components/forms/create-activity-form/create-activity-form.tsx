@@ -1,31 +1,23 @@
 import { BaseSyntheticEvent, useRef, useState } from 'react';
 import Input from '../../ui/input/input';
-import Select from '../../ui/select/select';
 import { Form, WideColumn } from './styled';
 import { ValidationError } from '../../../types/validation-error';
-import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { getEmployee } from '../../../store/employees-slice/employees-selector';
 import { toast } from 'react-toastify';
-import {
-  updateEmployeeEducationAction
-} from '../../../store/employees-slice/employees-api-actions';
+import { storeEmployeeActivityAction } from '../../../store/employees-slice/employees-api-actions';
 import Buttons from '../../ui/buttons/buttons';
 import Button from '../../ui/button/button';
-import { Education } from '../../../types/employee';
-import { educationFormOptions } from '../../../const';
 import { debounce } from '../../../utils';
 
-type CreateEducationFormProps = {
-  education: Education;
+type CreateActivityFormProps = {
   closeModalHandler: () => void;
 };
 
-function EditEducationForm({
-  education,
-  closeModalHandler
-}: CreateEducationFormProps): JSX.Element {
+function CreateActivityForm({ closeModalHandler }: CreateActivityFormProps): JSX.Element {
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
-  const [form, setForm] = useState(education.form);
   const dispatch = useAppDispatch();
+  const employee = useAppSelector(getEmployee);
   const formRef = useRef<HTMLFormElement | null>(null);
 
   const handleInputsChange = debounce((evt: BaseSyntheticEvent) =>
@@ -43,11 +35,11 @@ function EditEducationForm({
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled');
-    formRef.current && dispatch(updateEmployeeEducationAction({
+    formRef.current && employee?.id && dispatch(storeEmployeeActivityAction({
       formData: new FormData(formRef.current),
-      educationId: education.id,
+      employeeId: employee.id,
       errorHandler(error) {
-        evt.target.removeAttribute('disabled');
+        evt.target.removeAttribute('disabled')
         setValidationError(error);
       },
       successHandler() {
@@ -61,56 +53,37 @@ function EditEducationForm({
   return (
     <Form ref={formRef}>
       <Input
-        label="Год поступления"
+        label="Дата принятия"
         type="datetime-local"
-        name="started_at"
-        defaultValue={education.startedAt}
-        errorMessage={validationError?.errors?.started_at?.[0]}
+        name="hired_at"
+        errorMessage={validationError?.errors?.hired_at?.[0]}
         onInput={handleInputsChange}
       />
       <Input
-        label="Год окончания"
+        label="Год уволнения"
         type="datetime-local"
-        name="graduated_at"
-        defaultValue={education.graduatedAt}
-        errorMessage={validationError?.errors?.graduated_at?.[0]}
+        name="dismissed_at"
+        errorMessage={validationError?.errors?.dismissed_at?.[0]}
         onInput={handleInputsChange}
       />
       <WideColumn>
         <Input
-          label="Учебное заведение"
+          label="Организация"
           type="text"
-          name="institution"
-          defaultValue={education.institution}
-          errorMessage={validationError?.errors?.institution?.[0]}
+          name="organization"
+          errorMessage={validationError?.errors?.organization?.[0]}
           onInput={handleInputsChange}
         />
       </WideColumn>
       <WideColumn>
         <Input
-          label="Факультет"
+          label="Должность"
           type="text"
-          name="faculty"
-          defaultValue={education.faculty}
-          errorMessage={validationError?.errors?.faculty?.[0]}
+          name="job"
+          errorMessage={validationError?.errors?.job?.[0]}
           onInput={handleInputsChange}
         />
       </WideColumn>
-      <Select
-        label="Форма обучения"
-        name="form"
-        value={form}
-        onChange={(evt: BaseSyntheticEvent) => setForm(evt.target.value)}
-        options={educationFormOptions}
-      />
-      <Input
-        label="Специальность"
-        type="text"
-        name="speciality"
-        defaultValue={education.speciality}
-        errorMessage={validationError?.errors?.speciality?.[0]}
-        onInput={handleInputsChange}
-      />
 
       <Buttons>
         <Button
@@ -118,7 +91,7 @@ function EditEducationForm({
           success
           onClick={handleSubmitButtonClick}
         >
-          Сохранить
+          Добавить
         </Button>
         <Button
           type="reset"
@@ -132,4 +105,4 @@ function EditEducationForm({
   );
 };
 
-export default EditEducationForm;
+export default CreateActivityForm;
