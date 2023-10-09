@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { getEmployees } from '../../../../store/employees-slice/employees-selector';
 import { fetchEmployeesAction } from '../../../../store/employees-slice/employees-api-actions';
-import { DEFAULT_AVATAR_PATH, dataGridLocalText } from '../../../../const';
+import { AppRoute, DEFAULT_AVATAR_PATH, dataGridLocalText } from '../../../../const';
 import { Avatar } from './styled';
 import dayjs from 'dayjs';
+import { generatePath } from 'react-router-dom';
+import TextLink from '../../../ui/text-link/text-link';
 
 function Employees(): JSX.Element {
   const employees = useAppSelector(getEmployees);
@@ -48,7 +50,16 @@ function Employees(): JSX.Element {
         />
       ),
     },
-    { field: 'name', headerName: 'ФИО', flex: 1.5},
+    {
+      field: 'name',
+      headerName: 'ФИО',
+      flex: 1.5,
+      renderCell: (params) => (
+        <TextLink href={generatePath(AppRoute.Employee, { employeeId: params.row.id })}>
+          {params.row.name}
+        </TextLink>
+      ),
+    },
     { field: 'login', headerName: 'Логин', flex: 1},
     { field: 'startedWorkAt', headerName: 'Начало работы', flex: 1},
     { field: 'job', headerName: 'Должность', flex: 1},

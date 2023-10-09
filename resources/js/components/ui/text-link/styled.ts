@@ -7,5 +7,5 @@ export const StyledLink = styled(Link)`
   gap: 8px;
   font-size: 14px;
   text-decoration: none;
-  color: #1383ff;
+  color: #1971d2;
 `;
