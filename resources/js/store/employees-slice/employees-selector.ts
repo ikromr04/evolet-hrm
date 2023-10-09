@@ -5,6 +5,7 @@ import {
   AvatarPath,
   Educations,
   Employee,
+  Employees,
   PersonalData
 } from '../../types/employee';
 import { State } from '../../types/state';
@@ -14,6 +15,9 @@ state[SliceName.Employee].authorizationStatus;
 
 export const getEmployee = (state: State): Employee | null =>
   state[SliceName.Employee].employee;
+
+export const getEmployees = (state: State): Employees | null =>
+  state[SliceName.Employee].employees;
 
 export const getEmployeeAvatar = (state: State): AvatarPath | null =>
   state[SliceName.Employee].employeeAvatar;

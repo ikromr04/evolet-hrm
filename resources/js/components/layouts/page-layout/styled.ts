@@ -5,4 +5,5 @@ export const LayoutContainer = styled(Container)`
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  margin-bottom: 80px;
 `;

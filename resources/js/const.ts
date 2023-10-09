@@ -19,6 +19,7 @@ export enum AuthorizationStatus {
 export enum APIRoute {
   Login = '/employees/login',
   Logout = '/employees/logout',
+  Employees = '/employees',
   Employee = '/employees/:employeeId',
   EmployeeJob = '/employees/:employeeId/job',
   EmployeeAvatar = '/employees/:employeeId/avatar',
@@ -54,3 +55,130 @@ export const educationFormOptions = [
   { value: 'Очно', label: 'Очно' },
   { value: 'Заочно', label: 'Заочно' },
 ];
+
+export const dataGridLocalText = {
+  noRowsLabel: 'Нет рядов',
+  noResultsOverlayLabel: 'Результатов не найдено.',
+
+  toolbarDensity: 'Плотность',
+  toolbarDensityLabel: 'Плотность',
+  toolbarDensityCompact: 'Компакт',
+  toolbarDensityStandard: 'Стандарт',
+  toolbarDensityComfortable: 'Комфортный',
+
+  toolbarColumns: 'Колонны',
+  toolbarColumnsLabel: 'Выберите столбцы',
+
+  toolbarFilters: 'Фильтры',
+  toolbarFiltersLabel: 'Показать фильтры',
+  toolbarFiltersTooltipHide: 'Скрыть фильтры',
+  toolbarFiltersTooltipShow: 'Показать фильтры',
+  toolbarFiltersTooltipActive: (count: any) =>
+    count !== 1 ? `${count} активные фильтры` : `${count} активные фильтры`,
+
+  toolbarQuickFilterPlaceholder: 'Поиск…',
+  toolbarQuickFilterLabel: 'Поиск',
+  toolbarQuickFilterDeleteIconLabel: 'Очистить',
+
+  toolbarExport: 'Экспорт',
+  toolbarExportLabel: 'Экспорт',
+  toolbarExportCSV: 'Скачать как CSV',
+  toolbarExportPrint: 'Распечатать',
+  toolbarExportExcel: 'Скачать как Excel',
+
+  columnsPanelTextFieldLabel: 'Найти столбец',
+  columnsPanelTextFieldPlaceholder: 'Заголовок столбца',
+  columnsPanelDragIconLabel: 'Переупорядочение столбца',
+  columnsPanelShowAllButton: 'Показать все',
+  columnsPanelHideAllButton: 'Скрыть все',
+
+  filterPanelAddFilter: 'Добавить фильтер',
+  filterPanelDeleteIconLabel: 'Удалить',
+  filterPanelLogicOperator: 'Логические операторы',
+  filterPanelOperator: 'Оператор',
+  filterPanelOperatorAnd: 'И',
+  filterPanelOperatorOr: 'Или',
+  filterPanelColumns: 'Столбцы',
+  filterPanelInputLabel: 'Значение',
+  filterPanelInputPlaceholder: 'Значение фильтра',
+
+  filterOperatorContains: 'содержит',
+  filterOperatorEquals: 'равно',
+  filterOperatorStartsWith: 'начинается с',
+  filterOperatorEndsWith: 'заканчивается',
+  filterOperatorIs: 'является',
+  filterOperatorNot: 'не является',
+  filterOperatorAfter: 'после',
+  filterOperatorOnOrAfter: 'на или после',
+  filterOperatorBefore: 'раньше',
+  filterOperatorOnOrBefore: 'на или ранее',
+  filterOperatorIsEmpty: 'пусто',
+  filterOperatorIsNotEmpty: 'не пуст',
+  filterOperatorIsAnyOf: 'любой',
+
+  filterValueAny: 'любой',
+  filterValueTrue: 'истинный',
+  filterValueFalse: 'ложь',
+
+  columnMenuLabel: 'Меню',
+  columnMenuShowColumns: 'Показать столбцы',
+  columnMenuManageColumns: 'Управление столбцами',
+  columnMenuFilter: 'Фильтр',
+  columnMenuHideColumn: 'Скрыть столбец',
+  columnMenuUnsort: 'Убрать сортировку',
+  columnMenuSortAsc: 'Сортировать, восходящая',
+  columnMenuSortDesc: 'Сортировать, спустившись',
+
+  columnHeaderFiltersTooltipActive: (count: any) =>
+    count !== 1 ? `${count} активные фильтры` : `${count} активные фильтры`,
+  columnHeaderFiltersLabel: 'Показать фильтры',
+  columnHeaderSortIconLabel: 'Сортировать',
+
+  footerRowSelected: (count: any) =>
+    count !== 1
+      ? `${count.toLocaleString()} ряды выбраны`
+      : `${count.toLocaleString()} выбран строка`,
+
+  footerTotalRows: 'Общие ряды:',
+
+  footerTotalVisibleRows: (visibleCount: any, totalCount: any) =>
+    `${visibleCount.toLocaleString()} из ${totalCount.toLocaleString()}`,
+
+  checkboxSelectionHeaderName: 'Выбор флажки',
+  checkboxSelectionSelectAllRows: 'Выберите все ряды',
+  checkboxSelectionUnselectAllRows: 'Невыполнить все ряды',
+  checkboxSelectionSelectRow: 'Выберите строку',
+  checkboxSelectionUnselectRow: 'Невыразированный ряд',
+
+  booleanCellTrueLabel: 'да',
+  booleanCellFalseLabel: 'нет',
+
+  actionsCellMore: 'ещё',
+
+  pinToLeft: 'Булавка слева',
+  pinToRight: 'Приколоть справа',
+  unpin: 'Не',
+
+  treeDataGroupingHeaderName: 'Группа',
+  treeDataExpand: 'смотрите детей',
+  treeDataCollapse: 'скрыть детей',
+
+  groupingColumnHeaderName: 'Группа',
+  groupColumn: (name: any) => `Группа по ${name}`,
+  unGroupColumn: (name: any) => `Прекратите группировать ${name}`,
+
+  detailPanelToggle: 'Подробная панель переключать',
+  expandDetailPanel: 'Расширять',
+  collapseDetailPanel: 'Крах',
+
+  MuiTablePagination: {},
+
+  rowReorderingHeaderName: 'Переупорядочение ряда',
+
+  aggregationMenuItemHeader: 'Агрегация',
+  aggregationFunctionLabelSum: 'сумма',
+  aggregationFunctionLabelAvg: 'средний',
+  aggregationFunctionLabelMin: 'мин',
+  aggregationFunctionLabelMax: 'макс',
+  aggregationFunctionLabelSize: 'размер',
+};

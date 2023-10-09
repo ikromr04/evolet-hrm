@@ -15,6 +15,7 @@ import {
   Educations,
   Employee,
   EmployeeLanguages,
+  Employees,
   LoginData,
   PersonalData
 } from '../../types/employee';
@@ -25,6 +26,7 @@ import {
   adaptEmployeeEducationsToClient,
   adaptEmployeeLanguages,
   adaptEmployeeToClient,
+  adaptEmployeesToClient,
   adaptPersonalDataToClient
 } from '../../adapters/employees';
 
@@ -374,3 +376,16 @@ export const deleteEmployeeActivityAction = createAsyncThunk<ActivityId, {
   },
 );
 
+export const fetchEmployeesAction = createAsyncThunk<Employees, {
+  successHandler: (employees: Employees) => void;
+}, {
+  extra: AxiosInstance;
+}>(
+  'employees/fetchEmployees',
+  async ({ successHandler }, { extra: api }) => {
+    const { data } = await api.get(APIRoute.Employees);
+    const employees = adaptEmployeesToClient(data);
+    successHandler(employees);
+    return employees;
+  },
+);

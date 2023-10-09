@@ -29,6 +29,8 @@ export type Employee = {
   languages: EmployeeLanguages | null;
 };
 
+export type Employees = Employee[];
+
 export type AvatarPath = string;
 
 export type PersonalData = {

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+  public function index()
+  {
+    return User::with('job', 'position')->get();
+  }
+
   public function check()
   {
     $user = auth()->user();

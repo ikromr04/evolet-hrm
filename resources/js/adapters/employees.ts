@@ -7,6 +7,7 @@ import {
   Employee,
   EmployeeLanguage,
   EmployeeLanguages,
+  Employees,
   PersonalData
 } from '../types/employee';
 import { adaptJobToClient } from './jobs';
@@ -33,6 +34,9 @@ export const adaptEmployeeToClient = (serverEmployee: any): Employee => ({
   position: serverEmployee.position ? adaptPositionToClient(serverEmployee.position) : null,
   languages: serverEmployee.languages?.length ? adaptEmployeeLanguages(serverEmployee.languages) : null,
 });
+
+export const adaptEmployeesToClient = (serverEmployees: any): Employees =>
+  serverEmployees.map((serverEmployee: any) => adaptEmployeeToClient(serverEmployee));
 
 export const adaptPersonalDataToClient = (serverData: {[key: string]: any }): PersonalData => ({
   id: serverData.id,

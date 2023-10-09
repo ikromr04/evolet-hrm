@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AuthorizationStatus, SliceName } from '../../const';
-import { Activities, AuthorizedEmployee, AvatarPath, Educations, Employee, PersonalData } from '../../types/employee';
+import { Activities, AuthorizedEmployee, AvatarPath, Educations, Employee, Employees, PersonalData } from '../../types/employee';
 import {
   checkAuthorizationAction,
   crudEmployeeLanguagesAction,
@@ -10,6 +10,7 @@ import {
   fetchEmployeeByIdAction,
   fetchEmployeeEducationsAction,
   fetchEmployeePersonalDataAction,
+  fetchEmployeesAction,
   loginAction,
   logoutAction,
   storeEmployeeActivityAction,
@@ -25,6 +26,7 @@ export type EmployeesSlice = {
   authorizedEmployee: AuthorizedEmployee | null;
   authorizedEmployeeAvatar: AvatarPath | null;
   employee: Employee | null;
+  employees: Employees | null;
   employeeAvatar: AvatarPath | null;
   employeePersonalData: PersonalData | null;
   employeeEducations: Educations | null;
@@ -35,6 +37,7 @@ const initialState: EmployeesSlice = {
   authorizationStatus: AuthorizationStatus.Unknown,
   authorizedEmployee: null,
   employee: null,
+  employees: null,
   employeeAvatar: null,
   authorizedEmployeeAvatar: null,
   employeePersonalData: null,
@@ -137,6 +140,9 @@ export const employeeSlice = createSlice({
           languages: action.payload,
         };
         state.employee = employee;
+      })
+      .addCase(fetchEmployeesAction.fulfilled, (state, action) => {
+        state.employees = action.payload;
       });
   },
 });
