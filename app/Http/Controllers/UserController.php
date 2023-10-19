@@ -157,8 +157,24 @@ class UserController extends Controller
 
   public function updatePersonalData($employeeId)
   {
-    $personalData = PersonalData::find($employeeId);
-    $personalData->update([
+    $personalData = PersonalData::where('user_id', $employeeId)->first();
+    if ($personalData) {
+      $personalData->update([
+        'birth_date' => request('birth_date'),
+        'gender' => request('gender'),
+        'nationality' => request('nationality'),
+        'citizenship' => request('citizenship'),
+        'address' => request('address'),
+        'email' => request('email'),
+        'tel_1' => request('tel_1'),
+        'tel_2' => request('tel_2'),
+        'family_status' => request('family_status'),
+        'children' => request('children'),
+      ]);
+      return $personalData;
+    }
+    $personalData = PersonalData::create([
+      'user_id' => $employeeId,
       'birth_date' => request('birth_date'),
       'gender' => request('gender'),
       'nationality' => request('nationality'),

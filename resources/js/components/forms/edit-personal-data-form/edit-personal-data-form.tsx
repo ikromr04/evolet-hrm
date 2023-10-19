@@ -41,6 +41,7 @@ function EditPersonalDataForm({ closeModalHandler }: EditPersonalDataFormProps):
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent): void => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled');
+
     formRef.current && dispatch(updateEmployeePersonalDataAction({
       formData: new FormData(formRef.current),
       employeeId: personalData.userId,

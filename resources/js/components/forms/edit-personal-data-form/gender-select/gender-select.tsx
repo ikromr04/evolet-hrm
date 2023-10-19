@@ -10,7 +10,7 @@ function GenderSelect(): JSX.Element {
 
   return (
     <Select
-      label="Должность"
+      label="Пол"
       name="gender"
       value={gender}
       onChange={(evt: BaseSyntheticEvent) => setGender(evt.target.value)}

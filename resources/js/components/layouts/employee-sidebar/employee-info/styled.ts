@@ -5,4 +5,5 @@ export const LinksWrapper = styled('div')`
   align-items: center;
   gap: 8px;
   overflow: hidden;
+  width: 100%;
 `;

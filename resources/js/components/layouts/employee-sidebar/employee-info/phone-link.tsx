@@ -10,7 +10,9 @@ function PhoneLink(): JSX.Element {
   }
 
   return (
-    <TextLink href={`tel:${personalData.tel1}`}>{personalData.tel1}</TextLink>
+    <TextLink href={`tel:${personalData.tel1 || personalData.tel2}`}>
+      {personalData.tel1 || personalData.tel2}
+    </TextLink>
   );
 };
 
