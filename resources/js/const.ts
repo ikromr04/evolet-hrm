@@ -1,4 +1,4 @@
-export const EMPTY_OPTION_LABEL = '--Выберите--';
+export const EMPTY_OPTION_LABEL = '';
 export const DEFAULT_AVATAR_PATH = '/img/default-avatar.png';
 
 export enum AppRoute {
@@ -20,6 +20,7 @@ export enum APIRoute {
   Login = '/employees/login',
   Logout = '/employees/logout',
   Employees = '/employees',
+  EmployeesQuickAdd = '/employees/quick-add',
   Employee = '/employees/:employeeId',
   EmployeeJob = '/employees/:employeeId/job',
   EmployeeAvatar = '/employees/:employeeId/avatar',

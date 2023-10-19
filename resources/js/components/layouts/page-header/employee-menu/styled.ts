@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import CaretIcon from '../../../icons/caret-icon';
 
-export const Span = styled('span')`
+export const DropdownButton = styled('button')`
+  border: 0;
+  padding: 0;
+  background-color: transparent;
   display: flex;
   align-items: center;
   gap: 8px;

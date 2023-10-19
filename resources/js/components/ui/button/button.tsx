@@ -9,6 +9,7 @@ type ButtonProps = PropsWithChildren<{
   warning?: boolean;
   error?: boolean;
   large?: boolean;
+  small?: boolean;
   [rest: string]: unknown;
 }>;
 
@@ -20,6 +21,7 @@ function Button({
   warning,
   error,
   large,
+  small,
   ...rest
 }: ButtonProps): JSX.Element {
   return (
@@ -31,6 +33,7 @@ function Button({
       warning={warning}
       error={error}
       large={large}
+      small={small}
       {...rest}
     >
       {children}

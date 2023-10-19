@@ -1,4 +1,4 @@
-import { Avatar, DropdownIcon, Span } from './styled';
+import { Avatar, DropdownButton, DropdownIcon } from './styled';
 import { AppRoute, DEFAULT_AVATAR_PATH } from '../../../../const';
 import Hr from '../../../ui/hr/hr';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
@@ -23,7 +23,7 @@ function EmployeeMenu(): JSX.Element {
   return (
     <Dropdown
       button={
-        <Span>
+        <DropdownButton>
           <Avatar
             src={avatar || DEFAULT_AVATAR_PATH}
             width={32}
@@ -32,7 +32,7 @@ function EmployeeMenu(): JSX.Element {
           />
           {employee.name}
           <DropdownIcon width={16} height={16} />
-        </Span>
+        </DropdownButton>
       }
       menu={
         <>

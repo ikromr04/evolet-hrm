@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { StyledDropdown, DropdownButton, DropdownMenu } from './styled';
+import { StyledDropdown, DropdownMenu } from './styled';
 import { useOutsideClick } from '../../../hooks/use-outside-click';
 import { useEscapeKeydown } from '../../../hooks/use-escape-keydown';
 
@@ -23,9 +23,9 @@ function Dropdown({
 
   return (
     <StyledDropdown ref={ref} className={className}>
-      <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+      <div onClick={() => setIsOpen(!isOpen)}>
         {button}
-      </DropdownButton>
+      </div>
 
       <DropdownMenu
         onClick={() => setIsOpen(false)}

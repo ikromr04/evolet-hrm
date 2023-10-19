@@ -6,12 +6,6 @@ export const StyledDropdown = styled('div')`
   display: flex;
 `;
 
-export const DropdownButton = styled('button')`
-  padding: 0;
-  border: none;
-  background-color: transparent;
-`;
-
 export const DropdownMenu = styled(Box).withConfig({
   shouldForwardProp: (props) => !['isOpen', 'fullWidthMenu'].includes(props),
 })<{ isOpen: boolean, fullWidthMenu: boolean }>`

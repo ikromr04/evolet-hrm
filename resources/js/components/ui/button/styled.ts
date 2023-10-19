@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { StyledInfo } from '../info/styled';
 
 export const StyledButton = styled('button').withConfig({
-  shouldForwardProp: (props) => !['success', 'warning', 'error', 'large'].includes(props),
-})<{ success?: boolean, warning?: boolean, error?: boolean, large?: boolean }>`
+  shouldForwardProp: (props) => !['success', 'warning', 'error', 'large', 'small'].includes(props),
+})<{ success?: boolean, warning?: boolean, error?: boolean, large?: boolean, small?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -43,6 +43,11 @@ export const StyledButton = styled('button').withConfig({
     font-size: 14px;
     min-height: 36px;
     max-height: 36px;
+  `}
+
+  ${({ small }) => small && css`
+    min-height: 28px;
+    max-height: 28px;
   `}
 
   &:active,

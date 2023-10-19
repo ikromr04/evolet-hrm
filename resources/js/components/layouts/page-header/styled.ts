@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import Container from '../../ui/container/container';
+import MainLogo from '../../ui/main-logo/main-logo';
+import Button from '../../ui/button/button';
 
 export const Header = styled('header')`
   position: sticky;
@@ -17,9 +19,18 @@ export const Header = styled('header')`
   }
 `;
 
+export const HeaderLogo = styled(MainLogo)`
+  margin-right: auto;
+`;
+
 export const HeaderContainer = styled(Container)`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
+`;
+
+export const DropdownButton = styled(Button)`
+  box-shadow: none;
+  background-color: #e3f2fd;
+  color: #0288d1;
 `;

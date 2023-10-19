@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
   Route::delete('/employees/logout', [UserController::class, 'logout']);
 
   Route::get('/employees', [UserController::class, 'index']);
+  Route::post('/employees/quick-add', [UserController::class, 'quickAdd']);
   Route::get('/employees/{employeeId}', [UserController::class, 'show']);
   Route::put('/employees/{employeeId}', [UserController::class, 'update']);
   Route::put('/employees/{employeeId}/avatar', [UserController::class, 'updateAvatar']);

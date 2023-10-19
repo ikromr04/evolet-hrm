@@ -29,6 +29,8 @@ import {
   adaptEmployeesToClient,
   adaptPersonalDataToClient
 } from '../../adapters/employees';
+import { EmployeeQuickAddDTO } from '../../dto/employees';
+import { EmployeeQuickAddResponse } from '../../response/employees';
 
 export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, undefined, {
   extra: AxiosInstance;
@@ -387,5 +389,30 @@ export const fetchEmployeesAction = createAsyncThunk<Employees, {
     const employees = adaptEmployeesToClient(data);
     successHandler(employees);
     return employees;
+  },
+);
+
+export const addEmployeeQuickAction = createAsyncThunk<void, {
+  dto: EmployeeQuickAddDTO;
+  errorHandler: (error: ValidationError) => void;
+  successHandler: (responseObject: EmployeeQuickAddResponse) => void;
+}, {
+  extra: AxiosInstance;
+  rejectValue: ValidationError;
+}>(
+  'employees/addEmployeeQuickAction',
+  async (arg, { extra: api, rejectWithValue }) => {
+    const { dto, errorHandler, successHandler } = arg;
+    try {
+      const { data } = await api.post<EmployeeQuickAddResponse>(APIRoute.EmployeesQuickAdd, dto);
+      successHandler(data);
+    } catch (err: any) {
+      let error: AxiosError<ValidationError> = err;
+      if (!error.response) {
+        throw err;
+      }
+      errorHandler(error.response.data);
+      return rejectWithValue(error.response.data);
+    }
   },
 );

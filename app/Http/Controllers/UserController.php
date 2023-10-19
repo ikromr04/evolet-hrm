@@ -16,6 +16,30 @@ class UserController extends Controller
     return User::with('job', 'position')->get();
   }
 
+  public function quickAdd()
+  {
+    request()->validate([
+      'name' => 'required|string',
+      'surname' => 'required|string',
+      'login' => 'required|unique:users,login',
+    ]);
+
+    $password = uniqid();
+
+    $user = User::create([
+      'name' => request('name'),
+      'surname' => request('surname'),
+      'patronymic' => request('patronymic'),
+      'login' => request('login'),
+      'password' => bcrypt($password),
+    ]);
+
+    return response([
+      'login' => $user->login,
+      'password' => $password,
+    ], 201);
+  }
+
   public function check()
   {
     $user = auth()->user();
