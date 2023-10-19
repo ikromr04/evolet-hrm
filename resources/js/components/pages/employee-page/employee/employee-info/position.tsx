@@ -4,7 +4,7 @@ import { getEmployee } from '../../../../../store/employees-slice/employees-sele
 function Position(): JSX.Element {
   const employee = useAppSelector(getEmployee);
 
-  return (<>{employee?.position?.title}</>);
+  return (<>{employee?.positions?.map(({ title }) => title).join(', ')}</>);
 };
 
 export default Position;

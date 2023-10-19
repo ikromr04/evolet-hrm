@@ -6,6 +6,7 @@ use App\Models\Education;
 use App\Models\LaborActivity;
 use App\Models\PersonalData;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -13,7 +14,7 @@ class UserController extends Controller
 {
   public function index()
   {
-    return User::with('job', 'position')->get();
+    return User::with('jobs', 'positions')->get();
   }
 
   public function quickAdd()
@@ -32,6 +33,7 @@ class UserController extends Controller
       'patronymic' => request('patronymic'),
       'login' => request('login'),
       'password' => bcrypt($password),
+      'started_work_at' => new DateTime(),
     ]);
 
     return response([
@@ -90,7 +92,6 @@ class UserController extends Controller
     request()->validate([
       'name' => 'required|string',
       'surname' => 'required|string',
-      'patronymic' => 'required|string',
       'started_work_at' => 'required',
     ]);
 
@@ -108,18 +109,19 @@ class UserController extends Controller
       'surname' => request('surname'),
       'patronymic' => request('patronymic'),
       'started_work_at' => request('started_work_at'),
-      'job_id' => request('job_id'),
-      'position_id' => request('position_id'),
     ]);
 
-    $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $user->jobs()->sync(request('jobs'));
+    $user->positions()->sync(request('positions'));
+
+    $user = User::with('jobs', 'positions', 'languages')->find($employeeId);
     $user = $this->appendNextPreviousEmployeesId($user);
 
     return $user;
   }
 
   public function show($employeeId) {
-    $user = User::with('job', 'position', 'languages')->find($employeeId);
+    $user = User::with('jobs', 'positions', 'languages')->find($employeeId);
     $user = $this->appendNextPreviousEmployeesId($user);
 
     return $user;

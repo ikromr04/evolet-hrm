@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { HeaderInner, Job, Name, Position, StyledHeader } from './styled';
+import { HeaderInner, Jobs, Name, Positions, StyledHeader } from './styled';
 import EmployeeAvatar from './employee-avatar/employee-avatar';
 import BriefcaseIcon from '../../../icons/briefcase-icon';
 import { useAppSelector } from '../../../../hooks';
@@ -24,12 +24,12 @@ function EmployeeHeader(): JSX.Element {
 
       <HeaderInner>
         <div>
-          <Name>{`${employee.surname} ${employee.name}`}</Name>
-          {employee.job &&
-            <Job>
-              <BriefcaseIcon width={16} height={16} /> {employee.job.title}
-            </Job>}
-          <Position>{employee.position?.title}</Position>
+          <Name>{`${employee.surname} ${employee.name} ${employee.patronymic || ''}`}</Name>
+          {employee.jobs &&
+            <Jobs>
+              <BriefcaseIcon width={16} height={16} /> {employee.jobs.map(({ title }) => title).join(', ')}
+            </Jobs>}
+          <Positions>{employee.positions?.map(({ title }) => title).join(', ')}</Positions>
         </div>
 
         <Buttons>

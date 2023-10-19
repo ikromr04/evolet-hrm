@@ -10,8 +10,8 @@ import {
   Employees,
   PersonalData
 } from '../types/employee';
-import { adaptJobToClient } from './jobs';
-import { adaptPositionToClient } from './positions';
+import { adaptJobsToClient } from './jobs';
+import { adaptPositionsToClient } from './positions';
 
 export const adaptAuthorizedEmployeeToClient = (serverEmployee: any): AuthorizedEmployee => ({
   id: serverEmployee.id,
@@ -30,8 +30,8 @@ export const adaptEmployeeToClient = (serverEmployee: any): Employee => ({
   previousEmployeeId: serverEmployee.previous_employee_id,
   nextEmployeeId: serverEmployee.next_employee_id,
   startedWorkAt: serverEmployee.started_work_at,
-  job: serverEmployee.job ? adaptJobToClient(serverEmployee.job) : null,
-  position: serverEmployee.position ? adaptPositionToClient(serverEmployee.position) : null,
+  jobs: serverEmployee.jobs?.length ? adaptJobsToClient(serverEmployee.jobs) : null,
+  positions: serverEmployee.positions?.length ? adaptPositionsToClient(serverEmployee.positions) : null,
   languages: serverEmployee.languages?.length ? adaptEmployeeLanguages(serverEmployee.languages) : null,
 });
 

@@ -1,5 +1,7 @@
+export type PositionId = string;
+
 export type Position = {
-  id: string;
+  id: PositionId;
   title: string;
 };
 

@@ -30,14 +30,14 @@ class User extends Authenticatable
     return $this->hasMany(LaborActivity::class)->orderBy('hired_at', 'desc');
   }
 
-  public function job()
+  public function jobs()
   {
-    return $this->belongsTo(Job::class);
+    return $this->belongsToMany(Job::class);
   }
 
-  public function position()
+  public function positions()
   {
-    return $this->belongsTo(Position::class);
+    return $this->belongsToMany(Position::class);
   }
 
   public function languages()

@@ -1,31 +1,37 @@
-import { BaseSyntheticEvent, useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { getJobs } from '../../../../store/job-slice/job-selector';
-import Select from '../../../ui/select/select';
 import { fetchJobsAction } from '../../../../store/job-slice/job-api-actions';
-import { getEmployee } from '../../../../store/employees-slice/employees-selector';
-import { EMPTY_OPTION_LABEL } from '../../../../const';
+import MultiSelect from '../../../ui/multi-select/multi-select';
+import { EmployeeUpdateDTO } from '../../../../dto/employees';
+import { JobId } from '../../../../types/job';
 
-function JobSelect(): JSX.Element {
+type JobSelectProps = {
+  dto: EmployeeUpdateDTO;
+  setDTO: Dispatch<SetStateAction<EmployeeUpdateDTO>>;
+};
+
+function JobSelect({ dto, setDTO }: JobSelectProps): JSX.Element {
   const jobs = useAppSelector(getJobs);
   const dispatch = useAppDispatch();
-  const employee = useAppSelector(getEmployee);
-  const [jobId, setJobId] = useState(employee?.job?.id || '');
 
   useEffect(() => {
     !jobs && dispatch(fetchJobsAction());
   }, []);
 
+  const handleSelectChange = (values: JobId[]) =>
+    setDTO((prevState) => {
+      const newState: EmployeeUpdateDTO = JSON.parse(JSON.stringify(prevState));
+      newState.jobs = values;
+      return newState;
+    });
+
   return (
-    <Select
+    <MultiSelect
       label="Должность"
-      name="job_id"
-      value={jobId}
-      onChange={(evt: BaseSyntheticEvent) => setJobId(evt.target.value)}
-      options={jobs ? [
-        { value: '', label: EMPTY_OPTION_LABEL },
-        ...jobs.map(({ id, title }) => ({ value: id, label: title })),
-      ] : [{ value: '', label: 'Не выбрано' }]}
+      options={jobs?.map(({ id, title }) => ({ value: id, label: title })) || []}
+      values={dto.jobs}
+      onChange={handleSelectChange}
     />
   );
 };

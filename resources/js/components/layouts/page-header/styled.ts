@@ -33,4 +33,5 @@ export const DropdownButton = styled(Button)`
   box-shadow: none;
   background-color: #e3f2fd;
   color: #0288d1;
+  border-radius: 20px;
 `;

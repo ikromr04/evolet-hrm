@@ -1,6 +1,6 @@
-import { Job } from './job';
+import { Jobs } from './job';
 import { Language } from './language';
-import { Position } from './position';
+import { Positions } from './position';
 
 export type LoginData = {
   login: string;
@@ -24,8 +24,8 @@ export type Employee = {
   previousEmployeeId: string;
   nextEmployeeId: string;
   startedWorkAt: Date;
-  job: Job | null;
-  position: Position | null;
+  jobs: Jobs | null;
+  positions: Positions | null;
   languages: EmployeeLanguages | null;
 };
 

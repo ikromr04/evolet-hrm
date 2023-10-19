@@ -29,7 +29,7 @@ import {
   adaptEmployeesToClient,
   adaptPersonalDataToClient
 } from '../../adapters/employees';
-import { EmployeeQuickAddDTO } from '../../dto/employees';
+import { EmployeeQuickAddDTO, EmployeeUpdateDTO } from '../../dto/employees';
 import { EmployeeQuickAddResponse } from '../../response/employees';
 
 export const checkAuthorizationAction = createAsyncThunk<AuthorizedEmployee, undefined, {
@@ -131,7 +131,7 @@ export const fetchEmployeeByIdAction = createAsyncThunk<Employee, {
 );
 
 export const updateEmployeeAction = createAsyncThunk<Employee, {
-  formData: FormData;
+  dto: EmployeeUpdateDTO;
   employeeId: string;
   errorHandler: (error: ValidationError) => void;
   successHandler: () => void;
@@ -141,10 +141,9 @@ export const updateEmployeeAction = createAsyncThunk<Employee, {
 }>(
   'employees/updateEmployee',
   async (arg, { extra: api, rejectWithValue }) => {
-    const { formData, employeeId, errorHandler, successHandler } = arg;
+    const { dto, employeeId, errorHandler, successHandler } = arg;
     try {
-      formData.append('_method', 'put');
-      const { data } = await api.post(generatePath(APIRoute.Employee, { employeeId }), formData);
+      const { data } = await api.put(generatePath(APIRoute.Employee, { employeeId }), dto);
       successHandler();
       return adaptEmployeeToClient(data);
     } catch (err: any) {

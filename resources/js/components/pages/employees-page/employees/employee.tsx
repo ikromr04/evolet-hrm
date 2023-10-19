@@ -18,8 +18,6 @@ function Employees(): JSX.Element {
     name: `${employee.surname} ${employee.name} ${employee.patronymic}`,
     login: employee.login,
     startedWorkAt: dayjs(employee.startedWorkAt).format('D MMM YYYY'),
-    job: employee.job?.title,
-    position: employee.position?.title,
   })) || []);
 
   useEffect(() => {
@@ -31,8 +29,6 @@ function Employees(): JSX.Element {
           name: `${employee.surname} ${employee.name} ${employee.patronymic}`,
           login: employee.login,
           startedWorkAt: dayjs(employee.startedWorkAt).format('D MMM YYYY'),
-          job: employee.job?.title,
-          position: employee.position?.title,
         })));
       },
     }));

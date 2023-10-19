@@ -1,4 +1,4 @@
-import { BaseSyntheticEvent, useRef, useState } from 'react';
+import { BaseSyntheticEvent, useState } from 'react';
 import Button from '../../ui/button/button';
 import Buttons from '../../ui/buttons/buttons';
 import { Form } from './styled';
@@ -8,8 +8,8 @@ import { getEmployee } from '../../../store/employees-slice/employees-selector';
 import { ValidationError } from '../../../types/validation-error';
 import { updateEmployeeAction } from '../../../store/employees-slice/employees-api-actions';
 import { toast } from 'react-toastify';
-import { debounce } from '../../../utils';
 import JobSelect from './job-select/job-select';
+import { EmployeeUpdateDTO } from '../../../dto/employees';
 import PositionSelect from './position-select/position-select';
 
 type EmployeeEditFormProps = {
@@ -17,16 +17,29 @@ type EmployeeEditFormProps = {
 };
 
 function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Element {
+  const dispatch = useAppDispatch();
   const employee = useAppSelector(getEmployee);
   const [validationError, setValidationError] = useState<ValidationError | null>(null);
-  const formRef = useRef<HTMLFormElement | null>(null);
-  const dispatch = useAppDispatch();
+  const [dto, setDTO] = useState<EmployeeUpdateDTO>({
+    name: employee?.name || '',
+    surname: employee?.surname || '',
+    patronymic: employee?.patronymic || '',
+    login: employee?.login || '',
+    started_work_at: employee?.startedWorkAt || new Date(),
+    jobs: employee?.jobs?.map(({ id }) => id) || [],
+    positions: employee?.positions?.map(({ id }) => id) || [],
+  });
 
   if (!employee) {
     return <></>;
   }
 
-  const handleInputsChange = debounce((evt: BaseSyntheticEvent): void =>
+  const handleInputsChange = (evt: BaseSyntheticEvent): void => {
+    setDTO((prevState) => {
+      const newState = JSON.parse(JSON.stringify(prevState));
+      newState[evt.target.name] = evt.target.value;
+      return newState;
+    });
     setValidationError((prevState) => {
       const newState = JSON.parse(JSON.stringify(prevState));
       if (newState?.errors?.[evt.target.name]) {
@@ -36,13 +49,14 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
         ...newState,
         message: '',
       };
-  }));
+    });
+  };
 
   const handleSubmitButtonClick = (evt: BaseSyntheticEvent) => {
     evt.preventDefault();
     evt.target.setAttribute('disabled', 'disabled')
-    formRef.current && dispatch(updateEmployeeAction({
-      formData: new FormData(formRef.current),
+    dispatch(updateEmployeeAction({
+      dto,
       employeeId: employee.id,
       errorHandler(error) {
         evt.target.removeAttribute('disabled');
@@ -57,12 +71,12 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
   };
 
   return (
-    <Form ref={formRef}>
+    <Form>
       <Input
         label="Имя"
         type="text"
         name="name"
-        defaultValue={employee.name}
+        defaultValue={dto.name}
         errorMessage={validationError?.errors?.name?.[0]}
         onInput={handleInputsChange}
       />
@@ -70,7 +84,7 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
         label="Фамилия"
         type="text"
         name="surname"
-        defaultValue={employee.surname}
+        defaultValue={dto.surname}
         errorMessage={validationError?.errors?.surname?.[0]}
         onInput={handleInputsChange}
       />
@@ -78,7 +92,7 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
         label="Отчество"
         type="text"
         name="patronymic"
-        defaultValue={employee.patronymic}
+        defaultValue={dto.patronymic}
         errorMessage={validationError?.errors?.patronymic?.[0]}
         onInput={handleInputsChange}
       />
@@ -86,7 +100,7 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
         label="Логин"
         type="text"
         name="login"
-        defaultValue={employee.login}
+        defaultValue={dto.login}
         errorMessage={validationError?.errors?.login?.[0]}
         onInput={handleInputsChange}
       />
@@ -94,12 +108,12 @@ function EmployeeEditForm({ closeModalHandler }: EmployeeEditFormProps): JSX.Ele
         label="Начало работы"
         type="datetime-local"
         name="started_work_at"
-        defaultValue={employee.startedWorkAt}
+        defaultValue={dto.started_work_at}
         errorMessage={validationError?.errors?.started_work_at?.[0]}
         onInput={handleInputsChange}
       />
-      <JobSelect />
-      <PositionSelect />
+      <JobSelect dto={dto} setDTO={setDTO} />
+      <PositionSelect dto={dto} setDTO={setDTO} />
 
       <Buttons>
         <Button

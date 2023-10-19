@@ -1,5 +1,7 @@
+export type JobId = string;
+
 export type Job = {
-  id: string;
+  id: JobId;
   title: string;
 };
 

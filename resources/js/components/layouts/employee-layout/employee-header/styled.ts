@@ -20,7 +20,7 @@ export const Name = styled(Title)`
   margin-bottom: 16px;
 `;
 
-export const Job = styled('div')`
+export const Jobs = styled('div')`
   display: grid;
   grid-template-columns: 16px 1fr;
   align-items: flex-start;
@@ -30,7 +30,7 @@ export const Job = styled('div')`
   margin-bottom: 8px;
 `;
 
-export const Position = styled('div')`
+export const Positions = styled('div')`
   background-color: #CCE6FF;
   color: #006CFF;
   border-radius: 20px;
@@ -39,4 +39,8 @@ export const Position = styled('div')`
   font-size: 12px;
   font-weight: 500;
   line-height: 80%;
+
+  &:empty {
+    display: none;
+  }
 `;
