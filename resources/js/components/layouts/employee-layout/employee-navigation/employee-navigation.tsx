@@ -21,6 +21,21 @@ function EmployeeNavigation(): JSX.Element {
       <NavigationLink href={generatePath(AppRoute.EmployeeWork, { employeeId: employee.id })}>
         Работа
       </NavigationLink>
+      <NavigationLink href={generatePath(AppRoute.EmployeeEquipment, { employeeId: employee.id })}>
+        Оборудование
+      </NavigationLink>
+      <NavigationLink href={generatePath(AppRoute.EmployeeVacation, { employeeId: employee.id })}>
+        Отпуск
+      </NavigationLink>
+      <NavigationLink href={generatePath(AppRoute.EmployeePIR, { employeeId: employee.id })}>
+        ПИР
+      </NavigationLink>
+      <NavigationLink href={generatePath(AppRoute.EmployeeKPI, { employeeId: employee.id })}>
+        KPI
+      </NavigationLink>
+      <NavigationLink href={generatePath(AppRoute.EmployeeAttendance, { employeeId: employee.id })}>
+        Посещаемость
+      </NavigationLink>
     </Navigation>
   );
 };

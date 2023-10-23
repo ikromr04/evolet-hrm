@@ -7,6 +7,11 @@ export enum AppRoute {
   Employees = '/employees',
   Employee = '/employees/:employeeId',
   EmployeeWork = '/employees/:employeeId/work',
+  EmployeeEquipment = '/employees/:employeeId/equipment',
+  EmployeeVacation = '/employees/:employeeId/vacation',
+  EmployeePIR = '/employees/:employeeId/pir',
+  EmployeeKPI = '/employees/:employeeId/kpi',
+  EmployeeAttendance = '/employees/:employeeId/attendance',
   NotFound = '*',
 };
 

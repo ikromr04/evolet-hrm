@@ -10,6 +10,7 @@ import {
   Wrapper,
 } from './styled';
 import { useOutsideClick } from '../../../hooks/use-outside-click';
+import { EMPTY_OPTION_LABEL } from '../../../const';
 
 type MultiSelectProps = {
   className?: string;
@@ -52,6 +53,7 @@ function MultiSelect({
         <SelectedOptions error={errorMessage} tabIndex={0}>
           {options.filter(({ value }) => values.includes(value))
             .map(({ label }) => label).join(', ')}
+          {!values.length && EMPTY_OPTION_LABEL}
         </SelectedOptions>
         <Options>
           {options.map(({ value, label }) => (
